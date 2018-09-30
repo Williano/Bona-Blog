@@ -20,9 +20,9 @@ Article
     - image 
     - body
     - tags
-    - published date
-    - created date
-    - updated
+    - date_published
+    - date_created
+    - date_updated
     - status (draft, published)
     
 Comment
@@ -30,4 +30,7 @@ Comment
     - name
     - email
     - comment
-    - post     
+    - article    
+    - date created
+    - date updated
+    - approved (True or False)
