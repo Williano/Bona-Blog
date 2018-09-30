@@ -29,3 +29,9 @@ urlpatterns = [
 # it will serve the static files.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Modifies default django admin titles and headers with custom app detail.
+admin.site.site_header = "Bona Admin"
+admin.site.site_title = "Bona Admin Portal"
+admin.site.index_title = "Welcome to Bona Blog Portal"
+
