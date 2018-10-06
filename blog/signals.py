@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Local application imports.
-from .models.author_profile import Profile
+from .models.author_profile_model import Profile
 
 
 # Creates author profile immediately an account is created for her/him.

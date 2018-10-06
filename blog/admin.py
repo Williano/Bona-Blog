@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 # Local application imports.
-from .models.author_profile import Profile
-from .models.blog import Category, Article, Comment
+from .models.author_profile_model import Profile
+from .models.blog_model import Category, Article, Comment
 
 
 class ProfileAdmin(admin.ModelAdmin):
