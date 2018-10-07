@@ -80,8 +80,3 @@ class TestAuthorProfile(TestCase):
     def test_if_user_profile_returns_the_correct_username(self):
         profile = Profile.objects.get(id=1)
         self.assertEqual(profile.__str__(), "Will's Profile")
-
-    def test_if_user_profile_image_is_save_to_the_right_size(self):
-        profile = Profile.objects.get(id=1)
-        self.assertEqual(profile.image, "author/profile_pics/slider-1.jpg")
-        self.assertEqual(profile.image.width, 56)
