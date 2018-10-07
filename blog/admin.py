@@ -18,7 +18,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
      Ordering orders the profiles with the users.
     """
-    list_display = ('user', 'image',)
     list_filter = ('user',)
     search_fields = ('user',)
     ordering = ['user', ]
