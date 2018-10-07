@@ -7,6 +7,7 @@ from blog.views.blog_view import (
     CategoryArticleListView,
     AuthorArticleListView,
     CategoryListView,
+    AuthorsListView,
 )
 
 # Specifies the app name for name spacing.
@@ -26,5 +27,8 @@ urlpatterns = [
 
     # /categories/
     path('category-list/', CategoryListView.as_view(), name='category_list'),
+
+    # /authors/
+    path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
 
 ]

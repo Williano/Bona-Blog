@@ -60,3 +60,12 @@ class CategoryListView(ListView):
     model = Category
     context_object_name = 'categories'
     template_name = 'blog/category_list.html'
+
+
+class AuthorsListView(ListView):
+    """
+     This view list all categories.
+    """
+    model = User
+    context_object_name = 'authors'
+    template_name = 'blog/authors_list.html'

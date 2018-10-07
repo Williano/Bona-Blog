@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Authors
+{% endblock title %}
+
+
+{% block content %}
+    <div class="slider display-table center-text">
+		<h1 class="title display-table-cell"><b>Authors</b></h1>
+	</div><!-- slider -->
+
+	<section class="blog-area section">
+		<div class="container">
+
+			<div class="row">
+                {% for author in authors %}
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="{{ author.profile.image.url }}" alt="Category Image"></div>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b>{{ author.username }}</b></a></h4>
+
+								<ul class="post-footer">
+									<center><li><a href="#">
+                                        <i class="ion-chatbubble">
+                                        </i>{{ author.articles.count }}</a>
+                                        </li>
+                                   </center>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+				</div><!-- col-lg-4 col-md-6 -->
+                {% endfor %}
+			</div><!-- row -->
+
+			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+
+		</div><!-- container -->
+	</section><!-- section -->
+{% endblock %}
