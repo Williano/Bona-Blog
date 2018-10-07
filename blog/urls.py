@@ -14,7 +14,7 @@ urlpatterns = [
     # /blog/home/
     path('', ArticleListView.as_view(), name='home'),
 
-    # category/<str:slug>/
+    # category-articles/<str:slug>/
     path('category-articles/<str:slug>/', CategoryArticleListView.as_view(),
          name='category_articles'),
 
