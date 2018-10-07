@@ -1,4 +1,5 @@
 # Third party imports.
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
@@ -38,3 +39,15 @@ class CategoryArticleListView(ListView):
         categories = get_object_or_404(Category, slug=self.kwargs.get('slug'))
         return Article.objects.filter(category=categories)
 
+
+class AuthorArticleListView(ListView):
+    """
+     This view list all articles in a specific category.
+    """
+    model = Article
+    context_object_name = 'articles'
+    template_name = 'blog/author_articles.html'
+
+    def get_queryset(self):
+        author = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Article.objects.filter(author=author)
