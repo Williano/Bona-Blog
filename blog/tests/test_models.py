@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 # Local application imports.
+from blog.models.author_profile_model import Profile
 from blog.models.blog_model import Category, Article, Comment
 
 
@@ -65,3 +66,22 @@ class BlogTests(TestCase):
         comment = Comment.objects.get(id=1)
         self.assertEqual(comment.__str__(), "Comment by Bill on "
                                             "I am coming home")
+
+
+class TestAuthorProfile(TestCase):
+
+    def setUp(self):
+        user1 = User.objects.create(username="Will", password="password")
+        user1_profile = Profile.objects.create(
+            user=user1,
+            image="author/profile_pics/slider-1.jpg"
+        )
+
+    def test_if_user_profile_returns_the_correct_username(self):
+        profile = Profile.objects.get(id=1)
+        self.assertEqual(profile.__str__(), "Will's Profile")
+
+    def test_if_user_profile_image_is_save_to_the_right_size(self):
+        profile = Profile.objects.get(id=1)
+        self.assertEqual(profile.image, "author/profile_pics/slider-1.jpg")
+        self.assertEqual(profile.image.width, 56)
