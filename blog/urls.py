@@ -1,7 +1,3 @@
-"""
- blog/urls.py
-"""
-
 # Third party imports.
 from django.urls import path
 
