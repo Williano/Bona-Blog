@@ -1,4 +1,5 @@
 # Third party imports.
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
 # Local application imports.
@@ -23,4 +24,17 @@ class ArticleListView(ListView):
         # Get all blog categories and return it to the view.
         context['categories'] = Category.objects.all()
         return context
+
+
+class CategoryArticleListView(ListView):
+    """
+     This view list all articles in a specific category.
+    """
+    model = Article
+    context_object_name = 'articles'
+    template_name = 'blog/category_articles.html'
+
+    def get_queryset(self):
+        categories = get_object_or_404(Category, slug=self.kwargs.get('slug'))
+        return Article.objects.filter(category=categories)
 
