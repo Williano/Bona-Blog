@@ -11,10 +11,10 @@ class Category(models.Model):
     """
      Create a category model
     """
-    name = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, null=False, blank=False)
     slug = models.SlugField()
     image = models.ImageField(default='default.jpg',
-                              upload_to='category/category_images')
+                              upload_to='category_images')
 
     class Meta:
         """
@@ -64,13 +64,13 @@ class Article(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name='articles')
-    title = models.CharField(max_length=250, blank=False)
+    title = models.CharField(max_length=250, null=False, blank=False)
     slug = models.SlugField()
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='articles')
     image = models.ImageField(default='default.jpg',
-                              upload_to='article/article_pics')
-    body = models.TextField(blank=False)
+                              upload_to='article_pics')
+    body = models.TextField(null=False, blank=False)
     tags = TaggableManager()
     date_published = models.DateTimeField(default=timezone.now)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -115,9 +115,9 @@ class Comment(models.Model):
     """
       Create a Comment model.
     """
-    name = models.CharField(max_length=250, blank=False)
+    name = models.CharField(max_length=250, null=False, blank=False)
     email = models.EmailField()
-    comment = models.TextField(blank=False)
+    comment = models.TextField(null=False, blank=False)
     article = models.ForeignKey(Article, on_delete=models.CASCADE,
                                 related_name='comments')
     date_created = models.DateTimeField(auto_now_add=True)
