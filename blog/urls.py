@@ -5,7 +5,8 @@ from django.urls import path
 from blog.views.blog_view import (
     ArticleListView,
     CategoryArticleListView,
-    AuthorArticleListView
+    AuthorArticleListView,
+    CategoryListView,
 )
 
 # Specifies the app name for name spacing.
@@ -22,5 +23,8 @@ urlpatterns = [
     # /<str:username>/
     path('author/<str:username>/', AuthorArticleListView.as_view(),
          name='author_articles'),
+
+    # /categories/
+    path('category-list/', CategoryListView.as_view(), name='category_list'),
 
 ]

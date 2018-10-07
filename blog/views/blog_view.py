@@ -51,3 +51,12 @@ class AuthorArticleListView(ListView):
     def get_queryset(self):
         author = get_object_or_404(User, username=self.kwargs.get('username'))
         return Article.objects.filter(author=author)
+
+
+class CategoryListView(ListView):
+    """
+     This view list all categories.
+    """
+    model = Category
+    context_object_name = 'categories'
+    template_name = 'blog/category_list.html'
