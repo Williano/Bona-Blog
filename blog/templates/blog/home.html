@@ -15,7 +15,7 @@
                 {% for category in categories %}
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ category.image }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="media/{{ category.image }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -43,7 +43,7 @@
 					<div class="card h-100">
 						<div class="single-post post-style-1">
 
-							<div class="blog-image"><img src="{{ article.image }}" alt="Blog Image"></div>
+							<div class="blog-image"><img src="media/{{ article.image }}" alt="Blog Image"></div>
 
 							<a class="avatar" href="#">
                                 <img src="{{ article.author.profile.image.url }}" alt="Profile Image">

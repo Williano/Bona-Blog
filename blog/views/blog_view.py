@@ -9,16 +9,9 @@ class ArticleListView(ListView):
     """
      This view list all articles and categories.
     """
+    context_object_name = "articles"
+    queryset = Article.objects.filter(status='published')
     template_name = "blog/home.html"
-
-    def get_queryset(self):
-        """
-        Gets all articles which are published.
-
-        :return: dictionary: a dictionary of all articles and their ids
-        """
-        articles = Article.objects.filter(status="Published")
-        return articles
 
     def get_context_data(self, **kwargs):
         """
@@ -30,3 +23,4 @@ class ArticleListView(ListView):
         # Get all blog categories and return it to the view.
         context['categories'] = Category.objects.all()
         return context
+
