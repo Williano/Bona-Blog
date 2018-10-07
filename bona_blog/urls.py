@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+# Main project urls. It contains all urls of the apps in the project.
 urlpatterns = [
     path('', include('blog.urls', namespace='blog')),  # Urls for blog app.
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
 # it will serve the static files.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 # Modifies default django admin titles and headers with custom app detail.
 admin.site.site_header = "Bona Admin"
