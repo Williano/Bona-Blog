@@ -13,7 +13,7 @@ from blog.views.blog_view import (
 app_name = "blog"
 
 urlpatterns = [
-    # /blog/home/
+    # /home/
     path('', ArticleListView.as_view(), name='home'),
 
     # category-articles/<str:slug>/
