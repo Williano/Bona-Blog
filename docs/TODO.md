@@ -2,9 +2,9 @@
 
 -[x] Design Models
 
--[] Create Models
+-[x] Create Models
 
--[] Write test for models
+-[x] Write test for models
 
 -[] Design Views
 
