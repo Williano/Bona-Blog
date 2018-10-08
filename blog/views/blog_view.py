@@ -53,13 +53,13 @@ class AuthorArticleListView(ListView):
         return Article.objects.filter(author=author)
 
 
-class CategoryListView(ListView):
+class CategoriesListView(ListView):
     """
      This view list all categories.
     """
     model = Category
     context_object_name = 'categories'
-    template_name = 'blog/category_list.html'
+    template_name = 'blog/categories_list.html'
 
 
 class AuthorsListView(ListView):

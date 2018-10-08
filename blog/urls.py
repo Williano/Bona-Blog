@@ -6,7 +6,7 @@ from blog.views.blog_view import (
     ArticleListView,
     CategoryArticleListView,
     AuthorArticleListView,
-    CategoryListView,
+    CategoriesListView,
     AuthorsListView,
 )
 
@@ -25,8 +25,9 @@ urlpatterns = [
     path('author/<str:username>/', AuthorArticleListView.as_view(),
          name='author_articles'),
 
-    # /categories/
-    path('category-list/', CategoryListView.as_view(), name='category_list'),
+    # /categories-list/
+    path('categories-list/', CategoriesListView.as_view(),
+         name='categories_list'),
 
     # /authors/
     path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
