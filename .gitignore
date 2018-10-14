@@ -2,7 +2,9 @@
 db.sqlite3
 *.pyc
 __pycache__/
-media
+media/article_pics
+media/category_images
+media/profile_pics
 
 # Pycharm Files
 .idea
