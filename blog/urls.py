@@ -2,7 +2,7 @@
 from django.urls import path
 
 # Local application imports.
-from blog.views.blog_view import (
+from blog.views.blog_views import (
     ArticleListView,
     CategoryArticleListView,
     AuthorArticleListView,
