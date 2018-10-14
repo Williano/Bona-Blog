@@ -50,7 +50,7 @@ class Category(models.Model):
         Returns the url to access a particular instance of category.
 
         """
-        return reverse('blog:articles_list_by_category',
+        return reverse('blog:category_articles',
                        kwargs={'slug': self.slug})
 
 
