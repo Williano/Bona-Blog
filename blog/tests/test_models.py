@@ -4,8 +4,8 @@ from django.test import TestCase
 from django.utils import timezone
 
 # Local application imports.
-from blog.models.author_profile_model import Profile
-from blog.models.blog_model import Category, Article, Comment
+from blog.models.author_profile_models import Profile
+from blog.models.blog_models import Category, Article, Comment
 
 
 class BlogTests(TestCase):

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
 # Local application imports.
-from blog.models.blog_model import Category, Article, Comment
+from blog.models.blog_models import Category, Article, Comment
 
 
 class ArticleListView(ListView):
