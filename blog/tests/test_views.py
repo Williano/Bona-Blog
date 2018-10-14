@@ -3,6 +3,12 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
+# Third party app imports.
+from model_mommy import mommy
+
+# Blog application imports.
+from blog.models.blog_models import Category, Article, Comment
+
 
 class ArticleListViewTests(TestCase):
     def setUp(self):
@@ -65,3 +71,47 @@ class AuthorsListViewTests(TestCase):
     def test_if_authors_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
         self.assertNotContains(response, "<title>BONA</title>")
+
+
+class CategoryArticleListViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.category = mommy.make(Category)
+
+    def test_category_article_list_view_status_code(self):
+        response = self.client.get(self.category.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+
+    def test_category_article_list_view_url_by_name(self):
+        response = self.client.get(reverse('blog:category_articles',
+                                           kwargs={'slug': self.category.slug}))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_category_article_list_view_uses_correct_template(self):
+        response = self.client.get(reverse('blog:category_articles',
+                                           kwargs={'slug': self.category.slug}))
+        self.assertTemplateUsed(response, 'blog/category_articles.html')
+
+
+class AuthorArticleListViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.article = mommy.make(Article)
+
+    def test_author_article_list_view_url_by_name(self):
+        response = self.client.get(reverse('blog:author_articles',
+                                           kwargs={
+                                               'username':
+                                                   self.article.author.username}
+                                           )
+                                   )
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_author_article_list_view_uses_correct_template(self):
+        response = self.client.get(reverse('blog:author_articles',
+                                           kwargs={
+                                               'username':
+                                                   self.article.author.username}
+                                           )
+                                   )
+        self.assertTemplateUsed(response, 'blog/author_articles.html')
