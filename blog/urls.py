@@ -1,7 +1,7 @@
-# Third party imports.
+# Core Django imports.
 from django.urls import path
 
-# Local application imports.
+# Blog application imports.
 from blog.views.blog_views import (
     ArticleListView,
     CategoryArticleListView,
@@ -13,6 +13,7 @@ from blog.views.blog_views import (
 # Specifies the app name for name spacing.
 app_name = "blog"
 
+# blog/urls.py
 urlpatterns = [
     # /home/
     path('', ArticleListView.as_view(), name='home'),
@@ -21,7 +22,7 @@ urlpatterns = [
     path('category-articles/<str:slug>/', CategoryArticleListView.as_view(),
          name='category_articles'),
 
-    # /<str:username>/
+    # /author/<str:username>/
     path('author/<str:username>/', AuthorArticleListView.as_view(),
          name='author_articles'),
 
@@ -29,7 +30,7 @@ urlpatterns = [
     path('categories-list/', CategoriesListView.as_view(),
          name='categories_list'),
 
-    # /authors/
+    # /authors-list/
     path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
 
 ]

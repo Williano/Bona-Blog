@@ -1,9 +1,9 @@
-# Third party imports.
+# Core Django imports.
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Local application imports.
+# Blog application imports.
 from .models.author_profile_models import Profile
 
 

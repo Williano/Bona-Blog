@@ -1,7 +1,7 @@
-# Third party imports
+# Core Django imports.
 from django.contrib import admin
 
-# Local application imports.
+# Blog application imports.
 from .models.author_profile_models import Profile
 from .models.blog_models import Category, Article, Comment
 
