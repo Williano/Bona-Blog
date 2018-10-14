@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
 
+# Third party imports.
+from model_mommy import mommy
+
 # Local application imports.
 from blog.models.author_profile_models import Profile
 from blog.models.blog_models import Category, Article, Comment
@@ -71,15 +74,13 @@ class BlogTests(TestCase):
 class AuthorProfileTests(TestCase):
 
     def setUp(self):
-        user1 = User.objects.create(username="Will", password="password")
-        user1_profile = Profile.objects.create(
-            user=user1,
-        )
+        self.user = mommy.make(User)
+        self.profile = mommy.make(Profile)
 
     def test_if_user_profile_returns_the_correct_username(self):
-        profile = Profile.objects.get(id=1)
-        self.assertEqual(profile.__str__(), "Will's Profile")
+        self.assertEqual(self.profile.__str__(),
+                         f"{self.profile.user.username}'s Profile")
 
-    # def test_if_user_profile_returns_default_picture_if_user_does_not_upload_picture(self):
-    #     profile = Profile.objects.get(id=1)
-    #     self.assertEqual(profile.image.name, "default.jpg")
+    def test_if_user_profile_returns_default_picture_if_user_does_not_upload_picture(self):
+        self.assertEqual(self.profile.image.name, "default.jpg")
+
