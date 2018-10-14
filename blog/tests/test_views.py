@@ -11,7 +11,14 @@ from blog.models.blog_models import Category, Article, Comment
 
 
 class ArticleListViewTests(TestCase):
+    """
+    Class to test the list of all articles.
+    """
+
     def setUp(self):
+        """
+        Set up all the tests using django client.
+        """
         self.client = Client()
 
     def test_article_list_view_status_code(self):
@@ -32,7 +39,14 @@ class ArticleListViewTests(TestCase):
 
 
 class CategoriesListViewTests(TestCase):
+    """
+    Class to test the list of all categories
+    """
+
     def setUp(self):
+        """
+        Set up all the tests using django client.
+        """
         self.client = Client()
 
     def test_categories_list_view_status_code(self):
@@ -53,7 +67,14 @@ class CategoriesListViewTests(TestCase):
 
 
 class AuthorsListViewTests(TestCase):
+    """
+    Class to test the list of all authors
+    """
+
     def setUp(self):
+        """
+         Set up all the test using django client
+        """
         self.client = Client()
 
     def test_authors_list_view_status_code(self):
@@ -74,7 +95,14 @@ class AuthorsListViewTests(TestCase):
 
 
 class CategoryArticleListViewTest(TestCase):
+    """
+    Class to test a particular category's articles.
+    """
+
     def setUp(self):
+        """
+        Set up all the tests using django client and model_mommy.
+        """
         self.client = Client()
         self.category = mommy.make(Category)
 
@@ -94,7 +122,14 @@ class CategoryArticleListViewTest(TestCase):
 
 
 class AuthorArticleListViewTest(TestCase):
+    """
+      Class to test a particular author's articles.
+    """
+
     def setUp(self):
+        """
+        Setup all the tests using django client and model_mommy.
+        """
         self.client = Client()
         self.article = mommy.make(Article)
 

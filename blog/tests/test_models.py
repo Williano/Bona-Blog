@@ -13,7 +13,7 @@ from blog.models.blog_models import Category, Article, Comment
 
 class BlogTests(TestCase):
     """
-      Class to test the model Blog
+      Class to test the Blog model.
     """
 
     def setUp(self):
@@ -44,8 +44,14 @@ class BlogTests(TestCase):
 
 
 class AuthorProfileTests(TestCase):
+    """
+      Class to test the AuthorProfile Model.
+    """
 
     def setUp(self):
+        """
+         Set up all the tests using model_mommy.
+        """
         self.user = mommy.make(User)
         self.profile = mommy.make(Profile)
 
