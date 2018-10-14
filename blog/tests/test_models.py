@@ -68,15 +68,18 @@ class BlogTests(TestCase):
                                             "I am coming home")
 
 
-class TestAuthorProfile(TestCase):
+class AuthorProfileTests(TestCase):
 
     def setUp(self):
         user1 = User.objects.create(username="Will", password="password")
         user1_profile = Profile.objects.create(
             user=user1,
-            image="author/profile_pics/slider-1.jpg"
         )
 
     def test_if_user_profile_returns_the_correct_username(self):
         profile = Profile.objects.get(id=1)
         self.assertEqual(profile.__str__(), "Will's Profile")
+
+    # def test_if_user_profile_returns_default_picture_if_user_does_not_upload_picture(self):
+    #     profile = Profile.objects.get(id=1)
+    #     self.assertEqual(profile.image.name, "default.jpg")
