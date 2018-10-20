@@ -15,7 +15,7 @@ class Category(models.Model):
     """
     name = models.CharField(max_length=100, null=False, blank=False)
     slug = models.SlugField()
-    image = models.ImageField(default='default.jpg',
+    image = models.ImageField(default='category-default.jpg',
                               upload_to='category_images')
 
     class Meta:
