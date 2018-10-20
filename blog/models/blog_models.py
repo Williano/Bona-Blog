@@ -60,10 +60,11 @@ class Article(models.Model):
     """
     # CHOICES
     STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
+        ('DRAFT', 'Draft'),
+        ('PUBLISHED', 'Published'),
     )
 
+    # BLOG MODEL FIELDS
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name='articles')
     title = models.CharField(max_length=250, null=False, blank=False)
