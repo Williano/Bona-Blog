@@ -1,9 +1,9 @@
+# Third party Python app imports.
+from PIL import Image
+
 # Core Django imports.
 from django.contrib.auth.models import User
 from django.db import models
-
-# Third party app imports.
-from PIL import Image
 
 
 class Profile(models.Model):
