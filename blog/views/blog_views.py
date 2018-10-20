@@ -12,7 +12,7 @@ class ArticleListView(ListView):
      This view list all articles and categories.
     """
     context_object_name = "articles"
-    queryset = Article.objects.filter(status='published')
+    queryset = Article.objects.filter(status='PUBLISHED')
     template_name = "blog/home.html"
 
     def get_context_data(self, **kwargs):
