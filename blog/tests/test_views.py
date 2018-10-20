@@ -3,7 +3,7 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
-# Third party app imports.
+# Third-party Django app imports.
 from model_mommy import mommy
 
 # Blog application imports.

@@ -1,12 +1,12 @@
-# Third party imports.
+# Core Django imports.
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils.text import slugify
 
-# Third party imports.
+# Third-party Django app imports.
 from model_mommy import mommy
 
-# Local application imports.
+# Blog application imports.
 from blog.models.author_profile_models import Profile
 from blog.models.blog_models import Category, Article, Comment
 
