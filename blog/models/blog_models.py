@@ -71,7 +71,7 @@ class Article(models.Model):
     slug = models.SlugField()
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='articles')
-    image = models.ImageField(default='default.jpg',
+    image = models.ImageField(default='article-default.jpg',
                               upload_to='article_pics')
     body = models.TextField(null=False, blank=False)
     tags = TaggableManager()
