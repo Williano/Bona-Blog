@@ -111,7 +111,7 @@ class Article(models.Model):
         Returns the url to access a particular instance of article.
 
         """
-        return reverse('blog:blog_detail', kwargs={'slug': self.slug})
+        return reverse('blog:article_detail', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
