@@ -60,5 +60,5 @@ class AuthorProfileTests(TestCase):
                          f"{self.profile.user.username}'s Profile")
 
     def test_if_user_profile_returns_default_picture_if_user_does_not_upload_picture(self):
-        self.assertEqual(self.profile.image.name, "default.jpg")
+        self.assertEqual(self.profile.image.name, "profile-pic-default.jpg")
 
