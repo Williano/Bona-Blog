@@ -14,7 +14,7 @@
 			<div class="swiper-wrapper">
                 {% for category in categories %}
 				<div class="swiper-slide">
-					<a class="slider-category" href="#">
+					<a class="slider-category" href="{{ category.get_absolute_url }}">
 						<div class="blog-image"><img src="{{ category.image.url }}" alt="Blog Image"></div>
 
 						<div class="category">
