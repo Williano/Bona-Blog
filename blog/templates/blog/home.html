@@ -6,7 +6,7 @@
 
 
 {% block content %}
-
+    {% if categories %}
     <div class="main-slider">
 		<div class="swiper-container position-static" data-slide-effect="slide" data-autoheight="false"
 			data-swiper-speed="500" data-swiper-autoplay="10000" data-swiper-margin="0" data-swiper-slides-per-view="4"
@@ -29,14 +29,16 @@
                 {% endfor %}
 
 			</div><!-- swiper-wrapper -->
-
 		</div><!-- swiper-container -->
 
 	</div><!-- slider -->
+    {% else %}
+        <center><div class="alert alert-warning"><b>No Categories</b></div></center>
+    {% endif %}
 
 	<section class="blog-area section">
 		<div class="container">
-
+            {% if articles %}
 			<div class="row">
                 {% for article in articles %}
 				<div class="col-lg-4 col-md-6">
@@ -65,7 +67,9 @@
 				</div><!-- col-lg-4 col-md-6 -->
                 {% endfor %}
 			</div><!-- row -->
-
+            {% else %}
+                <div class="alert alert-warning"><b>No Articles</b></div>
+            {% endif %}
 			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
 
 		</div><!-- container -->
