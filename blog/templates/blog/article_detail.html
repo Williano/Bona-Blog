@@ -29,11 +29,12 @@
 							<div class="post-info">
 
 								<div class="left-area">
-									<a class="avatar" href="#"><img src="{{ article.author.profile.image.url }}" alt="Profile Image"></a>
+									<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
+                                        <img src="{{ article.author.profile.image.url }}" alt="Profile Image"></a>
 								</div>
 
 								<div class="middle-area">
-									<a class="name" href="#"><b>{{ article.author.username }}</b></a>
+									<a class="name" href="{% url 'blog:author_articles' article.author.username %}"><b>{{ article.author.username }}</b></a>
 									<h6 class="date">on {{ article.date_published.date }} at {{ article.date_published.time }}</h6>
 								</div>
 

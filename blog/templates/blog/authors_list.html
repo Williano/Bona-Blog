@@ -23,7 +23,7 @@
 
 							<div class="blog-info">
 
-								<h4 class="title"><a href="#"><b>{{ author.username }}</b></a></h4>
+								<h4 class="title"><a href="{% url "blog:author_articles" author.username %}"><b>{{ author.username }}</b></a></h4>
 
 								<ul class="post-footer">
 									<center><li><a href="#">
