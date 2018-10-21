@@ -25,7 +25,7 @@ urlpatterns = [
          ),
 
     # /author/<str:username>/
-    path('author/<str:username>/', AuthorArticleListView.as_view(),
+    path('author-articles/<str:username>/', AuthorArticleListView.as_view(),
          name='author_articles'
          ),
 
