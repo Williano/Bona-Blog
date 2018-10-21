@@ -6,7 +6,6 @@
 
 
 {% block content %}
-     {% for article in articles %}
     <div class="slider display-table center-text"
          style="background-image: url({{ article.category.image.url }});
                  background-size: cover;
@@ -14,9 +13,11 @@
 		<h1 class="title display-table-cell"><b>{{ article.category.name }}</b></h1>
 	</div><!-- slider -->
 
+
 	<section class="blog-area section">
 		<div class="container">
 			<div class="row">
+         {% for article in articles %}
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
 						<div class="single-post post-style-1">
