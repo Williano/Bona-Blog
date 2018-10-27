@@ -10,7 +10,11 @@
 
 - Article Detail (Display the details of a particular article)
 
-- Article Update (Update an article)
+- Article Create (Create Article)
+
+- Article Search (Search Article)
+ 
+-Article Update (Update an article)
 
 - Article Delete (Delete an article)
 
