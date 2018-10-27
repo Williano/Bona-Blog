@@ -56,13 +56,16 @@
 	<header>
 		<div class="container-fluid position-relative no-side-padding">
 
-			<a href="#" class="logo"><img src="{% static 'blog/images/logo.png' %}" alt="Logo Image"></a>
+			<a href="{% url 'blog:home' %}" class="logo">
+                <img src="{% static 'blog/images/logo.png' %}" alt="Logo Image"></a>
 
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Categories</a></li>
+				<li><a href="{% url 'blog:authors_list' %}">Authors</a></li>
+				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
+				<li><a href="{% url 'blog:article_create' %}">New Article</a></li>
+                <li><a href="#">Categories</a></li>
 				<li><a href="#">Features</a></li>
 			</ul><!-- main-menu -->
 
@@ -108,10 +111,7 @@
                             <img src="{% static 'blog/images/logo.png' %}"
                                  alt="Logo Image"></a>
 						<p class="copyright">Bona @ 2018. All rights reserved.</p>
-						<p class="copyright">Designed by
-                            <a href="https://colorlib.com" target="_blank">Colorlib
-                            </a>
-                        </p>
+i
 						<ul class="icons">
 							<li><a href="#">
                                 <i class="ion-social-facebook-outline"></i>
@@ -143,9 +143,9 @@
 
 				<div class="col-lg-4 col-md-6">
 						<div class="footer-section">
-						<h4 class="title"><b>CATAGORIES</b></h4>
+						<h4 class="title"><b>MENU</b></h4>
 						<ul>
-							<li><a href="#">BEAUTY</a></li>
+							<li><a href="{% url 'blog:category_create' %}">ADD CATEGORY</a></li>
 							<li><a href="#">HEALTH</a></li>
 							<li><a href="#">MUSIC</a></li>
 						</ul>
