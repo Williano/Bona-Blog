@@ -124,7 +124,7 @@ header .src-area .src-input{ position: absolute; top: 0; bottom: 0; left: 0; rig
 
 header .src-area .src-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
-header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width: 40px; background: none; border: 0; 
+header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width: 40px; background: none; border: 0;
 	font-size: 1.2em; outline: 0; margin-left: 20px; opacity: .6; cursor: pointer; z-index: 10; }
 
 
