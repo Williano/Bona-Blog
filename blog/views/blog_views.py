@@ -3,13 +3,21 @@ from functools import reduce
 import operator
 
 # Core Django imports.
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import (
+    DetailView,
+    DeleteView,
+    CreateView,
+    ListView,
+    UpdateView
+)
 
 # Blog application imports.
-from blog.models.blog_models import Category, Article, Comment
+from blog.models.blog_models import Article, Category, Comment
 
 
 class ArticleListView(ListView):
@@ -140,4 +148,18 @@ class ArticleSearchListView(ArticleListView):
         return search_results
 
 
+class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    Create new article.
 
+    A user have to be logged in before he/she can create a new article
+    """
+    model = Article
+    fields = ["category", "title", "author", "image", "body", "tags",
+              "status"
+              ]
+    success_message = "Article Posted Successfully"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

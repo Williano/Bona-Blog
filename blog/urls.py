@@ -10,6 +10,7 @@ from blog.views.blog_views import (
     AuthorsListView,
     ArticleDetailView,
     ArticleSearchListView,
+    ArticleCreateView,
 )
 
 # Specifies the app name for name spacing.
@@ -43,9 +44,13 @@ urlpatterns = [
          name='article_detail'
          ),
 
-    # /home/?q=search/
+    # /search/?q=query/
     path('search/', ArticleSearchListView.as_view(),
          name='article_search_list_view'
          ),
+
+    # /article/new/
+    path('article-new/', ArticleCreateView.as_view(),
+         name="article_create")
 
 ]
