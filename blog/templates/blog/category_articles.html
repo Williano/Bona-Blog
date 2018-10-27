@@ -16,6 +16,7 @@
 
 	<section class="blog-area section">
 		<div class="container">
+        {% if articles %}
 			<div class="row">
          {% for article in articles %}
 				<div class="col-lg-4 col-md-6">
@@ -44,7 +45,9 @@
 				</div><!-- col-lg-4 col-md-6 -->
                 {% endfor %}
 			</div><!-- row -->
-
+                {% else %}
+               <center><div class="alert alert-warning"><b>No Articles</b></div></center>
+            {% endif %}
 			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
 
 		</div><!-- container -->
