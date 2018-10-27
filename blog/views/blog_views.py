@@ -162,6 +162,12 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = "Article Posted Successfully"
 
     def form_valid(self, form):
+        """
+         Assigns the article to the current author.
+
+        :param form:
+        :return: form:
+        """
         form.instance.author = self.request.user
         return super().form_valid(form)
 
