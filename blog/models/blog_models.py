@@ -123,7 +123,7 @@ class Comment(models.Model):
     comment = models.TextField(null=False, blank=False)
     article = models.ForeignKey(Article, on_delete=models.CASCADE,
                                 related_name='comments')
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
 
