@@ -1,5 +1,10 @@
+# Standard Python Library imports.
+from functools import reduce
+import operator
+
 # Core Django imports.
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView
 
@@ -92,3 +97,47 @@ class ArticleDetailView(DetailView):
      The author can also edit or delete an article.
     """
     model = Article
+
+
+class ArticleSearchListView(ArticleListView):
+    """
+    Displays a list of articles filtered by the search query.
+
+    It inherits the Article List View so that we can display
+    the result of the user's search on the same page as the Article
+    List View. It displays 10 results per page.
+    It takes in a query from the user from the search bar.
+    """
+    paginate_by = 10
+    template_name = "blog/article_search_list_view.html"
+
+    def get_queryset(self):
+        """
+        Search for a user input in the search bar.
+
+        It pass in the query value to the search view using the 'q' parameter.
+        Then in the view, It searches the 'title', 'slug', 'body' and fields.
+
+        To make the search a little smarter, say someone searches for
+        'container docker ansible' and It want to search the records where all
+        3 words appear in the article content in any order, It split the query
+        into separate words and chain them.
+        """
+        search_results = super(ArticleListView, self).get_queryset()
+
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            search_results = search_results.filter(
+                reduce(operator.and_,
+                       (Q(title__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(slug__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(body__icontains=q) for q in query_list))
+            )
+
+        return search_results
+
+
+
