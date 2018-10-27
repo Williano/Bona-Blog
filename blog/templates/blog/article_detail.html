@@ -34,7 +34,8 @@
 								</div>
 
 								<div class="middle-area">
-									<a class="name" href="{% url 'blog:author_articles' article.author.username %}"><b>{{ article.author.username }}</b></a>
+									<a class="name" href="{% url 'blog:author_articles' article.author.username %}">
+                                        <b>{{ article.author.username }}</b></a>
 									<h6 class="date">on {{ article.date_published.date }} at {{ article.date_published.time }}</h6>
 								</div>
 
@@ -47,7 +48,7 @@
                                    href="{% url 'blog:article_update' article.slug %}">Update
                                 </a>
                                 <a class="btn btn-danger btn-sm mt-1 mb-1"
-                                   href="">Delete
+                                   href="{% url 'blog:article_delete' article.slug %}">Delete
                                 </a>
                           </div>
                           {% endif %}

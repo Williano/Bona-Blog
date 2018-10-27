@@ -12,6 +12,7 @@ from blog.views.blog_views import (
     ArticleSearchListView,
     ArticleCreateView,
     ArticleUpdateView,
+    ArticleDeleteView,
     CategoryCreateView,
     CategoryUpdateCreateView,
 )
@@ -59,6 +60,10 @@ urlpatterns = [
     # /article/<str:slug>/update/
     path('article/<str:slug>/update/', ArticleUpdateView.as_view(),
          name="article_update"),
+
+    # /article/<str:slug>/delete/
+    path('article/<str:slug>/delete/', ArticleDeleteView.as_view(),
+         name="article_delete"),
 
     # /category/new/
     path('category/new/', CategoryCreateView.as_view(),

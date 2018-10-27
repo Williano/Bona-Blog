@@ -208,6 +208,30 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
         return False
 
 
+class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
+                        SuccessMessageMixin, DeleteView):
+    """
+    Delete an article.
+
+    A user have to be logged in before he/she can delete the article.
+    """
+    model = Article
+    success_url = reverse_lazy("blog:home")
+    success_message = "Article Deleted Successfully"
+
+    def test_func(self):
+        """
+             UserPassesTextMixin checks if it is the user before allowing
+             him/her to delete the article.
+
+          :return: bool:
+         """
+        article = self.get_object()
+        if self.request.user == article.author:
+            return True
+        return False
+
+
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     Create new category.
