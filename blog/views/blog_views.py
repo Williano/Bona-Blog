@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import (
     DetailView,
     DeleteView,
@@ -163,3 +164,16 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    Create new category.
+
+    A user have to be logged in before he/she can create a new category.
+    """
+    model = Category
+    fields = ["name", "image"]
+    success_url = reverse_lazy("blog:categories_list")
+    success_message = "Category Created Successfully"
+
