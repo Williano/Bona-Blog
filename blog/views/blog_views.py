@@ -177,3 +177,15 @@ class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("blog:categories_list")
     success_message = "Category Created Successfully"
 
+
+class CategoryUpdateCreateView(LoginRequiredMixin, SuccessMessageMixin,
+                               UpdateView):
+    """
+    Update a category.
+
+    A user have to be logged in before he/she can update a category.
+    """
+    model = Category
+    fields = ["name", "image"]
+    success_url = reverse_lazy("blog:categories_list")
+    success_message = "Category Updated Successfully"
