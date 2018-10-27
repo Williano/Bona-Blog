@@ -166,6 +166,42 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
+                        SuccessMessageMixin, UpdateView):
+    """
+    Update an article.
+
+    A user have to be logged in before he/she can update an article.
+    """
+    model = Article
+    fields = ["category", "title", "author", "image", "body", "tags",
+              "status"
+              ]
+    success_message = "Article Updated Successfully"
+
+    def form_valid(self, form):
+        """
+         Assigns the article to the current author.
+
+        :param form:
+        :return: form:
+        """
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        """
+             UserPassesTextMixin checks if it is the user before allowing
+             him/her to update an article.
+
+          :return: bool:
+         """
+        article = self.get_object()
+        if self.request.user == article.author:
+            return True
+        return False
+
+
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     Create new category.

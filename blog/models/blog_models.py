@@ -22,7 +22,7 @@ class Category(models.Model):
         """
         Specifies various model-specific options for the Category Model.
         """
-        unique_together = ('name', 'slug')
+        unique_together = ('name',)
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
@@ -85,7 +85,7 @@ class Article(models.Model):
         """
         Specifies various model-specific options for the Article Model.
         """
-        unique_together = ("title", "slug",)
+        unique_together = ("title",)
         ordering = ('-date_published',)
 
     def __str__(self):
