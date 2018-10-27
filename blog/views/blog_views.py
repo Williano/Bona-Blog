@@ -9,7 +9,10 @@ from blog.models.blog_models import Category, Article, Comment
 
 class ArticleListView(ListView):
     """
-     This view list all articles and categories.
+     Display all categories and articles.
+
+     It display only published articles and their names, number of likes,comment
+     and views they have.
     """
     context_object_name = "articles"
     queryset = Article.objects.filter(status='PUBLISHED')
@@ -17,9 +20,9 @@ class ArticleListView(ListView):
 
     def get_context_data(self, **kwargs):
         """
-        Calls the base implementation first to get a context
+        Calls the base implementation first to get a context.
 
-        :return: dictionary: a dictionary of all categories and their ids
+        :return: dictionary: a dictionary of all categories and their ids.
         """
         context = super().get_context_data(**kwargs)
         # Get all blog categories and return it to the view.
@@ -29,7 +32,10 @@ class ArticleListView(ListView):
 
 class CategoryArticleListView(ListView):
     """
-     This view list all articles in a specific category.
+     Display all articles for a category.
+
+     It display the article name, title, image and the number of likes, views
+      and comments the articles have.
     """
     model = Article
     context_object_name = 'articles'
@@ -42,7 +48,10 @@ class CategoryArticleListView(ListView):
 
 class AuthorArticleListView(ListView):
     """
-     This view list all articles in a specific category.
+     Display all articles for an author.
+
+     It display the article name, title, image and the number of likes, views
+     and comments the articles have.
     """
     model = Article
     context_object_name = 'articles'
@@ -55,7 +64,9 @@ class AuthorArticleListView(ListView):
 
 class CategoriesListView(ListView):
     """
-     This view list all categories.
+     Display all article categories.
+
+     It display their name and number of articles they have.
     """
     model = Category
     context_object_name = 'categories'
@@ -64,7 +75,9 @@ class CategoriesListView(ListView):
 
 class AuthorsListView(ListView):
     """
-     This view list all categories.
+     Display all authors who write articles on the website.
+
+     It display their name and number of articles they have written.
     """
     model = User
     context_object_name = 'authors'
@@ -73,6 +86,9 @@ class AuthorsListView(ListView):
 
 class ArticleDetailView(DetailView):
     """
+     Display details of an article.
 
+     Display the article title, image, author, body, tags, comments.
+     The author can also edit or delete an article.
     """
     model = Article
