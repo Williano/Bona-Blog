@@ -103,8 +103,12 @@ class CategoriesListViewTests(TestCase):
     def setUp(self):
         """
         Set up all the tests using django client.
+
+        Model mommy creates five categories and store them in a list called
+        categories. You can access them with their indices.
         """
         self.client = Client()
+        self.categories = mommy.make(Category, _quantity=5)
 
     def test_categories_list_view_status_code(self):
         response = self.client.get("/categories-list/")
@@ -121,6 +125,17 @@ class CategoriesListViewTests(TestCase):
     def test_if_categories_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
         self.assertNotContains(response, "<title>BONA</title>")
+
+    def test_if_categories_list_view_returns_the_right_number_of_categories(self):
+        response = self.client.get(reverse('blog:categories_list'))
+        self.assertEqual(len(response.context_data['categories']), 5)
+
+    def test_if_categories_list_view_returns_the_right_category_details(self):
+        response = self.client.get(reverse('blog:categories_list'))
+        self.assertEqual(response.context_data['categories'][0].name,
+                         self.categories[0].name)
+        self.assertEqual(response.context_data['categories'][0].slug,
+                         self.categories[0].slug)
 
 
 class AuthorsListViewTests(TestCase):
