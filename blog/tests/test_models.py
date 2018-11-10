@@ -1,6 +1,7 @@
 # Core Django imports.
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.urls import reverse
 from django.utils.text import slugify
 
 # Third-party Django app imports.
@@ -25,17 +26,27 @@ class BlogTests(TestCase):
         self.article = mommy.make(Article)
         self.comment = mommy.make(Comment)
 
-    def test_if_category_returns_the_right_name(self):
+    def test_if_category_returns_the_right_human_readable_representation(self):
         self.assertEqual(self.category.__str__(), self.category.name)
 
     def test_if_category_returns_the_right_slug(self):
         self.assertEqual(self.category.slug, slugify(self.category.name))
 
-    def test_if_article_returns_the_right_name(self):
+    def test_category_get_absolute_url(self):
+        self.assertEquals(self.category.get_absolute_url(),
+                          reverse('blog:category_articles',
+                                  kwargs={'slug': self.category.slug}))
+
+    def test_if_article_returns_the_right_human_readable_representation(self):
         self.assertEqual(self.article.__str__(), self.article.title)
 
     def test_if_article_returns_the_right_slug(self):
         self.assertEqual(self.article.slug, slugify(self.article.title))
+
+    def test_article_get_absolute_url(self):
+        self.assertEquals(self.article.get_absolute_url(),
+                          reverse('blog:article_detail',
+                                  kwargs={'slug': self.article.slug}))
 
     def test_if_comment_returns_the_right_user(self):
         self.assertEqual(
