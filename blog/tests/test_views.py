@@ -18,6 +18,13 @@ class ArticleListViewTests(TestCase):
     def setUp(self):
         """
         Set up all the tests using django client.
+
+        Model mommy creates a single category called category.
+
+        Model mommy creates four articles and store them in a list called
+        articles. So the last article in the list will be the first article
+        in the list view since it was created last by model mommy. You can
+        access the articles using their indices.
         """
         self.client = Client()
         self.category = mommy.make(Category)
@@ -44,7 +51,7 @@ class ArticleListViewTests(TestCase):
         response = self.client.get('')
         self.assertEqual(len(response.context_data['categories']), 1)
 
-    def test_if_article_list_view_returns_the_right_categories(self):
+    def test_if_article_list_view_returns_the_right_category_details(self):
         response = self.client.get('')
         self.assertEqual(response.context_data['categories'][0],
                          self.category)
@@ -59,7 +66,7 @@ class ArticleListViewTests(TestCase):
         response = self.client.get('')
         self.assertEqual(len(response.context_data['articles']), 4)
 
-    def test_if_article_list_view_returns_the_right_articles(self):
+    def test_if_article_list_view_returns_the_right_article_details(self):
         """
         This test checks if the view returns the right articles according to the
         date they were published.
