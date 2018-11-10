@@ -7,6 +7,7 @@ from django.urls import reverse
 from model_mommy import mommy
 
 # Blog application imports.
+from blog.models.author_profile_models import Profile
 from blog.models.blog_models import Article, Category, Comment
 
 
@@ -153,8 +154,15 @@ class AuthorsListViewTests(TestCase):
     def setUp(self):
         """
          Set up all the test using django client
+
+         Model mommy creates three users and their profiles and store them in a
+          list called authors and you can access each of them using indices.
+
+         In the view, it returns all the users and you can access every users
+         profile details through the user's model.
         """
         self.client = Client()
+        self.authors = mommy.make(Profile, _quantity=3)
 
     def test_authors_list_view_status_code(self):
         response = self.client.get("/authors-list/")
@@ -171,6 +179,25 @@ class AuthorsListViewTests(TestCase):
     def test_if_authors_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
         self.assertNotContains(response, "<title>BONA</title>")
+
+    def test_if_author_list_view_returns_the_right_number_of_authors(self):
+        response = self.client.get(reverse('blog:authors_list'))
+        self.assertEqual(len(response.context_data['authors']), 3)
+
+    def test_if_author_list_view_returns_the_right_author_details(self):
+        response = self.client.get(reverse('blog:authors_list'))
+        self.assertEqual(response.context_data['authors'][0].profile,
+                         self.authors[0])
+        self.assertEqual(response.context_data['authors'][0].first_name,
+                         self.authors[0].user.first_name)
+        self.assertEqual(response.context_data['authors'][0].last_name,
+                         self.authors[0].user.last_name)
+        self.assertEqual(response.context_data['authors'][0].email,
+                         self.authors[0].user.email)
+        self.assertEqual(response.context_data['authors'][0].username,
+                         self.authors[0].user.username)
+        self.assertEqual(response.context_data['authors'][0].profile.image,
+                         self.authors[0].image)
 
 
 class CategoryArticleListViewTest(TestCase):
