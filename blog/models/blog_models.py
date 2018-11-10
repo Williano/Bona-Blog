@@ -21,6 +21,10 @@ class Category(models.Model):
     class Meta:
         """
         Specifies various model-specific options for the Category Model.
+
+        unique_together ensures that no author can create multiple
+        categories with the same name.
+
         """
         unique_together = ('name',)
         verbose_name = 'category'
@@ -38,7 +42,7 @@ class Category(models.Model):
         Overrides the default save method and generate the slug field
         automatically when a category is saved.
 
-        Allows unicode in slug field. Ex: If value is category name is
+        Allows unicode in slug field. Ex: If value of the category name is
         "&* World", the output will be "&*-world".
 
         """
@@ -84,6 +88,12 @@ class Article(models.Model):
     class Meta:
         """
         Specifies various model-specific options for the Article Model.
+
+        unique_together ensures that no author can create multiple
+        articles with the same title.
+
+        ordering orders the articles according to the date they were
+        created.
         """
         unique_together = ("title",)
         ordering = ('-date_published',)
@@ -97,9 +107,9 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         """
         Overrides the default save method and generate the slug field
-        automatically when a category is saved.
+        automatically when an article is saved.
 
-        Allows unicode in slug field. Ex: If value is category name is
+        Allows unicode in slug field. Ex: If value of the article title is
         "&* World", the output will be "&*-world".
 
         """
@@ -130,6 +140,8 @@ class Comment(models.Model):
     class Meta:
         """
         Specifies various model-specific options for the Comment Model.
+
+        ordering orders the comments according to the date they were created.
         """
         ordering = ('-date_created',)
 
