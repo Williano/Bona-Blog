@@ -7,7 +7,7 @@ from django.urls import reverse
 from model_mommy import mommy
 
 # Blog application imports.
-from blog.models.blog_models import Category, Article, Comment
+from blog.models.blog_models import Article, Category, Comment
 
 
 class ArticleListViewTests(TestCase):
@@ -20,6 +20,7 @@ class ArticleListViewTests(TestCase):
         Set up all the tests using django client.
         """
         self.client = Client()
+
 
     def test_article_list_view_status_code(self):
         response = self.client.get('')
