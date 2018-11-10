@@ -1,4 +1,5 @@
 # Core Django imports.
+from django.contrib.auth.models import User
 from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
@@ -287,13 +288,16 @@ class AuthorArticlesListViewTest(TestCase):
         Setup all the tests using django client and model_mommy.
         """
         self.client = Client()
-        self.article = mommy.make(Article)
+        self.user = mommy.make(User)
+        self.will = User.objects.get(id=1)
+        self.author = mommy.make(Profile, user=self.will)
+        self.articles = mommy.make(Article, author=self.author.user, _quantity=5)
 
     def test_author_article_list_view_url_by_name(self):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.article.author.username}
+                                                   self.author.user.username}
                                            )
                                    )
         self.assertEqual(response.status_code, 200)
@@ -302,7 +306,67 @@ class AuthorArticlesListViewTest(TestCase):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.article.author.username}
+                                                   self.author.user.username}
                                            )
                                    )
         self.assertTemplateUsed(response, 'blog/author_articles.html')
+
+    def test_if_author_article_list_view_returns_the_right_author_details(self):
+        response = self.client.get(reverse('blog:author_articles',
+                                           kwargs={
+                                               'username':
+                                                   self.author.user.username}
+                                           )
+                                   )
+
+        self.assertEqual(response.context_data["articles"][0].author.id,
+                         self.author.user.id)
+        self.assertEqual(response.context_data["articles"][0].author.first_name,
+                         self.author.user.first_name)
+        self.assertEqual(response.context_data["articles"][0].author.last_name,
+                         self.author.user.last_name)
+        self.assertEqual(response.context_data["articles"][0].author.email,
+                         self.author.user.email)
+        self.assertEqual(response.context_data["articles"][0].author.username,
+                         self.author.user.username)
+        self.assertEqual(response.context_data["articles"][0].author.profile.image,
+                         self.author.image)
+
+    def test_if_author_article_list_view_returns_the_right_article_details(self):
+        """
+        This test checks if the view returns the right articles according to the
+        date they were published.
+
+        In the setup, model mommy creates five articles and store
+        them in a list called articles. So the last article in the list will
+        be the first article in the list view since it was created last by model
+        mommy.
+        The list view orders articles according to the time they were published
+        so the last article in the articles list will be displayed first in the
+        view.
+        """
+        response = self.client.get(reverse('blog:author_articles',
+                                           kwargs={
+                                               'username':
+                                                   self.author.user.username}
+                                           )
+                                   )
+
+        self.assertEqual(response.context_data['articles'][0].author,
+                         self.articles[4].author)
+        self.assertEqual(response.context_data['articles'][0].title,
+                         self.articles[4].title)
+        self.assertEqual(response.context_data['articles'][0].slug,
+                         self.articles[4].slug)
+        self.assertEqual(response.context_data['articles'][0].author,
+                         self.articles[4].author)
+        self.assertEqual(response.context_data['articles'][0].image,
+                         self.articles[4].image)
+        self.assertEqual(response.context_data['articles'][0].body,
+                         self.articles[4].body)
+        self.assertEqual(response.context_data['articles'][0].date_published,
+                         self.articles[4].date_published)
+        self.assertEqual(response.context_data['articles'][0].date_created,
+                         self.articles[4].date_created)
+        self.assertEqual(response.context_data['articles'][0].status,
+                         self.articles[4].status)
