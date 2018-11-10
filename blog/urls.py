@@ -4,8 +4,8 @@ from django.urls import path
 # Blog application imports.
 from blog.views.blog_views import (
     ArticleListView,
-    CategoryArticleListView,
-    AuthorArticleListView,
+    CategoryArticlesListView,
+    AuthorArticlesListView,
     CategoriesListView,
     AuthorsListView,
     ArticleDetailView,
@@ -26,12 +26,12 @@ urlpatterns = [
     path('', ArticleListView.as_view(), name='home'),
 
     # category-articles/<str:slug>/
-    path('category-articles/<str:slug>/', CategoryArticleListView.as_view(),
+    path('category-articles/<str:slug>/', CategoryArticlesListView.as_view(),
          name='category_articles'
          ),
 
     # /author/<str:username>/
-    path('author-articles/<str:username>/', AuthorArticleListView.as_view(),
+    path('author-articles/<str:username>/', AuthorArticlesListView.as_view(),
          name='author_articles'
          ),
 

@@ -44,7 +44,7 @@ class ArticleListView(ListView):
         return context
 
 
-class CategoryArticleListView(ListView):
+class CategoryArticlesListView(ListView):
     """
      Display all articles for a category.
 
@@ -60,7 +60,7 @@ class CategoryArticleListView(ListView):
         return Article.objects.filter(category=categories)
 
 
-class AuthorArticleListView(ListView):
+class AuthorArticlesListView(ListView):
     """
      Display all articles for an author.
 
