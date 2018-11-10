@@ -20,7 +20,9 @@ class ArticleListViewTests(TestCase):
         Set up all the tests using django client.
         """
         self.client = Client()
-
+        self.category = mommy.make(Category)
+        self.articles = mommy.make(Article, status='PUBLISHED',
+                                   category=self.category, _quantity=4)
 
     def test_article_list_view_status_code(self):
         response = self.client.get('')
@@ -37,6 +39,60 @@ class ArticleListViewTests(TestCase):
     def test_if_article_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
         self.assertNotContains(response, "<title>BONA</title>")
+
+    def test_if_article_list_view_returns_the_right_number_of_categories(self):
+        response = self.client.get('')
+        self.assertEqual(len(response.context_data['categories']), 1)
+
+    def test_if_article_list_view_returns_the_right_categories(self):
+        response = self.client.get('')
+        self.assertEqual(response.context_data['categories'][0],
+                         self.category)
+        self.assertEqual(response.context_data['categories'][0].name,
+                         self.category.name)
+        self.assertEqual(response.context_data['categories'][0].slug,
+                         self.category.slug)
+        self.assertEqual(response.context_data['categories'][0].image,
+                         self.category.image)
+
+    def test_if_article_list_view_returns_the_right_number_of_articles(self):
+        response = self.client.get('')
+        self.assertEqual(len(response.context_data['articles']), 4)
+
+    def test_if_article_list_view_returns_the_right_articles(self):
+        """
+        This test checks if the view returns the right articles according to the
+        date they were published.
+
+        In the setup, model mommy creates four articles and store
+        them in a list called articles. So the last article in the list will
+        be the first article in the list view since it was created last by model
+        mommy.
+        The list view orders articles according to the time they were published.
+        """
+        response = self.client.get('')
+        self.assertEqual(response.context_data['categories'][0],
+                         self.category)
+        self.assertEqual(response.context_data['categories'][0].name,
+                         self.category.name)
+        self.assertEqual(response.context_data['articles'][0].category,
+                         self.articles[3].category)
+        self.assertEqual(response.context_data['articles'][0].title,
+                         self.articles[3].title)
+        self.assertEqual(response.context_data['articles'][0].slug,
+                         self.articles[3].slug)
+        self.assertEqual(response.context_data['articles'][0].author,
+                         self.articles[3].author)
+        self.assertEqual(response.context_data['articles'][0].image,
+                         self.articles[3].image)
+        self.assertEqual(response.context_data['articles'][0].body,
+                         self.articles[3].body)
+        self.assertEqual(response.context_data['articles'][0].date_published,
+                         self.articles[3].date_published)
+        self.assertEqual(response.context_data['articles'][0].date_created,
+                         self.articles[3].date_created)
+        self.assertEqual(response.context_data['articles'][0].status,
+                         self.articles[3].status)
 
 
 class CategoriesListViewTests(TestCase):
