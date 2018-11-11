@@ -367,3 +367,48 @@ class AuthorArticlesListViewTest(TestCase):
                          self.articles[4].date_created)
         self.assertEqual(response.context_data['articles'][0].status,
                          self.articles[4].status)
+
+
+class ArticleDetailViewTest(TestCase):
+    """
+    Test to check if the article detail view works as required.
+    """
+    def setUp(self):
+        """
+        Model mommy creates an article.
+
+        :return: an article
+        """
+        self.client = Client()
+        self.article = mommy.make(Article)
+
+    def test_article_detail_view_absolute_url(self):
+        response = self.client.get(self.article.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+
+    def test_article_detail_view_url_by_name(self):
+        response = self.client.get(reverse('blog:article_detail',
+                                           kwargs={'slug': self.article.slug}))
+        self.assertEqual(response.status_code, 200)
+
+    def test_if_categories_list_view_uses_correct_template(self):
+        response = self.client.get(reverse('blog:article_detail',
+                                           kwargs={'slug': self.article.slug}))
+        self.assertTemplateUsed(response, 'blog/article_detail.html')
+
+    def test_if_article_detail_view_returns_the_right_article_details(self):
+        response = self.client.get(self.article.get_absolute_url())
+        self.assertEqual(response.context["article"].category,
+                         self.article.category)
+        self.assertEqual(response.context["article"].title, self.article.title)
+        self.assertEqual(response.context["article"].slug, self.article.slug)
+        self.assertEqual(response.context["article"].author,
+                         self.article.author)
+        self.assertEqual(response.context["article"].image, self.article.image)
+        self.assertEqual(response.context["article"].body, self.article.body)
+        self.assertEqual(response.context["article"].date_published,
+                         self.article.date_published)
+        self.assertEqual(response.context["article"].date_created,
+                         self.article.date_created)
+        self.assertEqual(response.context["article"].status,
+                         self.article.status)
