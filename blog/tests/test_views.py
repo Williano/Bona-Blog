@@ -437,10 +437,10 @@ class ArticleSearchListViewTest(TestCase):
         self.assertNotContains(response, 'blog/categories_list_view.html')
 
     def test_article_search_list_view_returns_the_right_query_results(self):
-        response = self.client.get(f"/search/?q={self.articles[0].slug}")
+        response = self.client.get(f"/search/?q={self.articles[0].title}")
         self.assertEqual(len(response.context_data['articles']), 1)
-        self.assertEqual(response.context_data['articles'][0].title,
-                         self.articles[0].title)
+        self.assertEqual(response.context_data['articles'][0].slug,
+                         self.articles[0].slug)
 
     def test_article_search_list_view_returns_all_articles_if_nothing_is_typed_in_the_search_input(self):
         response = self.client.get(f"/search/?q=")
