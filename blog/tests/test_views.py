@@ -8,7 +8,6 @@ from django.urls import reverse
 from model_mommy import mommy
 
 # Blog application imports.
-from blog.models.author_profile_models import Profile
 from blog.models.blog_models import Article, Category, Comment
 
 
@@ -156,14 +155,14 @@ class AuthorsListViewTests(TestCase):
         """
          Set up all the test using django client
 
-         Model mommy creates three users and their profiles and store them in a
+         Model mommy creates three users and store them in a
           list called authors and you can access each of them using indices.
 
          In the view, it returns all the users and you can access every users
          profile details through the user's model.
         """
         self.client = Client()
-        self.authors = mommy.make(Profile, _quantity=3)
+        self.authors = mommy.make(User, _quantity=3)
 
     def test_authors_list_view_status_code(self):
         response = self.client.get("/authors-list/")
@@ -188,17 +187,17 @@ class AuthorsListViewTests(TestCase):
     def test_if_author_list_view_returns_the_right_author_details(self):
         response = self.client.get(reverse('blog:authors_list'))
         self.assertEqual(response.context_data['authors'][0].profile,
-                         self.authors[0])
+                         self.authors[0].profile)
         self.assertEqual(response.context_data['authors'][0].first_name,
-                         self.authors[0].user.first_name)
+                         self.authors[0].first_name)
         self.assertEqual(response.context_data['authors'][0].last_name,
-                         self.authors[0].user.last_name)
+                         self.authors[0].last_name)
         self.assertEqual(response.context_data['authors'][0].email,
-                         self.authors[0].user.email)
+                         self.authors[0].email)
         self.assertEqual(response.context_data['authors'][0].username,
-                         self.authors[0].user.username)
+                         self.authors[0].username)
         self.assertEqual(response.context_data['authors'][0].profile.image,
-                         self.authors[0].image)
+                         self.authors[0].profile.image)
 
 
 class CategoryArticlesListViewTest(TestCase):
@@ -288,16 +287,14 @@ class AuthorArticlesListViewTest(TestCase):
         Setup all the tests using django client and model_mommy.
         """
         self.client = Client()
-        self.user = mommy.make(User)
-        self.will = User.objects.get(id=1)
-        self.author = mommy.make(Profile, user=self.will)
-        self.articles = mommy.make(Article, author=self.author.user, _quantity=5)
+        self.author = mommy.make(User)
+        self.articles = mommy.make(Article, author=self.author, _quantity=5)
 
     def test_author_article_list_view_url_by_name(self):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.author.user.username}
+                                                   self.author.username}
                                            )
                                    )
         self.assertEqual(response.status_code, 200)
@@ -306,7 +303,7 @@ class AuthorArticlesListViewTest(TestCase):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.author.user.username}
+                                                   self.author.username}
                                            )
                                    )
         self.assertTemplateUsed(response, 'blog/author_articles.html')
@@ -315,22 +312,22 @@ class AuthorArticlesListViewTest(TestCase):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.author.user.username}
+                                                   self.author.username}
                                            )
                                    )
 
         self.assertEqual(response.context_data["articles"][0].author.id,
-                         self.author.user.id)
+                         self.author.id)
         self.assertEqual(response.context_data["articles"][0].author.first_name,
-                         self.author.user.first_name)
+                         self.author.first_name)
         self.assertEqual(response.context_data["articles"][0].author.last_name,
-                         self.author.user.last_name)
+                         self.author.last_name)
         self.assertEqual(response.context_data["articles"][0].author.email,
-                         self.author.user.email)
+                         self.author.email)
         self.assertEqual(response.context_data["articles"][0].author.username,
-                         self.author.user.username)
+                         self.author.username)
         self.assertEqual(response.context_data["articles"][0].author.profile.image,
-                         self.author.image)
+                         self.author.profile.image)
 
     def test_if_author_article_list_view_returns_the_right_article_details(self):
         """
@@ -348,7 +345,7 @@ class AuthorArticlesListViewTest(TestCase):
         response = self.client.get(reverse('blog:author_articles',
                                            kwargs={
                                                'username':
-                                                   self.author.user.username}
+                                                   self.author.username}
                                            )
                                    )
 
