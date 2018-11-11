@@ -78,7 +78,7 @@ class Article(models.Model):
     image = models.ImageField(default='article-default.jpg',
                               upload_to='article_pics')
     body = models.TextField(null=False, blank=False)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     date_published = models.DateTimeField(default=timezone.now)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
