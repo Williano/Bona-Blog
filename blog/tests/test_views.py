@@ -412,3 +412,38 @@ class ArticleDetailViewTest(TestCase):
                          self.article.date_created)
         self.assertEqual(response.context["article"].status,
                          self.article.status)
+
+
+class ArticleSearchListViewTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.articles = mommy.make(Article, _quantity=5, status='PUBLISHED')
+
+    def test_article_search_list_view_status_code(self):
+        response = self.client.get("/search/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_article_search_list_view_url_by_name(self):
+        response = self.client.get(reverse('blog:article_search_list_view'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_article_search_list_view_uses_correct_template(self):
+        response = self.client.get(reverse('blog:article_search_list_view'))
+        self.assertTemplateUsed(response, 'blog/article_search_list_view.html')
+
+    def test_article_search_list_view_does_not_contain_incorrect_html(self):
+        response = self.client.get(reverse('blog:article_search_list_view'))
+        self.assertNotContains(response, 'blog/categories_list_view.html')
+
+    def test_article_search_list_view_returns_the_right_query_results(self):
+        response = self.client.get(f"/search/?q={self.articles[0].slug}")
+        self.assertEqual(len(response.context_data['articles']), 1)
+        self.assertEqual(response.context_data['articles'][0].title,
+                         self.articles[0].title)
+
+    def test_article_search_list_view_returns_all_articles_if_nothing_is_typed_in_the_search_input(self):
+        response = self.client.get(f"/search/?q=")
+        self.assertEqual(len(response.context_data['articles']), 5)
+
+
