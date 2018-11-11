@@ -19,10 +19,11 @@
                 <button class="btn btn-outline-danger" type="submit">Yes, Delete
                 </button>
                 <a class="btn btn-outline-info"
-                   href="{% url 'blog:article_detail' object.id %}">Cancel
+                   href="{% url 'blog:article_detail' object.slug %}">Cancel
                 </a>
             </div>
         </form>
     </div>
     </div>
+    <br><br><br><br><br><br><br><br>
 {% endblock content %}
