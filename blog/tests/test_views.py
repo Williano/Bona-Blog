@@ -543,6 +543,109 @@ class ArticleCreateViewTest(TestCase):
         self.assertFormError(response, "form", "body",
                              "This field is required.")
 
+#
+# class ArticleUpdateViewTest(TestCase):
+#     """
+#     Test to check if the article create view works as required.
+#     """
+#     def setUp(self):
+#         """
+#         Model mommy creates an article.
+#
+#         :return: an article
+#         """
+#         self.client = Client()
+#         self.author = mommy.make(User)
+#         self.test_user1 = User.objects.create_user(username='testuser1',
+#                                               password='1X<ISRUkw+tuK')
+#         self.test_user1.save()
+#
+#     def test_redirect_if_not_logged_in(self):
+#         response = self.client.get(reverse("blog:article_create"))
+#         self.assertEqual(response.status_code, 302)
+#         self.assertRedirects(response, "/accounts/login/?next=/article-new/")
+#
+#     def test_logged_in_uses_correct_template(self):
+#         self.client.login(username='testuser1',
+#                                   password='1X<ISRUkw+tuK')
+#         response = self.client.get(reverse('blog:article_update'))
+#         self.assertEqual(response.status_code, 200)
+#         self.assertEqual(str(response.context['user']), 'testuser1')
+#         self.assertTemplateUsed(response, "blog/article_form.html")
+#
+#     def test_create_a_new_article_with_valid_data(self):
+#         """
+#         Before posting we assert that there is no Article in the database.
+#
+#         We make sure that a Article is created in the database on post by
+#         checking that count of Article has been increased to 1.
+#
+#         We also check if the article returns the right details that was posted.
+#
+#         :return: Assertions:
+#         """
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#
+#         self.assertEqual(Article.objects.count(), 0)
+#
+#         article = mommy.make(Article, author=self.test_user1, status='PUBLISHED')
+#         article1 = model_to_dict(article)
+#         response = self.client.post(reverse('blog:article_create'), article1)
+#
+#         self.assertEqual(response.status_code, 200)
+#
+#         response = self.client.get(article.get_absolute_url())
+#         self.assertEqual(response.context_data['article'].category,
+#                          article.category)
+#         self.assertEqual(response.context_data['article'].title,
+#                          article.title)
+#         self.assertEqual(response.context_data['article'].slug,
+#                          article.slug)
+#
+#         self.assertEqual(Article.objects.count(), 1)
+#
+#         response.context_data['article'].body = "He is coming"
+#
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#         response = self.client.post(reverse('blog:article_update',
+#                                             kwargs={'slug': article.slug}))
+#
+#         self.assertEqual(response.status_code, 200)
+#
+#         response = self.client.get(article.get_absolute_url())
+#         self.assertEqual(response.context_data['article'].category,
+#                          article.category)
+#         self.assertEqual(response.context_data['article'].title,
+#                          article.title)
+#         self.assertEqual(response.context_data['article'].slug,
+#                          article.slug)
+#         self.assertEqual(response.context_data['article'].author,
+#                          article.author)
+#
+#         self.assertEqual(Article.objects.count(), 1)
+
+    # def test_can_create_a_new_article_with_invalid_data(self):
+    #     """
+    #      Since we posted an invalid form, we expect to remain on the same page.
+    #      So asserted for status code of 200.
+    #
+    #      We expect an error to be present on the title field.
+    #      We expect an error to be present on the body field.
+    #
+    #     :return Assertions:
+    #     """
+    #     self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+    #
+    #     self.assertEqual(Article.objects.count(), 0)
+    #
+    #     article = mommy.make(Article, title='', body='', status='PUBLISHED')
+    #     article1 = model_to_dict(article)
+    #     response = self.client.post(reverse('blog:article_create'), article1)
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertFormError(response, "form", "title",
+    #                          "This field is required.")
+    #     self.assertFormError(response, "form", "body",
+    #                          "This field is required.")
 
 # class CategoryCreateViewTest(TestCase):
 #     """
@@ -590,7 +693,7 @@ class ArticleCreateViewTest(TestCase):
 #         category = mommy.make(Category)
 #         category1 = model_to_dict(category)
 #         response = self.client.post(reverse('blog:category_create'), category1)
-#
+#         print(response.context_data)
 #         self.assertEqual(response.status_code, 200)
 #
 #         response = self.client.get(category.get_absolute_url())
@@ -612,18 +715,18 @@ class ArticleCreateViewTest(TestCase):
 #
 #         :return Assertions:
 #         """
-#         login = self.client.login(username='testuser1',
-#                                   password='1X<ISRUkw+tuK')
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
 #
 #         self.assertEqual(Category.objects.count(), 0)
 #
 #         category = mommy.make(Category)
 #         category1 = model_to_dict(category)
 #         response = self.client.post(reverse('blog:category_create'), category1)
-#         print(response.context_data)
-#         self.assertEqual(response.status_code, 200)
-#         self.assertFormError(response, "form", "name",
-#                              "This field is required.")
+#         # print(response.context_data)
+#         # self.assertEqual(response.status_code, 200)
+#         # self.assertFormError(response, "form", "name",
+#         #                      "This field is required.")
+
 
 class ArticleDeleteViewTest(TestCase):
     """
