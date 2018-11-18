@@ -1,4 +1,5 @@
 # Core Django imports.
+from django.contrib.auth import views as auth_views
 from django.urls import path
 
 # Blog application imports.
@@ -72,4 +73,8 @@ urlpatterns = [
     # /category/<str:slug>/update/
     path('category/<str:slug>/update/', CategoryUpdateCreateView.as_view(),
          name="category_update"),
+
+    path('accounts/login/',
+         auth_views.LoginView.as_view(template_name='authors/login.html'),
+         name='login'),  # Url for login
 ]
