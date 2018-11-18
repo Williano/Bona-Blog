@@ -545,5 +545,132 @@ class ArticleCreateViewTest(TestCase):
                              "This field is required.")
 
 
+# class CategoryCreateViewTest(TestCase):
+#     """
+#     Test to check if the create create view works as required.
+#     """
+#     def setUp(self):
+#         """
+#         Model mommy creates a category.
+#
+#         :return: an article
+#         """
+#         self.client = Client()
+#         self.author = mommy.make(User)
+#         test_user1 = User.objects.create_user(username='testuser1',
+#                                               password='1X<ISRUkw+tuK')
+#         test_user1.save()
+#
+#     def test_redirect_if_not_logged_in(self):
+#         response = self.client.get(reverse("blog:category_create"))
+#         self.assertEqual(response.status_code, 302)
+#         self.assertRedirects(response, "/accounts/login/?next=/category/new/")
+#
+#     def test_logged_in_uses_correct_template(self):
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#         response = self.client.get(reverse('blog:category_create'))
+#         self.assertEqual(response.status_code, 200)
+#         self.assertEqual(str(response.context['user']), 'testuser1')
+#         self.assertTemplateUsed(response, "blog/category_form.html")
+#
+#     def test_create_a_new_category_with_valid_data(self):
+#         """
+#         Before posting we assert that there is no Category in the database.
+#
+#         We make sure that a Category is created in the database on post by
+#         checking that count of Category has been increased to 1.
+#
+#         We also check if the category returns the right details that was posted.
+#
+#         :return: Assertions:
+#         """
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#
+#         self.assertEqual(Category.objects.count(), 0)
+#
+#         category = mommy.make(Category)
+#         category1 = model_to_dict(category)
+#         response = self.client.post(reverse('blog:category_create'), category1)
+#
+#         self.assertEqual(response.status_code, 200)
+#
+#         response = self.client.get(category.get_absolute_url())
+#         # print(response.context_data)
+#         # self.assertEqual(response.context_data['category'].name,
+#         #                  category.name)
+#         # self.assertEqual(response.context_data['category'].slug,
+#         #                  category.slug)
+#         #
+#         # self.assertEqual(category.objects.count(), 1)
+#
+#     def test_create_a_new_category_with_invalid_data(self):
+#         """
+#          Since we posted an invalid form, we expect to remain on the same page.
+#          So asserted for status code of 200.
+#
+#          We expect an error to be present on the title field.
+#          We expect an error to be present on the body field.
+#
+#         :return Assertions:
+#         """
+#         login = self.client.login(username='testuser1',
+#                                   password='1X<ISRUkw+tuK')
+#
+#         self.assertEqual(Category.objects.count(), 0)
+#
+#         category = mommy.make(Category)
+#         category1 = model_to_dict(category)
+#         response = self.client.post(reverse('blog:category_create'), category1)
+#         print(response.context_data)
+#         self.assertEqual(response.status_code, 200)
+#         self.assertFormError(response, "form", "name",
+#                              "This field is required.")
+
+class ArticleDeleteViewTest(TestCase):
+    """
+    Test to check if the article delete view works as required.
+    """
+    def setUp(self):
+        """
+        Model mommy creates five articles.
+
+        :return: articles
+        """
+        self.client = Client()
+        self.author = mommy.make(User)
+        test_user1 = User.objects.create_user(username='testuser1',
+                                              password='1X<ISRUkw+tuK')
+        test_user1.save()
+        test_user2 = User.objects.create_user(username='testuser2',
+                                              password='1X<ISRUkw+tuK')
+        test_user2.save()
+        self.articles = mommy.make(Article, author=test_user1,  _quantity=5)
+
+    def test_article_author_can_delete_article(self):
+        self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+
+        self.assertEqual(Article.objects.count(), 5)
+
+        response = self.client.post(reverse('blog:article_delete',
+                                    kwargs={'slug': self.articles[0].slug}))
+
+        self.assertEqual(Article.objects.count(), 4)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, "/")
+
+    def test_unauthorized_author_cannot_delete_article(self):
+        self.client.login(username='testuser2', password='1X<ISRUkw+tuK')
+
+        self.assertEqual(Article.objects.count(), 5)
+
+        response = self.client.post(reverse('blog:article_delete',
+                                    kwargs={'slug': self.articles[0].slug}))
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.content, b'<h1>403 Forbidden</h1>')
+
+
+
+
 
 
