@@ -530,14 +530,13 @@ class ArticleCreateViewTest(TestCase):
 
         :return Assertions:
         """
-        login = self.client.login(username='testuser1',
-                                  password='1X<ISRUkw+tuK')
+        self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
 
         self.assertEqual(Article.objects.count(), 0)
 
-        article1 = mommy.make(Article, title='', body='', status='PUBLISHED')
-        article = model_to_dict(article1)
-        response = self.client.post(reverse('blog:article_create'), article)
+        article = mommy.make(Article, title='', body='', status='PUBLISHED')
+        article1 = model_to_dict(article)
+        response = self.client.post(reverse('blog:article_create'), article1)
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, "form", "title",
                              "This field is required.")
