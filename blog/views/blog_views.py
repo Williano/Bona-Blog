@@ -226,6 +226,7 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
     A user have to be logged in before he/she can delete the article.
     """
     model = Article
+    context_object_name = 'article'
     success_url = reverse_lazy("blog:home")
     success_message = "Article Deleted Successfully"
 
