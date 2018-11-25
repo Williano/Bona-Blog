@@ -4,6 +4,7 @@ from markdown import markdown
 # Core Django imports.
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import pre_save
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import mark_safe
@@ -11,6 +12,9 @@ from django.utils.text import slugify
 
 # Third party app imports
 from taggit.managers import TaggableManager
+
+# Blog application imports.
+from blog.utils.blog_utils import count_words, get_read_time
 
 
 class Category(models.Model):
@@ -89,6 +93,8 @@ class Article(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default='DRAFT')
     views = models.PositiveIntegerField(default=0)
+    count_words = models.PositiveIntegerField(default=0)
+    read_time = models.TimeField(null=True, blank=True)
 
     class Meta:
         """
@@ -119,6 +125,7 @@ class Article(models.Model):
 
         """
         self.slug = slugify(self.title, allow_unicode=True)
+
         super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -137,6 +144,16 @@ class Article(models.Model):
         :return: body
         """
         return mark_safe(markdown(self.body, safe_mode='escape'))
+
+
+# def pre_save_post_receiver(sender, instance, *args, **kwargs):
+#     if instance.body:
+#         html_string = instance.get_body_as_markdown()
+#         read_time_var = get_read_time(html_string)
+#         instance.read_time = read_time_var
+#
+#
+# pre_save.connect(pre_save_post_receiver, sender=Article)
 
 
 class Comment(models.Model):
