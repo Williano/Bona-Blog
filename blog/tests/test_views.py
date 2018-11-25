@@ -543,7 +543,7 @@ class ArticleCreateViewTest(TestCase):
         self.assertFormError(response, "form", "body",
                              "This field is required.")
 
-#
+
 # class ArticleUpdateViewTest(TestCase):
 #     """
 #     Test to check if the article create view works as required.
@@ -557,95 +557,56 @@ class ArticleCreateViewTest(TestCase):
 #         self.client = Client()
 #         self.author = mommy.make(User)
 #         self.test_user1 = User.objects.create_user(username='testuser1',
-#                                               password='1X<ISRUkw+tuK')
+#                                                    password='1X<ISRUkw+tuK')
 #         self.test_user1.save()
+#         self.article = mommy.make(Article, author=self.test_user1)
 #
 #     def test_redirect_if_not_logged_in(self):
-#         response = self.client.get(reverse("blog:article_create"))
+#         response = self.client.get(reverse("blog:article_update",
+#                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 302)
-#         self.assertRedirects(response, "/accounts/login/?next=/article-new/")
+#         #self.assertRedirects(response, f"accounts/login/?next=/article/{self.article.slug}/update/")
 #
 #     def test_logged_in_uses_correct_template(self):
-#         self.client.login(username='testuser1',
-#                                   password='1X<ISRUkw+tuK')
-#         response = self.client.get(reverse('blog:article_update'))
+#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#         response = self.client.get(reverse('blog:article_update',
+#                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
 #         self.assertTemplateUsed(response, "blog/article_form.html")
 #
-#     def test_create_a_new_article_with_valid_data(self):
+#     def test_update_article(self):
 #         """
-#         Before posting we assert that there is no Article in the database.
+#         Author has to be logged in before he/she can update his or article.
 #
-#         We make sure that a Article is created in the database on post by
-#         checking that count of Article has been increased to 1.
+#         When the author is logged, if he/she goes to the article he/she wants
+#         to update details page.
 #
-#         We also check if the article returns the right details that was posted.
+#         Once he lands on the update page, he can only update, the article's
+#         category, title, body and image fields.
+#         After the update, check if the fields were update with the new details.
 #
-#         :return: Assertions:
+#         :return: Assertions
 #         """
 #         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+#         response = self.client.get(self.article.get_absolute_url())
 #
-#         self.assertEqual(Article.objects.count(), 0)
+#         new_category = mommy.make(Category)
+#         new_article = mommy.make(Article, category=new_category, title="Coming",
+#                                  body="New is going to be awesome")
+#         article = model_to_dict(new_article)
+#         update_response = self.client.get(reverse('blog:article_update',
+#                                                   kwargs={'slug': self.article.slug}),
+#                                           article)
 #
-#         article = mommy.make(Article, author=self.test_user1, status='PUBLISHED')
-#         article1 = model_to_dict(article)
-#         response = self.client.post(reverse('blog:article_create'), article1)
-#
+#         updated_response = self.client.get(self.article.get_absolute_url())
+#         self.assertEqual(updated_response.context['article'].category,
+#                          new_article.category)
+#         # self.assertEqual(response.context['article'].slug, art.slug)
 #         self.assertEqual(response.status_code, 200)
-#
-#         response = self.client.get(article.get_absolute_url())
-#         self.assertEqual(response.context_data['article'].category,
-#                          article.category)
-#         self.assertEqual(response.context_data['article'].title,
-#                          article.title)
-#         self.assertEqual(response.context_data['article'].slug,
-#                          article.slug)
-#
-#         self.assertEqual(Article.objects.count(), 1)
-#
-#         response.context_data['article'].body = "He is coming"
-#
-#         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
-#         response = self.client.post(reverse('blog:article_update',
-#                                             kwargs={'slug': article.slug}))
-#
-#         self.assertEqual(response.status_code, 200)
-#
-#         response = self.client.get(article.get_absolute_url())
-#         self.assertEqual(response.context_data['article'].category,
-#                          article.category)
-#         self.assertEqual(response.context_data['article'].title,
-#                          article.title)
-#         self.assertEqual(response.context_data['article'].slug,
-#                          article.slug)
-#         self.assertEqual(response.context_data['article'].author,
-#                          article.author)
-#
-#         self.assertEqual(Article.objects.count(), 1)
+#         self.assertEqual(str(response.context['user']), 'testuser1')
+#         self.assertTemplateUsed(response, "blog/article_form.html")
 
-    # def test_can_create_a_new_article_with_invalid_data(self):
-    #     """
-    #      Since we posted an invalid form, we expect to remain on the same page.
-    #      So asserted for status code of 200.
-    #
-    #      We expect an error to be present on the title field.
-    #      We expect an error to be present on the body field.
-    #
-    #     :return Assertions:
-    #     """
-    #     self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
-    #
-    #     self.assertEqual(Article.objects.count(), 0)
-    #
-    #     article = mommy.make(Article, title='', body='', status='PUBLISHED')
-    #     article1 = model_to_dict(article)
-    #     response = self.client.post(reverse('blog:article_create'), article1)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertFormError(response, "form", "title",
-    #                          "This field is required.")
-    #     self.assertFormError(response, "form", "body",
-    #                          "This field is required.")
 
 # class CategoryCreateViewTest(TestCase):
 #     """
