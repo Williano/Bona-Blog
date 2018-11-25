@@ -1,8 +1,12 @@
+# Standard Python library imports.
+from markdown import markdown
+
 # Core Django imports.
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import mark_safe
 from django.utils.text import slugify
 
 # Third party app imports
@@ -123,6 +127,16 @@ class Article(models.Model):
 
         """
         return reverse('blog:article_detail', kwargs={'slug': self.slug})
+
+    def get_body_as_markdown(self):
+        """
+         Instructs markdown to escape the special characters first and then
+         parse the markdown tags.After that, it marks the output string as safe
+         to be used in the template.
+
+        :return: body
+        """
+        return mark_safe(markdown(self.body, safe_mode='escape'))
 
 
 class Comment(models.Model):
