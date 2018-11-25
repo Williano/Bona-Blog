@@ -84,6 +84,7 @@ class Article(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default='DRAFT')
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         """

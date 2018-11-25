@@ -107,6 +107,16 @@ class ArticleDetailView(DetailView):
     """
     model = Article
 
+    def get_context_data(self, **kwargs):
+        session_key = f"viewed_article{self.object.slug}"
+        if not self.request.session.get(session_key, False):
+            self.object.views += 1
+            self.object.save()
+            self.request.session[session_key] = True
+
+        kwargs['article'] = self.object
+        return super().get_context_data(**kwargs)
+
 
 class ArticleSearchListView(ArticleListView):
     """
