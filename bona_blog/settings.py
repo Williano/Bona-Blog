@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # Third Party Apps.
     'taggit',
     'crispy_forms',
+    'django_filters',
+    'rest_framework',
 
     # My apps.
     'blog.apps.BlogConfig',

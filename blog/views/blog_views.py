@@ -56,8 +56,8 @@ class CategoryArticlesListView(ListView):
     template_name = 'blog/category_articles.html'
 
     def get_queryset(self):
-        categories = get_object_or_404(Category, slug=self.kwargs.get('slug'))
-        return Article.objects.filter(category=categories)
+        category = get_object_or_404(Category, slug=self.kwargs.get('slug'))
+        return Article.objects.filter(category=category)
 
 
 class AuthorArticlesListView(ListView):
@@ -108,7 +108,7 @@ class ArticleDetailView(DetailView):
     model = Article
 
     def get_context_data(self, **kwargs):
-        session_key = f"viewed_article{self.object.slug}"
+        session_key = f"viewed_article {self.object.slug}"
         if not self.request.session.get(session_key, False):
             self.object.views += 1
             self.object.save()
