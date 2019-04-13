@@ -2,22 +2,13 @@
 from django.contrib import admin
 
 # Blog application imports.
+from .models.blog_models import Article
+from .models.category_models import Category
+from .models.comment_models import Comment
 from .models.author_models import Profile
-from .models.blog_models import Category, Article, Comment
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    """
-     Customize how the profile model is displayed in the admin site.
-
-     List display shows how the profile fields will be displayed.
-
-     List filter shows how the profiles can be filtered.
-
-     Search fields allows users to search profiles using user names.
-
-     Ordering orders the profiles with the users.
-    """
     list_filter = ('user',)
     search_fields = ('user',)
     ordering = ['user', ]
@@ -28,17 +19,7 @@ admin.site.register(Profile, ProfileAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    """
-     Customize how the category model is displayed in the admin site.
 
-     List display shows how the category fields will be displayed.
-
-     List filter shows how the category can be filtered.
-
-     Search fields allows users to search categories using category names.
-
-     Ordering orders the categories with their names.
-    """
     list_display = ('name', 'slug', 'image')
     list_filter = ('name',)
     search_fields = ('name',)
@@ -51,26 +32,7 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    """
-     Customize how the article model is displayed in the admin site.
 
-     List display shows how the article fields will be displayed.
-
-     List filter shows how the article can be filtered.
-
-     Search fields allows users to search articles using article title.
-
-     Prepopulated fields fills the slug field automatically with the title of
-     the article when the user is typing the article title.
-
-    raw_id_field allows the author field to be displayed with a lookup widget
-    that can scale much better than a dropdown select input when you
-    have thousands of users
-
-    Date hierarchy allows users to search articles based on the published date.
-
-     Ordering orders the articles with their titles.
-    """
     list_display = ('category', 'title', 'slug', 'author', 'image',
                     'body', 'date_published', 'status')
     list_filter = ('status', 'date_created', 'date_published', 'author',)
@@ -86,19 +48,7 @@ admin.site.register(Article, ArticleAdmin)
 
 
 class CommentAdmin(admin.ModelAdmin):
-    """
-     Customize how the article model is displayed in the admin site.
 
-     List display shows how the article fields will be displayed.
-
-     List filter shows how the article can be filtered.
-
-     Search fields allows users to search articles using article title.
-
-    Date hierarchy allows users to search articles based on the published date.
-
-     Ordering orders the articles with their titles.
-    """
     list_display = ('name', 'email', 'comment', 'article', 'date_created',
                     'approved')
     list_filter = ('approved', 'date_created', 'name',)
