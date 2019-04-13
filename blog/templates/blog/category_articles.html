@@ -6,8 +6,10 @@
 
 
 {% block content %}
-    <div class="slider display-table center-text">
-		<h1 class="title display-table-cell"><b>{{ view.kwargs.slug }}</b></h1>
+    <div class="slider display-table center-text" style="height: 400px; width: 100%;
+    background-image: url({{ category.image.url }});
+    background-size: cover;" >
+		<h1 class="title display-table-cell"><b>{{ category.name }}</b></h1>
 	</div><!-- slider -->
 
 

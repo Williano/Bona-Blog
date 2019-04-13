@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # Blog application imports.
-from .models.author_profile_models import Profile
+from .models.author_models import Profile
 from .models.blog_models import Category, Article, Comment
 
 

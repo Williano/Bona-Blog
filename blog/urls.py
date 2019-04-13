@@ -5,17 +5,23 @@ from django.urls import path
 # Blog application imports.
 from blog.views.blog_views import (
     ArticleListView,
-    CategoryArticlesListView,
-    AuthorArticlesListView,
-    CategoriesListView,
-    AuthorsListView,
     ArticleDetailView,
     ArticleSearchListView,
     ArticleCreateView,
     ArticleUpdateView,
     ArticleDeleteView,
+)
+
+from blog.views.category_views import (
+    CategoryArticlesListView,
+    CategoriesListView,
     CategoryCreateView,
     CategoryUpdateCreateView,
+)
+
+from blog.views.author_views import (
+    AuthorArticlesListView,
+    AuthorsListView,
 )
 
 # Specifies the app name for name spacing.

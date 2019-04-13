@@ -30,7 +30,7 @@ p{ line-height: 1.6; font-family: 'Maven Pro', sans-serif; font-weight: 400; col
 
 h1{ font-size: 4em; line-height: 1; }
 h2{ font-size: 2.8em; line-height: 1.1; }
-h3{ font-size: 2em; }
+h3{ font-size: 1.5em; }
 h4{ font-size: 1.2em; }
 h5{ font-size: 1.1em; }
 h6{ font-size: .9em; letter-spacing: 1px; }
@@ -124,7 +124,7 @@ header .src-area .src-input{ position: absolute; top: 0; bottom: 0; left: 0; rig
 
 header .src-area .src-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
-header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width: 40px; background: none; border: 0; 
+header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width: 40px; background: none; border: 0;
 	font-size: 1.2em; outline: 0; margin-left: 20px; opacity: .6; cursor: pointer; z-index: 10; }
 
 
@@ -133,17 +133,67 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 .menu-nav-icon{ display: none; height: 60px; width: 50px; text-align: center; line-height: 60px; cursor: pointer; 
 	position: absolute; right: 0; font-size: 1.8em; }
 
+	
 
 /* ---------------------------------
 4. SLIDER
 --------------------------------- */
 
-.slider{ height: 400px; width: 100%; background-image: url(../../images/slider-1-1600x900.jpg); background-size: cover; }  
+.main-slider{ width: 100%; padding-right: 150px; }  
+ 
+.main-slider{ overflow: hidden; position: relative; }
 
+.main-slider .swiper-container{ overflow: visible; }
+
+.main-slider .category{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; color: #fff; margin-right: 10px; margin-top: 8px; border-radius: 10px}
+ 
+.main-slider .category:after{ content:''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; 
+	background: rgba(0,0,0,.4); } 
+
+
+/* SLIDER CONTROLER */
+
+.main-slider .swiper-button-prev, 
+.main-slider .swiper-button-next{ top: 0; bottom: 0; width: auto; margin: 0; background: none; font-size: 4em; 
+	top: 50%; margin-top: -50px; height: 100px; color: #fff; }
+
+.main-slider .swiper-button-prev{ left: 20px; }
+
+.main-slider .swiper-button-next{ right: 20px; }
 
  
 /* ---------------------------------
-5. BLOG POST
+5. SINGLE POST
+--------------------------------- */
+
+.blog-area .row div[class^="col"] { margin-bottom: 30px; }
+
+.blog-area{ text-align: center; background: #EDF3F3; }
+
+.blog-area .single-post{ height: 100%; position: relative; padding-bottom: 45px;
+	overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,.1); border: 1px solid #ddd; background: #fff; }
+
+.blog-area .single-post .title{ padding: 20px 30px 30px; }
+
+.single-post .avatar{ margin: 0 auto; margin-top: -40px; width: 70px; height: 70px; overflow: hidden; z-index: 10;
+	border-radius: 100px; position: relative; border: 7px solid #fff; box-shadow: 0px 0px 10px rgba(0,0,0,.2); }
+
+.single-post .post-footer{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
+
+.single-post .post-footer > li{ width: 33.33%; display: inline-block; border-right: 1px solid #fff; background: #EDF3F3; }
+
+.single-post .post-footer > li:first-child{ float: left; }
+
+.single-post .post-footer > li:last-child{ border: 0px; float: right; }
+
+.single-post .post-footer > li > a{ line-height: 45px; width: 100%; }
+
+.single-post .post-footer i{ display: inline-block; margin-right: 10px; opacity: .6; font-size: 1.1em; }
+
+
+
+/* ---------------------------------
+6. BLOG POST
 --------------------------------- */
 
 .post-area .post-info{ position: relative; padding: 30px 0; }
@@ -159,10 +209,10 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 
 /* ---------------------------------
-6. MAIN POST
+7. MAIN POST
 --------------------------------- */
 
-.main-post{ margin-top: -100px; padding: 50px 0px 20px; box-shadow: 0px 0px 5px rgba(0,0,0,.1); 
+.main-post{ margin-top: -100px; padding: 50px 0px 20px; box-shadow: 0px 0px 5px rgba(0,0,0,.1);
 	border-bottom: 1px solid #eee; background: #fff; }
 
 .main-post .post-top-area,
@@ -176,7 +226,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 .main-post ul.tags{ margin: 30px 0; }
 
-.main-post ul.tags > li > a{ padding: 7px 10px; margin-bottom: 10px; margin-right: 10px; float: left; 
+.main-post ul.tags > li > a{ padding: 7px 10px; margin-bottom: 10px; margin-right: 10px; float: left;
 	border: 1px solid #ddd; background: #ddd; }
 
 .main-post ul.tags > li > a:hover{ background: none; }
@@ -184,7 +234,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 /* ICONS */
 
-.main-post .post-icons-area{ margin: 30px 0; padding: 30px 0; overflow: hidden; 
+.main-post .post-icons-area{ margin: 30px 0; padding: 30px 0; overflow: hidden;
 	border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
 
 .main-post ul.post-icons{ float: left; }
@@ -207,7 +257,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 
 /* ---------------------------------
-7. RECOMENEDED AREA
+8. RECOMENEDED AREA
 --------------------------------- */
 
 .recomended-area .row div[class^="col"] { margin-bottom: 30px; }
@@ -237,10 +287,10 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 
 /* ---------------------------------
-8. POST COMMENT
+9. POST COMMENT
 --------------------------------- */
 
-.comment-form{ margin: 30px 0; padding: 30px; box-shadow: 0px 0px 5px rgba(0,0,0,.1); 
+.comment-form{ margin: 30px 0; padding: 30px; box-shadow: 0px 0px 5px rgba(0,0,0,.1);
 	border: 1px solid #ddd; background: #fff; }
 
 .comment-form .form-control{ margin-bottom: 30px; border-radius: 1px; border: 0; border-bottom: 1px solid #ddd;
@@ -250,7 +300,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 .comment-form .form-control:focus{ border-color: #498BF9; }
 
-.comment-form .submit-btn{ font-size: .8em; border: 0; outline: 0; padding: 10px 20px; cursor: pointer; 
+.comment-form .submit-btn{ font-size: .8em; border: 0; outline: 0; padding: 10px 20px; cursor: pointer;
 	border: 1px solid #D2E2FC; background: #D2E2FC; }
 
 .comment-form .submit-btn:hover{ background: none; }
@@ -259,7 +309,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 /* COMMENTS */
 
-.commnets-area{ padding: 30px 40px; margin: 30px 0; overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,.1); 
+.commnets-area{ padding: 30px 40px; margin: 30px 0; overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,.1);
 	background: #fff; }
 
 .comment{ padding-bottom: 30px; margin-bottom: 30px; border-bottom: 1px solid #eee; }
@@ -280,18 +330,20 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 .comment .post-info .right-area{ float: right; }
 
 
-.more-comment-btn{ display: block; margin-bottom: 30px; padding: 10px; text-align: center; 
+.more-comment-btn{ display: block; margin-bottom: 30px; padding: 10px; text-align: center;
 	box-shadow: 0px 0px 5px rgba(0,0,0,.1); border: 1px solid #fff; background: #fff; color: #555; }
 
-.more-comment-btn:hover{ border-color: #ccc; }	
+.more-comment-btn:hover{ border-color: #ccc; }
+
+
 
 
 
 /* ---------------------------------
-9. FOOTER
+10. FOOTER
 --------------------------------- */
 
-footer{ padding: 70px 0 30px; margin-top: 40px; background: #fff; }
+footer{ padding: 70px 0 30px; background: #fff; }
 
 footer .footer-section{ margin-bottom: 40px; }
 
@@ -299,12 +351,15 @@ footer .footer-section .title{ margin-bottom: 20px; }
 
 footer .footer-section ul > li{ margin-right: 10px; margin-top: 10px; }
 
-footer .copyright{ margin: 10px 0 20px; }
+
+footer .copyright{ margin: 10px 0; }
+
 
 footer .icons > li > a{ height: 40px; width: 40px; border-radius: 40px; line-height: 40px; text-align: center; 
-	transition: all .3s; box-shadow: 0px 0px 2px rgba(0,0,0,1); background: #498BF9; color: #fff; }
+	transition: all .3s; font-size: 1.2em; box-shadow: 0px 0px 2px rgba(0,0,0,1); background: #498BF9; color: #fff; }
 
 footer .icons > li > a:hover{ transform: translateY(-2px); box-shadow: 5px 10px 20px rgba(0,0,0,.3); }
+
 
 footer .input-area{ position: relative; height: 50px; width: 100%; box-shadow: 0px 0px 1px #bbb; background: #F5F7F6; }
 
@@ -315,5 +370,6 @@ footer .input-area .email-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
 footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0; width: 50px; background: none; 
 	border: 0; outline: 0; margin-right: 10px; opacity: .8; cursor: pointer; transition: all .2s; }
+
 
 

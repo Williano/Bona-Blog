@@ -31,6 +31,23 @@
 	/* SEARCH AREA */
 
 	header .src-area{ width: 30%; }
+
+	/* ---------------------------------
+	6. MAIN POST
+	--------------------------------- */
+
+	.main-post .post-top-area,
+	.main-post .post-bottom-area{ margin: 30px; }
+
+	/* ---------------------------------
+	7. SIDEBAR AREA
+	--------------------------------- */
+
+	.info-area{ padding: 30px 0; }
+
+	.info-area .sidebar-area,
+	.info-area .tag-area{ padding-left: 0px; }
+
 	
 }
 
@@ -122,6 +139,20 @@
 	--------------------------------- */
 
 	body{ font-size: 14px;  }
+
+
+	/* ---------------------------------
+	6. MAIN POST ( LEF AREA )
+	--------------------------------- */
+
+	/* ICONS */
+
+	.main-post ul.post-icons,
+	.main-post ul.icons{ float: none; margin-top: 10px; }
+
+	.main-post ul.post-icons > li > a > i,
+	.main-post ul.icons > li > a > i{ padding: 0; padding-right: 10px; }
+
 	
 	
 }

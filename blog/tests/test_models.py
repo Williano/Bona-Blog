@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from model_mommy import mommy
 
 # Blog application imports.
-from blog.models.author_profile_models import Profile
+from blog.models.author_models import Profile
 from blog.models.blog_models import Category, Article, Comment
 
 

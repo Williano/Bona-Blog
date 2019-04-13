@@ -4,10 +4,8 @@ import operator
 
 # Core Django imports.
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     DetailView,
@@ -18,93 +16,21 @@ from django.views.generic import (
 )
 
 # Blog application imports.
-from blog.models.blog_models import Article, Category, Comment
+from blog.models.blog_models import Article, Category
 
 
 class ArticleListView(ListView):
-    """
-     Display all categories and articles.
-
-     It display only published articles and their names, number of likes,comment
-     and views they have.
-    """
     context_object_name = "articles"
     queryset = Article.objects.filter(status='PUBLISHED')
     template_name = "blog/home.html"
 
     def get_context_data(self, **kwargs):
-        """
-        Calls the base implementation first to get a context.
-
-        :return: dictionary: a dictionary of all categories and their ids.
-        """
         context = super().get_context_data(**kwargs)
-        # Get all blog categories and return it to the view.
         context['categories'] = Category.objects.all()
         return context
 
 
-class CategoryArticlesListView(ListView):
-    """
-     Display all articles for a category.
-
-     It display the article name, title, image and the number of likes, views
-      and comments the articles have.
-    """
-    model = Article
-    context_object_name = 'articles'
-    template_name = 'blog/category_articles.html'
-
-    def get_queryset(self):
-        category = get_object_or_404(Category, slug=self.kwargs.get('slug'))
-        return Article.objects.filter(category=category)
-
-
-class AuthorArticlesListView(ListView):
-    """
-     Display all articles for an author.
-
-     It display the article name, title, image and the number of likes, views
-     and comments the articles have.
-    """
-    model = Article
-    context_object_name = 'articles'
-    template_name = 'blog/author_articles.html'
-
-    def get_queryset(self):
-        author = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Article.objects.filter(author=author)
-
-
-class CategoriesListView(ListView):
-    """
-     Display all article categories.
-
-     It display their name and number of articles they have.
-    """
-    model = Category
-    context_object_name = 'categories'
-    template_name = 'blog/categories_list.html'
-
-
-class AuthorsListView(ListView):
-    """
-     Display all authors who write articles on the website.
-
-     It display their name and number of articles they have written.
-    """
-    model = User
-    context_object_name = 'authors'
-    template_name = 'blog/authors_list.html'
-
-
 class ArticleDetailView(DetailView):
-    """
-     Display details of an article.
-
-     Display the article title, image, author, body, tags, comments.
-     The author can also edit or delete an article.
-    """
     model = Article
 
     def get_context_data(self, **kwargs):
@@ -119,14 +45,6 @@ class ArticleDetailView(DetailView):
 
 
 class ArticleSearchListView(ArticleListView):
-    """
-    Displays a list of articles filtered by the search query.
-
-    It inherits the Article List View so that we can display
-    the result of the user's search on the same page as the Article
-    List View. It displays 10 results per page.
-    It takes in a query from the user from the search bar.
-    """
     paginate_by = 10
     template_name = "blog/article_search_list_view.html"
 
@@ -160,11 +78,6 @@ class ArticleSearchListView(ArticleListView):
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    """
-    Create new article.
-
-    A user have to be logged in before he/she can create a new article
-    """
     model = Article
     fields = ["category", "title", "author", "image", "body", "tags",
               "status"
@@ -172,23 +85,12 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = "Article Posted Successfully"
 
     def form_valid(self, form):
-        """
-         Assigns the article to the current author.
-
-        :param form:
-        :return: form:
-        """
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, UpdateView):
-    """
-    Update an article.
-
-    A user have to be logged in before he/she can update an article.
-    """
     model = Article
     fields = ["category", "title", "author", "image", "body", "tags",
               "status"
@@ -196,12 +98,6 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
     success_message = "Article Updated Successfully"
 
     def form_valid(self, form):
-        """
-         Assigns the article to the current author.
-
-        :param form:
-        :return: form:
-        """
         form.instance.author = self.request.user
         return super().form_valid(form)
 
@@ -220,11 +116,6 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, DeleteView):
-    """
-    Delete an article.
-
-    A user have to be logged in before he/she can delete the article.
-    """
     model = Article
     context_object_name = 'article'
     success_url = reverse_lazy("blog:home")
@@ -242,27 +133,3 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
             return True
         return False
 
-
-class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    """
-    Create new category.
-
-    A user have to be logged in before he/she can create a new category.
-    """
-    model = Category
-    fields = ["name", "image"]
-    success_url = reverse_lazy("blog:categories_list")
-    success_message = "Category Created Successfully"
-
-
-class CategoryUpdateCreateView(LoginRequiredMixin, SuccessMessageMixin,
-                               UpdateView):
-    """
-    Update a category.
-
-    A user have to be logged in before he/she can update a category.
-    """
-    model = Category
-    fields = ["name", "image"]
-    success_url = reverse_lazy("blog:categories_list")
-    success_message = "Category Updated Successfully"

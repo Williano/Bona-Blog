@@ -22,31 +22,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
 
+    <!-- Stylesheets -->
 	{% block stylesheet %}
 
-    <!-- Stylesheets -->
-
 	<link href="{%  static 'blog/css/common-css/bootstrap.css' %}" rel="stylesheet">
-
 	<link href="{%  static 'blog/css/common-css/swiper.css' %}" rel="stylesheet">
-
 	<link href="{% static 'blog/css/common-css/ionicons.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/front-page-category/styles.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/front-page-category/responsive.css' %}" rel="stylesheet">
-
-  	<link href="{% static 'blog/css/category/styles.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/category/responsive.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/layout-1/styles.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/layout-1/responsive.css' %}" rel="stylesheet">
-
- 	<link href="{% static 'blog/css/single-post-2/styles.css' %}" rel="stylesheet">
-
-	<link href="{% static 'blog/css/single-post-2/responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/bona/styles.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/bona/responsive.css' %}" rel="stylesheet">
 
     {% endblock stylesheet %}
 
@@ -64,9 +47,8 @@
 			<ul class="main-menu visible-on-click" id="main-menu">
 				<li><a href="{% url 'blog:authors_list' %}">Authors</a></li>
 				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
-				<li><a href="{% url 'blog:article_create' %}">New Article</a></li>
-                <li><a href="#">Categories</a></li>
-				<li><a href="#">Features</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Features</a></li>
 			</ul><!-- main-menu -->
 
 			<div class="src-area">
@@ -180,9 +162,8 @@
 
  {% endblock footer %}
 
+    <!-- SCRIPTS -->
  {% block scripts %}
-
-	<!-- SCRIPTS -->
 
 	<script src="{% static 'blog/js/common-js/jquery-3.1.1.min.js' %}"></script>
 
