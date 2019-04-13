@@ -23,6 +23,7 @@ from django.urls import include, path
 # Main project urls. It contains all urls of the apps in the project.
 urlpatterns = [
     path('', include('blog.urls', namespace='blog')),  # Urls for blog app.
+    path('api/v1/blog/', include('blog.api.v1.routers.routers')), # Urls for API.
     path('admin/', admin.site.urls),
 ]
 
