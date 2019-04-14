@@ -20,15 +20,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-# Main project urls. It contains all urls of the apps in the project.
+
 urlpatterns = [
+    path('tinymce/', include('tinymce.urls')),
     path('', include('blog.urls', namespace='blog')),  # Urls for blog app.
     path('api/v1/blog/', include('blog.api.v1.routers.routers')), # Urls for API.
     path('admin/', admin.site.urls),
 ]
 
-# Settings to serve media files in development mode. If debug is true, then
-# it will serve the static files.
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

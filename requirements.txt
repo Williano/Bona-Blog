@@ -14,3 +14,5 @@ Pillow==6.0.0
 pytz==2019.1
 six==1.12.0
 django-tinymce4-lite==1.7.4
+pyenchant==2.0.0
+

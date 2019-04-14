@@ -66,7 +66,11 @@ header{ font-weight: 400; }
 
 .display-table{ display: table; height: 100%; width: 100%; }
 
-.display-table-cell{ display: table-cell; vertical-align: middle; }
+.display-table-cell{ display: table-cell; vertical-align: middle; margin-top: 15px; margin-left: 10px; border-radius: 10px; }
+
+.cell-color {
+	color: white;
+}
 
 .card{ background: transparent; border: 0; }
 
@@ -124,13 +128,16 @@ header .src-area .src-input{ position: absolute; top: 0; bottom: 0; left: 0; rig
 
 header .src-area .src-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
-header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width: 40px; background: none; border: 0;
-	font-size: 1.2em; outline: 0; margin-left: 20px; opacity: .6; cursor: pointer; z-index: 10; }
+header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
+	width: 40px; background: none; border: 0;
+	font-size: 1.2em; outline: 0; margin-left: 20px; opacity: .6;
+	cursor: pointer; z-index: 10; }
 
 
 /* NAV ICON */
 
-.menu-nav-icon{ display: none; height: 60px; width: 50px; text-align: center; line-height: 60px; cursor: pointer; 
+.menu-nav-icon{ display: none; height: 60px; width: 50px; text-align: center;
+	line-height: 60px; cursor: pointer;
 	position: absolute; right: 0; font-size: 1.8em; }
 
 	
@@ -145,16 +152,21 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 
 .main-slider .swiper-container{ overflow: visible; }
 
-.main-slider .category{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; color: #fff; margin-right: 10px; margin-top: 8px; border-radius: 10px}
+.main-slider .category{ position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+	z-index: 1; color: #fff; margin-top: 10px; margin-left: 10px;
+	border-radius: 10px;}
  
-.main-slider .category:after{ content:''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; 
-	background: rgba(0,0,0,.4); } 
+.main-slider .category:after{ content:''; position: absolute; top: 0; bottom: 0;
+	left: 0; right: 0; z-index: -1; background: rgba(0,0,0,.4); width: 100%;
+	margin-top: 10px; margin-left: 10px; border-radius: 10px;}
+
+.category-image { margin-top: 10px; margin-left: 10px; border-radius: 10px; }
 
 
 /* SLIDER CONTROLER */
 
 .main-slider .swiper-button-prev, 
-.main-slider .swiper-button-next{ top: 0; bottom: 0; width: auto; margin: 0; background: none; font-size: 4em; 
+.main-slider .swiper-button-next{ top: 0; bottom: 0; width: auto; margin: 0; background: none; font-size: 4em;
 	top: 50%; margin-top: -50px; height: 100px; color: #fff; }
 
 .main-slider .swiper-button-prev{ left: 20px; }
@@ -189,6 +201,11 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 .single-post .post-footer > li > a{ line-height: 45px; width: 100%; }
 
 .single-post .post-footer i{ display: inline-block; margin-right: 10px; opacity: .6; font-size: 1.1em; }
+
+.load-more-btn{ padding: 15px 40px; margin: 10px 0 30px; transition: all .3s; box-shadow: 0px 0px 2px rgba(0,0,0,.4);
+	background: #C3D8F5; }
+
+.load-more-btn:hover{ transform: translateY(-2px); box-shadow: 5px 10px 20px rgba(0,0,0,.3); }
 
 
 
@@ -370,6 +387,7 @@ footer .input-area .email-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
 footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0; width: 50px; background: none; 
 	border: 0; outline: 0; margin-right: 10px; opacity: .8; cursor: pointer; transition: all .2s; }
+
 
 
 

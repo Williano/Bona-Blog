@@ -18,6 +18,12 @@ class AuthorArticlesListView(ListView):
         author = get_object_or_404(User, username=self.kwargs.get('username'))
         return Article.objects.filter(author=author)
 
+    def get_context_data(self, **kwargs):
+        context = super(AuthorArticlesListView, self).get_context_data(**kwargs)
+        author = get_object_or_404(User, username=self.kwargs.get('username'))
+        context['author'] = author
+        return context
+
 
 class AuthorsListView(ListView):
     model = User

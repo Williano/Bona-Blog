@@ -79,9 +79,7 @@ class ArticleSearchListView(ArticleListView):
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Article
-    fields = ["category", "title", "author", "image", "body", "tags",
-              "status"
-              ]
+    fields = ["title", "category", "image", "body", "tags", "status"]
     success_message = "Article Posted Successfully"
 
     def form_valid(self, form):
@@ -92,9 +90,7 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, UpdateView):
     model = Article
-    fields = ["category", "title", "author", "image", "body", "tags",
-              "status"
-              ]
+    fields = ["title", "category", "image", "body", "tags", "status"]
     success_message = "Article Updated Successfully"
 
     def form_valid(self, form):
