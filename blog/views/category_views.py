@@ -15,6 +15,7 @@ from blog.models.blog_models import Article, Category
 
 class CategoryArticlesListView(ListView):
     model = Article
+    paginate_by = 12
     context_object_name = 'articles'
     template_name = 'blog/category_articles.html'
 
@@ -31,6 +32,7 @@ class CategoryArticlesListView(ListView):
 
 class CategoriesListView(ListView):
     model = Category
+    paginate_by = 12
     context_object_name = 'categories'
     template_name = 'blog/categories_list.html'
 

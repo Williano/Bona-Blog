@@ -21,6 +21,7 @@ from blog.models.blog_models import Article, Category
 
 class ArticleListView(ListView):
     context_object_name = "articles"
+    paginate_by = 12
     queryset = Article.objects.filter(status='PUBLISHED')
     template_name = "blog/home.html"
 
@@ -80,6 +81,7 @@ class ArticleSearchListView(ArticleListView):
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Article
     fields = ["title", "category", "image", "body", "tags", "status"]
+    success_url = reverse_lazy("blog:home")
     success_message = "Article Posted Successfully"
 
     def form_valid(self, form):

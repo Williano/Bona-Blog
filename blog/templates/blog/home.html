@@ -37,9 +37,9 @@
     {% endif %}
 
 	<section class="blog-area section">
-		<div class="container">
+		<div class="container infinite-container">
             {% if articles %}
-			<div class="row">
+			<div class="row infinite-item">
                 {% for article in articles %}
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
@@ -48,7 +48,7 @@
 							<div class="blog-image"><img src="{{ article.image.url }}" alt="Blog Image"></div>
 
 							<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
-                                <img src="{{ article.author.profile.image.url }}" alt="Profile Image">
+                                <img class="profile-image" src="{{ article.author.profile.image.url }}" alt="Profile Image">
                             </a>
 
 							<div class="blog-info">
@@ -57,7 +57,7 @@
 
 								<ul class="post-footer">
                                     <li><a><i class="ion-ios-clock"></i>23 min read</a></li>
-									<li><a href="#"><i class="ion-chatbubbles"></i>6</a></li>
+									<li><i class="ion-chatbubbles"></i>6</li>
 									<li><a><i class="ion-eye"></i>{{ article.views }}</a></li>
 								</ul>
 
@@ -70,8 +70,37 @@
             {% else %}
                 <div class="alert alert-warning"><b>No Articles</b></div>
             {% endif %}
-			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+        {# Pagination for blog post #}
+            {% if is_paginated %}
 
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
 		</div><!-- container -->
 	</section><!-- section -->
 
