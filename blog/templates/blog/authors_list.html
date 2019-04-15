@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="slider display-table center-text"
-             style="background-image: url(/static/blog/images/slider-1.jpg);
+             style="background-image: url(/static/blog/images/authors_banner.png);
                     background-size: cover;
                  height: 400px; width: 100%;">
 		<h1 class="title display-table-cell cell-color"><b>AUTHORS</b></h1>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="desc job-title">{{ author.profile.job_title }}</div>
                                 <div class="desc bio">{{ author.profile.bio }}</div>
-                                <div class="desc date-joined">Joined in {{ author.profile.user.date_joined|date:"Y"}}</div>
+                                <div class="desc date-joined">Joined on {{ author.profile.user.date_joined|date:"M Y"}}</div>
                             </div>
                             <div class="bottom">
                                 <a class="btn btn-primary btn-twitter btn-sm footer-card" href="{{ author.profile.twitter_url }}">
