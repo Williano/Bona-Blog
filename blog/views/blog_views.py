@@ -6,6 +6,7 @@ import operator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     DetailView,
@@ -41,12 +42,14 @@ class ArticleDetailView(DetailView):
             self.object.save()
             self.request.session[session_key] = True
 
+        kwargs['related_articles'] = \
+            Article.objects.filter(category=self.object.category).order_by('?')[:3]
         kwargs['article'] = self.object
         return super().get_context_data(**kwargs)
 
 
 class ArticleSearchListView(ArticleListView):
-    paginate_by = 10
+    paginate_by = 12
     template_name = "blog/article_search_list_view.html"
 
     def get_queryset(self):

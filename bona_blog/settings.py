@@ -152,13 +152,13 @@ TINYMCE_DEFAULT_CONFIG = {
             table code lists fullscreen  insertdatetime  nonbreaking
             contextmenu directionality searchreplace wordcount visualblocks
             visualchars code fullscreen autolink lists  charmap print  hr
-            anchor pagebreak
+            anchor pagebreak emoticons
             ''',
     'toolbar1': '''
             fullscreen preview bold italic underline | fontselect,
             fontsizeselect  | forecolor backcolor | alignleft alignright |
             aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | codesample |
+            | link image media | codesample | emoticons |
             ''',
     'toolbar2': '''
             visualblocks visualchars |
