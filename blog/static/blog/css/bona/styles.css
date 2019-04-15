@@ -632,6 +632,21 @@ footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0;
     line-height: 1;
     color: #428bca;
     vertical-align: middle;
+    font-weight: bold;
+}
+
+.job-title {
+    color: #292b2c !important;
+    font-size: 19px !important;
+}
+
+.bio {
+    font-size: 15px !important;
+    color: #464a4c !important;
+}
+
+.date-joined {
+    color: #990000 !important;
 }
 
 .card.hovercard .info .desc {

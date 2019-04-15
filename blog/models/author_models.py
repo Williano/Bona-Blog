@@ -1,6 +1,3 @@
-# # Third party Python app imports.
-# from PIL import Image
-
 # Core Django imports.
 from django.contrib.auth.models import User
 from django.db import models
@@ -12,16 +9,25 @@ class Profile(models.Model):
                               upload_to='profile_pics')
     banner_image = models.ImageField(default='slider-1.jpg',
                                      upload_to='banner')
+    job_title = models.CharField(max_length=100)
+    bio = models.CharField(max_length=100,
+                           help_text="Short Bio (eg. I love cats and games)")
+    twitter_url = models.CharField(max_length=250, default="#",
+                                   blank=True, null=True,
+                                   help_text=
+                                   "Enter # if you don't have an account")
+    instagram_url = models.CharField(max_length=250, default="#",
+                                     blank=True, null=True,
+                                     help_text=
+                                     "Enter # if you don't have an account")
+    facebook_url = models.CharField(max_length=250, default="#",
+                                    blank=True, null=True,
+                                    help_text=
+                                    "Enter # if you don't have an account")
+    github_url = models.CharField(max_length=250, default="#",
+                                  blank=True, null=True,
+                                  help_text=
+                                  "Enter # if you don't have an account")
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
-
-    # def save(self, **kwargs):
-    #     super().save()
-    #     img = Image.open(self.image.path)
-    #
-    #     if img.height > 56 or img.width > 56:
-    #         output_size = (56, 56)
-    #         img.thumbnail(output_size)
-    #         img.save(self.image.path)
-

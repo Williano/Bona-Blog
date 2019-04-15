@@ -34,23 +34,23 @@
                                         {{ author.username }}
                                     </a>
                                 </div>
-                                <div class="desc">Passionate designer</div>
-                                <div class="desc">Curious developer</div>
-                                <div class="desc">Joined in {{ author.profile.user.date_joined|date:"Y"}}</div>
+                                <div class="desc job-title">{{ author.profile.job_title }}</div>
+                                <div class="desc bio">{{ author.profile.bio }}</div>
+                                <div class="desc date-joined">Joined in {{ author.profile.user.date_joined|date:"Y"}}</div>
                             </div>
                             <div class="bottom">
-                                <a class="btn btn-primary btn-twitter btn-sm footer-card" href="https://twitter.com/webmaniac">
+                                <a class="btn btn-primary btn-twitter btn-sm footer-card" href="{{ author.profile.twitter_url }}">
                                     <i class="fa fa-twitter"></i>
                                 </a>
                                 <a class="btn btn-danger btn-sm footer-card" rel="publisher"
-                                   href="https://plus.google.com/+ahmshahnuralam">
+                                   href="{{ author.profile.instagram_url }}">
                                     <i class="fa fa-instagram"></i>
                                 </a>
                                 <a class="btn btn-primary btn-sm card-btn footer-card" rel="publisher"
-                                   href="https://plus.google.com/shahnuralam">
+                                   href="{{ author.profile.facebook_url }}">
                                     <i class="fa fa-facebook"></i>
                                 </a>
-                                <a class="btn btn-secondary btn-sm footer-card" rel="publisher" href="https://plus.google.com/shahnuralam">
+                                <a class="btn btn-secondary btn-sm footer-card" rel="publisher" href="{{ author.profile.github_url }}">
                                     <i class="fa fa-github"></i>
                                 </a>
                             </div>
