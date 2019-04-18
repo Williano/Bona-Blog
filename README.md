@@ -12,6 +12,7 @@ An Open-Source Blogging platform.
 * [Inspiration](#inspiration)
 * [Contact](#contact)
 * [License](#license)
+* [Contributing](#contributing)
 
 
 ## General info
@@ -144,3 +145,10 @@ Created by [Williano](https://williano.github.io/) - feel free to contact me!
 
 This project is licensed under the terms of the **MIT** license.
 
+## Contributing
+
+1. Fork it (<https://github.com/Williano/Bona-Blog.git>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
