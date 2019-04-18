@@ -1,18 +1,56 @@
-# Bona-Blog
-A blog project built with Django 2.1. 
+# Bona Blog
+An Open-Source Blogging platform.
+
+
+## Table of contents
+* [General info](#general-info)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
+* [License](#license)
+
+
+## General info
+An Open-Source bloggig plaform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has a number of [features](#features) needed for a standard bloggin platform.
+
+## Screenshots
+
+Home Page            |  Categories List
+:-------------------------:|:-------------------------:
+![Home](https://user-images.githubusercontent.com/19711677/56363189-264fb200-61db-11e9-9bba-77a3e7f7c1de.jpg) | ![Categories List](https://user-images.githubusercontent.com/19711677/56363187-264fb200-61db-11e9-8a90-0af49eb33758.jpg)
+
+Category Articles List          |  Author Articles List
+:-------------------------:|:-------------------------:
+![Category Article List](https://user-images.githubusercontent.com/19711677/56363188-264fb200-61db-11e9-8fef-fc83fb29f056.png) | ![Author Articles](https://user-images.githubusercontent.com/19711677/56363185-25b71b80-61db-11e9-9a42-2fffaa369d28.jpg)
 
 
 
-## Getting Started
-This section describes how to set up an environmet to run and test the project.
+Authors List     
+![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) 
 
-### Prerequisites
-* You have a working installation of Python 3.6.*
-* You can install software on your system.
-* You can create and activate Python virtual environments.
+
+
+Article Detail
+![Article Detail](https://user-images.githubusercontent.com/19711677/56364113-55672300-61dd-11e9-869d-5a30adea9e21.jpg)
+
+
+## Technologies
+* Python 3.7
+* Django 2.2
+* HTML5
+* CSS3 
+* Bootstrap 
+* Ion Icons
+* Font awesome
+* TinyMCE
+* SQLite
 
 ### Setup
-## Installation on Linux
+## Installation on Linux and Mac OS
 
 * [Follow the guide here](https://help.github.com/articles/fork-a-repo) on how to clone or fork a repo
 * [Follow the guide here](http://simononsoftware.com/virtualenv-tutorial/) on how to create virtualenv
@@ -72,3 +110,37 @@ This section describes how to set up an environmet to run and test the project.
 * Open the address in the browser
 * Don't forget to Change ALLOWED_HOSTS = ['127.0.0.1'] in settings.py
 * `Note`: It is important that when you create your virtualenv, do not create it in the same folder as the code you downloaded.
+
+
+## Features
+
+* [iOS Mobile App](https://github.com/Williano/Bona-Mobile.git)
+* Authors List
+* Author Articles List
+* Category List
+* Category Articles List
+* Related Articles
+* Comments
+* Article Minute Read
+* Article Number of Words
+* Aricle Number of Views
+* Markdown Support
+* Responsive on all devices
+* Pagination
+* Clean Code
+* 80% test coverage
+
+## Status
+Project is: _in progress_
+
+## Inspiration
+This project is based on the goal of imporving my skills as a developer. I wanted to improve my skills and also contribute to the open source community at the same time and decided to build this project. I have learnt different technologies for the project and I keep on learning new skills as i add features to the project.
+
+## Contact
+Created by [Williano](https://williano.github.io/) - feel free to contact me!
+
+## License
+>You can check out the full license [here](https://github.com/Williano/Bona-Blog/blob/5fb76f5d8a44d567f24c0cf1f62e432b4e33eb7e/LICENSE.md)
+
+This project is licensed under the terms of the **MIT** license.
+
