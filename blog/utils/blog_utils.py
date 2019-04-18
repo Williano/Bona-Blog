@@ -1,5 +1,4 @@
 # Standard Python library imports.
-import datetime
 import math
 import re
 
@@ -17,7 +16,7 @@ def count_words(html_string):
     return count
 
 
-def get_read_time(html_string):
+def read_time(html_string):
     count = count_words(html_string)
     read_time_min = math.ceil(count/200.0) #assuming 200wpm reading
     # read_time_sec = read_time_min * 60

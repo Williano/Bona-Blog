@@ -24,7 +24,7 @@
 
 							<h5 class="pre-title"><b>{{ article.category }}</b></h5>
 
-							<h3 class="title"><a href="#"><b>{{ article.title }}</b></a></h3>
+							<h3 class="title"><b>{{ article.title }}</b></h3>
 
 							<div class="post-info">
 
@@ -37,13 +37,14 @@
 									<a class="name" href="{% url 'blog:author_articles' article.author.username %}">
                                         <b>{{ article.author.username }}</b></a>
 									<h6 class="date">on {{ article.date_published.date }} at {{ article.date_published.time }}</h6>
+                                    <h6>Updated on {{ article.date_updated.date }} at {{ article.date_updated.time }}</h6>
 								</div>
 
 							</div><!-- post-info -->
                            <div class="post-icons-area">
 								<ul class="post-icons">
-                                    <li><a><i class="ion-pricetag"></i>57</a></li>
-									<li><a><i class="ion-ios-clock"></i>57 min read</a></li>
+                                    <li><a><i class="ion-pricetag"></i>{{ article.count_words }} word{{ article.count_words|pluralize }}</a></li>
+									<li><a><i class="ion-ios-clock"></i>{{ article.read_time }} min{{ article.read_time|pluralize }} read</a></li>
 									<li><a href="#"><i class="ion-chatbubbles"></i>6</a></li>
 									<li><a><i class="ion-eye"></i>{{ article.views }} view{{ article.views|pluralize }}</a></li>
 								</ul>
@@ -123,9 +124,9 @@
                                     <b>{{ related_article.title }}</b></a></h4>
 
 								<ul class="post-footer">
-									<li><a href="#"><i class="ion-ios-clock"></i>23 min read</a></li>
-									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									<li><a href="#"><i class="ion-eye"></i>{{ article.views }}</a></li>
+									<li><i class="ion-ios-clock"></i>{{ article.read_time }} min read</li>
+									<li><i class="ion-chatbubble"></i>6</li>
+									<li><i class="ion-eye"></i>{{ article.views }}</li>
 								</ul>
 
 							</div><!-- blog-info -->
@@ -182,7 +183,7 @@
 							<div class="post-info">
 
 								<div class="middle-area">
-									<a class="name" href="#"><b>Katy Liu</b></a>
+									<b>Katy Liu</b>
 									<h6 class="date">on Sep 29, 2017 at 9:48 am</h6>
 								</div>
 

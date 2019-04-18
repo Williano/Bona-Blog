@@ -6,7 +6,6 @@ import operator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     DetailView,

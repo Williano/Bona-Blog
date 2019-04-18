@@ -10,7 +10,7 @@ from taggit.managers import TaggableManager
 from tinymce import HTMLField
 
 # Blog application imports.
-from blog.utils.blog_utils import count_words, get_read_time
+from blog.utils.blog_utils import count_words, read_time
 from blog.models.category_models import Category
 
 
@@ -39,8 +39,8 @@ class Article(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default='DRAFT')
     views = models.PositiveIntegerField(default=0)
-    count_words = models.PositiveIntegerField(default=0)
-    read_time = models.TimeField(null=True, blank=True)
+    count_words = models.CharField(max_length=50, default=0)
+    read_time = models.CharField(max_length=50, default=0)
 
     class Meta:
         unique_together = ("title",)
@@ -51,18 +51,11 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
+        self.count_words = count_words(self.body)
+        self.read_time = read_time(self.body)
         super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('blog:article_detail', kwargs={'slug': self.slug})
 
-
-# def pre_save_post_receiver(sender, instance, *args, **kwargs):
-#     if instance.body:
-#         html_string = instance.get_body_as_markdown()
-#         read_time_var = get_read_time(html_string)
-#         instance.read_time = read_time_var
-#
-#
-# pre_save.connect(pre_save_post_receiver, sender=Article)
 
