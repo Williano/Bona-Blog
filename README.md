@@ -140,7 +140,7 @@ This project is based on the goal of imporving my skills as a developer. I wante
 Created by [Williano](https://williano.github.io/) - feel free to contact me!
 
 ## License
->You can check out the full license [here](https://github.com/Williano/Bona-Blog/blob/5fb76f5d8a44d567f24c0cf1f62e432b4e33eb7e/LICENSE.md)
+>You can check out the full license [here](https://github.com/Williano/Bona-Blog/blob/master/LICENSE.md)
 
 This project is licensed under the terms of the **MIT** license.
 
