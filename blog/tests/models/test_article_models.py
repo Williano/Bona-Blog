@@ -8,8 +8,9 @@ from django.utils.text import slugify
 from model_mommy import mommy
 
 # Blog application imports.
-from blog.models.author_models import Profile
-from blog.models.blog_models import Category, Article, Comment
+from blog.models.blog_models import Article
+from blog.models.category_models import Category
+from blog.models.comment_models import Comment
 
 
 class BlogTests(TestCase):
