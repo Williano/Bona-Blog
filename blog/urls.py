@@ -24,31 +24,21 @@ from blog.views.author_views import (
     AuthorsListView,
 )
 
+from blog.views.comment_views import (
+    CommentCreateView,
+)
+
+
 # Specifies the app name for name spacing.
 app_name = "blog"
 
 # blog/urls.py
 urlpatterns = [
+
+    # ARTICLE URLS #
+
     # /home/
     path('', ArticleListView.as_view(), name='home'),
-
-    # category-articles/<str:slug>/
-    path('category-articles/<str:slug>/', CategoryArticlesListView.as_view(),
-         name='category_articles'
-         ),
-
-    # /author/<str:username>/
-    path('author-articles/<str:username>/', AuthorArticlesListView.as_view(),
-         name='author_articles'
-         ),
-
-    # /categories-list/
-    path('categories-list/', CategoriesListView.as_view(),
-         name='categories_list'
-         ),
-
-    # /authors-list/
-    path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
 
     # /article/<str:slug>/
     path('article/<str:slug>/', ArticleDetailView.as_view(),
@@ -72,6 +62,30 @@ urlpatterns = [
     path('article/<str:slug>/delete/', ArticleDeleteView.as_view(),
          name="article_delete"),
 
+
+    # AUTHORS URLS #
+
+    # /authors-list/
+    path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
+
+    # /author/<str:username>/
+    path('author-articles/<str:username>/', AuthorArticlesListView.as_view(),
+         name='author_articles'
+         ),
+
+
+    # CATEGORY URLS #
+
+    # category-articles/<str:slug>/
+    path('category-articles/<str:slug>/', CategoryArticlesListView.as_view(),
+         name='category_articles'
+         ),
+
+    # /categories-list/
+    path('categories-list/', CategoriesListView.as_view(),
+         name='categories_list'
+         ),
+
     # /category/new/
     path('category/new/', CategoryCreateView.as_view(),
          name="category_create"),
@@ -80,7 +94,18 @@ urlpatterns = [
     path('category/<str:slug>/update/', CategoryUpdateCreateView.as_view(),
          name="category_update"),
 
+
+    # COMMENT URLS #
+
+    # /comment/new/
+    path('comment/new/<str:slug>/', CommentCreateView.as_view(),
+         name="comment_create"),
+
+
+    # ACCOUNTS URLS #
+
+    # Url for login
     path('accounts/login/',
          auth_views.LoginView.as_view(template_name='authors/login.html'),
-         name='login'),  # Url for login
+         name='login'),
 ]

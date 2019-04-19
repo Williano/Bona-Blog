@@ -35,7 +35,7 @@
 
 								<ul class="post-footer">
 									<li><a><i class="ion-ios-clock"></i>{{ article.read_time }} min{{ article.read_time|pluralize }} read</a></li>
-									<li><a href="#"><i class="ion-chatbubbles"></i>6</a></li>
+									<li><a href="#"><i class="ion-chatbubbles"></i>{{ article.comments.count }}</a></li>
 									<li><a href="#"><i class="ion-eye"></i>{{ article.views }}</a></li>
 								</ul>
 

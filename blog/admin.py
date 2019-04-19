@@ -49,12 +49,11 @@ admin.site.register(Article, ArticleAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'email', 'comment', 'article', 'date_created',
-                    'approved')
-    list_filter = ('approved', 'date_created', 'name',)
+    list_display = ('name', 'email', 'comment', 'article', 'date_created', )
+    list_filter = ('date_created', 'name',)
     search_fields = ('name', 'article', 'comment')
     date_hierarchy = 'date_created'
-    ordering = ['approved', 'date_created', ]
+    ordering = ['date_created', ]
 
 
 # Registers the comment model at the admin backend.

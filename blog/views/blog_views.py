@@ -16,7 +16,9 @@ from django.views.generic import (
 )
 
 # Blog application imports.
-from blog.models.blog_models import Article, Category
+from blog.models.blog_models import Article
+from blog.models.category_models import Category
+from blog.forms.comment_forms import CommentForm
 
 
 class ArticleListView(ListView):
@@ -44,6 +46,7 @@ class ArticleDetailView(DetailView):
         kwargs['related_articles'] = \
             Article.objects.filter(category=self.object.category).order_by('?')[:3]
         kwargs['article'] = self.object
+        kwargs['comment_form'] = CommentForm()
         return super().get_context_data(**kwargs)
 
 
