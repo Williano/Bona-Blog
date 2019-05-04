@@ -59,7 +59,7 @@
 			<div class="src-area">
 				<form method="get" action="{% url 'blog:article_search_list_view' %}">
 					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-					<input class="src-input" type="text" name="q" placeholder="Type of search">
+					<input class="src-input" type="text" name="q" placeholder="Search for Articles">
 				</form>
 			</div>
 
@@ -68,7 +68,8 @@
 
 
    <!-- Messages -->
-      <div class="row">
+      {% block messages %}
+       <div class="row">
         <div class="col-md-12">
           {% if messages %}
             {% for message in messages %}
@@ -79,6 +80,7 @@
           {% endif %}
         </div>
       </div>
+      {% endblock messages %}
 
     {% block content %}
     {% endblock content %}

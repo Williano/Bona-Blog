@@ -5,6 +5,7 @@ import operator
 # Core Django imports.
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -69,6 +70,7 @@ class ArticleSearchListView(ArticleListView):
         search_results = super(ArticleListView, self).get_queryset()
 
         query = self.request.GET.get('q')
+
         if query:
             query_list = query.split()
             search_results = search_results.filter(
@@ -80,7 +82,12 @@ class ArticleSearchListView(ArticleListView):
                        (Q(body__icontains=q) for q in query_list))
             )
 
-        return search_results
+            if not search_results:
+                messages.info(self.request, f"No results for '{query}'")
+                return search_results
+            else:
+                messages.success(self.request, f"Results for '{query}'")
+                return search_results
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
