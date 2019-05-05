@@ -36,6 +36,9 @@ class CategoriesListView(ListView):
     context_object_name = 'categories'
     template_name = 'blog/categories_list.html'
 
+    def get_queryset(self):
+        return Category.objects.order_by('-date_created')
+
 
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Category
