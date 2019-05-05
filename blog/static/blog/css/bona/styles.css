@@ -637,11 +637,11 @@ footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0;
 
 .job-title {
     color: #292b2c !important;
-    font-size: 19px !important;
+    font-size: 17px !important;
 }
 
 .bio {
-    font-size: 15px !important;
+    font-size: 13px !important;
     color: #464a4c !important;
 }
 
@@ -651,7 +651,7 @@ footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0;
 
 .card.hovercard .info .desc {
     overflow: hidden;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     color: #737373;
     text-overflow: ellipsis;

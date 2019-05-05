@@ -31,3 +31,6 @@ class AuthorsListView(ListView):
     paginate_by = 12
     context_object_name = 'authors'
     template_name = 'blog/authors_list.html'
+
+    def get_queryset(self):
+        return User.objects.all().order_by('-date_joined')
