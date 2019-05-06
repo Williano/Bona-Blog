@@ -41,17 +41,17 @@ urlpatterns = [
     path('', ArticleListView.as_view(), name='home'),
 
     # /article/<str:slug>/
-    path('article/<str:slug>/', ArticleDetailView.as_view(),
+    path('<str:slug>/', ArticleDetailView.as_view(),
          name='article_detail'
          ),
 
     # /search/?q=query/
-    path('search/', ArticleSearchListView.as_view(),
+    path('article/search/', ArticleSearchListView.as_view(),
          name='article_search_list_view'
          ),
 
     # /article-new/
-    path('article-new/', ArticleCreateView.as_view(),
+    path('article/new/', ArticleCreateView.as_view(),
          name="article_create"),
 
     # /article/<str:slug>/update/
@@ -66,10 +66,10 @@ urlpatterns = [
     # AUTHORS URLS #
 
     # /authors-list/
-    path('authors-list/', AuthorsListView.as_view(), name='authors_list'),
+    path('authors/list/', AuthorsListView.as_view(), name='authors_list'),
 
     # /author/<str:username>/
-    path('author-articles/<str:username>/', AuthorArticlesListView.as_view(),
+    path('author/<str:username>/articles', AuthorArticlesListView.as_view(),
          name='author_articles'
          ),
 
@@ -77,12 +77,12 @@ urlpatterns = [
     # CATEGORY URLS #
 
     # category-articles/<str:slug>/
-    path('category-articles/<str:slug>/', CategoryArticlesListView.as_view(),
+    path('category/<str:slug>/articles', CategoryArticlesListView.as_view(),
          name='category_articles'
          ),
 
     # /categories-list/
-    path('categories-list/', CategoriesListView.as_view(),
+    path('categories/list/', CategoriesListView.as_view(),
          name='categories_list'
          ),
 
@@ -106,6 +106,6 @@ urlpatterns = [
 
     # Url for login
     path('accounts/login/',
-         auth_views.LoginView.as_view(template_name='authors/login.html'),
+         auth_views.LoginView.as_view(template_name='account/login.html'),
          name='login'),
 ]

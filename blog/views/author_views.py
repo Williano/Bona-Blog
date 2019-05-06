@@ -13,7 +13,7 @@ class AuthorArticlesListView(ListView):
     model = Article
     paginate_by = 12
     context_object_name = 'articles'
-    template_name = 'blog/author_articles.html'
+    template_name = 'authors/author_articles.html'
 
     def get_queryset(self):
         author = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -30,7 +30,7 @@ class AuthorsListView(ListView):
     model = User
     paginate_by = 12
     context_object_name = 'authors'
-    template_name = 'blog/authors_list.html'
+    template_name = 'authors/authors_list.html'
 
     def get_queryset(self):
         return User.objects.all().order_by('-date_joined')

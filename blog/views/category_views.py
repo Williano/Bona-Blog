@@ -17,7 +17,7 @@ class CategoryArticlesListView(ListView):
     model = Article
     paginate_by = 12
     context_object_name = 'articles'
-    template_name = 'blog/category_articles.html'
+    template_name = 'category/category_articles.html'
 
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs.get('slug'))
@@ -34,7 +34,7 @@ class CategoriesListView(ListView):
     model = Category
     paginate_by = 12
     context_object_name = 'categories'
-    template_name = 'blog/categories_list.html'
+    template_name = 'category/categories_list.html'
 
     def get_queryset(self):
         return Category.objects.order_by('-date_created')
@@ -43,6 +43,7 @@ class CategoriesListView(ListView):
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Category
     fields = ["name", "image"]
+    template_name = 'category/category_form.html'
     success_url = reverse_lazy("blog:categories_list")
     success_message = "Category Created Successfully"
 
@@ -51,5 +52,6 @@ class CategoryUpdateCreateView(LoginRequiredMixin, SuccessMessageMixin,
                                UpdateView):
     model = Category
     fields = ["name", "image"]
+    template_name = 'category/category_form.html'
     success_url = reverse_lazy("blog:categories_list")
     success_message = "Category Updated Successfully"
