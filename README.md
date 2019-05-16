@@ -87,17 +87,17 @@ Article Detail
 * To create a normal virtualenv (example _myvenv_) and activate it (see Code below).
 
   ```
-  1. Create main project folder with name of your choice (eg.Bona Blog Project) and clone (git clone url) the project into that folder.
+  1. Create main project folder with name of your choice (eg.Bona-Blog-Project) 
+  
+  2. Clone (git clone url) the project into that folder.
    
-  2. Open the command prompt and navigate the project folder (Bona Blog Project)
+  2. Open the command prompt and navigate the project folder (Bona-Blog-Project)
   
   3. virtualenv bona-blog-project-env   # Create a virtual environment for the project with it's own packages.
   
   4. bona-blog-project-env\Scripts\activate    # Move into the virtual environment folder and activate the environment.
   
-  5. cd ..   # move back into main project folder.
-  
-  6. cd bona_blog    # Move into second (bona_blog) folder.
+  6. cd Bona-Blog    # Move into second (bona_blog) folder.
   
   7. pip install -r requirements.txt  # install the requirements.
 
