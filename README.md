@@ -91,11 +91,11 @@ Article Detail
   
   2. Clone (git clone url) the project into that folder.
    
-  2. Open the command prompt and navigate the project folder (Bona-Blog-Project)
+  3. Open the command prompt and navigate the project folder (Bona-Blog-Project)
   
-  3. virtualenv bona-blog-project-env   # Create a virtual environment for the project with it's own packages.
+  4. virtualenv bona-blog-project-env   # Create a virtual environment for the project with it's own packages.
   
-  4. bona-blog-project-env\Scripts\activate    # Move into the virtual environment folder and activate the environment.
+  5. bona-blog-project-env\Scripts\activate    # Move into the virtual environment folder and activate the environment.
   
   6. cd Bona-Blog    # Move into second (bona_blog) folder.
   
