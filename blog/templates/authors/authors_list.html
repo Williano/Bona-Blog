@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Authors
@@ -7,7 +8,7 @@
 
 {% block content %}
     <div class="slider display-table center-text"
-             style="background-image: url(/static/blog/images/authors_banner.png);
+             style="background-image: url({% static 'blog/images/authors_banner.png' %});
                     background-size: cover;
                  height: 400px; width: 100%;">
 		<h1 class="title display-table-cell cell-color"><b>AUTHORS</b></h1>

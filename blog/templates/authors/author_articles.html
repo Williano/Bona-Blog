@@ -22,7 +22,11 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
 						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="{{ article.image.url }}" alt="Blog Image"></div>
+							<div class="blog-image">
+                                <img src="{{ article.image.url }}"
+                                     width="330" height="220"
+                                     alt="Blog Image">
+                            </div>
 
 							<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
                                 <img src="{{ article.author.profile.image.url }}"

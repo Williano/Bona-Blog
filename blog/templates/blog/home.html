@@ -15,7 +15,13 @@
                 {% for category in categories %}
 				<div class="swiper-slide">
 					<a class="slider-category" href="{{ category.get_absolute_url }}">
-						<div class="category-image"><img src="{{ category.image.url }}" class="category-image" alt="Blog Image"></div>
+						<div class="category-image">
+                            <img src="{{ category.image.url }}"
+                                 class="category-image"
+                                 alt="Blog Image"
+                                 width="352" height="235"
+                             >
+                        </div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -45,7 +51,12 @@
 					<div class="card h-100">
 						<div class="single-post post-style-1">
 
-							<div class="blog-image"><img src="{{ article.image.url }}" alt="Blog Image"></div>
+							<div class="blog-image">
+                                <img src="{{ article.image.url }}"
+                                     alt="Blog Image"
+                                     width="330" height="220"
+                                >
+                            </div>
 
 							<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
                                 <img class="profile-image" src="{{ article.author.profile.image.url }}" alt="Profile Image">
