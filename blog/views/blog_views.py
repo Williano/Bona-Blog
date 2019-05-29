@@ -51,8 +51,10 @@ class ArticleDetailView(DetailView):
         return super().get_context_data(**kwargs)
 
 
-class ArticleSearchListView(ArticleListView):
+class ArticleSearchListView(ListView):
+    model = Article
     paginate_by = 12
+    context_object_name = 'search_results'
     template_name = "blog/article_search_list.html"
 
     def get_queryset(self):
@@ -67,13 +69,12 @@ class ArticleSearchListView(ArticleListView):
         3 words appear in the article content in any order, It split the query
         into separate words and chain them.
         """
-        search_results = super(ArticleListView, self).get_queryset()
 
         query = self.request.GET.get('q')
 
         if query:
             query_list = query.split()
-            search_results = search_results.filter(
+            search_results = Article.objects.filter(
                 reduce(operator.and_,
                        (Q(title__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
@@ -91,6 +92,14 @@ class ArticleSearchListView(ArticleListView):
         else:
             messages.error(self.request, f"Sorry you did not enter any keyword")
             return []
+
+    def get_context_data(self, **kwargs):
+        """
+            Add categories to context data
+        """
+        context = super(ArticleSearchListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -171,7 +180,6 @@ class TagArticlesListView(ListView):
                 return tag_articles_list
             else:
                 messages.success(self.request, f"Results for '{tag_name}' tag")
-                print(tag_articles_list)
                 return tag_articles_list
         else:
             messages.error(self.request, "Invalid tag")
