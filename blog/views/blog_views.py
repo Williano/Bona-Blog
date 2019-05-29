@@ -53,7 +53,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleSearchListView(ArticleListView):
     paginate_by = 12
-    template_name = "blog/article_search_list_view.html"
+    template_name = "blog/article_search_list.html"
 
     def get_queryset(self):
         """
@@ -146,3 +146,41 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
             return True
         return False
 
+
+class TagArticlesListView(ListView):
+    """
+        List articles related to a tag.
+    """
+    model = Article
+    paginate_by = 12
+    context_object_name = 'tag_articles_list'
+    template_name = 'blog/tag_articles_list.html'
+
+    def get_queryset(self):
+        """
+            Filter Articles by tag_name
+        """
+
+        tag_name = self.kwargs.get('tag_name', '')
+
+        if tag_name:
+            tag_articles_list = Article.objects.filter(tags__name__in=[tag_name])
+
+            if not tag_articles_list:
+                messages.info(self.request, f"No Results for '{tag_name}' tag")
+                return tag_articles_list
+            else:
+                messages.success(self.request, f"Results for '{tag_name}' tag")
+                print(tag_articles_list)
+                return tag_articles_list
+        else:
+            messages.error(self.request, "Invalid tag")
+            return []
+
+    def get_context_data(self, **kwargs):
+        """
+            Add categories to context data
+        """
+        context = super(TagArticlesListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context

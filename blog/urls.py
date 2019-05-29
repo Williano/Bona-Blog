@@ -10,6 +10,7 @@ from blog.views.blog_views import (
     ArticleCreateView,
     ArticleUpdateView,
     ArticleDeleteView,
+    TagArticlesListView,
 )
 
 from blog.views.category_views import (
@@ -61,6 +62,10 @@ urlpatterns = [
     # /article/<str:slug>/delete/
     path('article/<str:slug>/delete/', ArticleDeleteView.as_view(),
          name="article_delete"),
+
+    # /tag/<str:tag_name>/
+    path('tag/<str:tag_name>/articles', TagArticlesListView.as_view(),
+         name="tag_articles"),
 
 
     # AUTHORS URLS #

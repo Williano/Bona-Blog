@@ -80,7 +80,7 @@
                         <!-- tags -->
 							<ul class="tags">
                                 {% for tag in article.tags.all %}
-								<li><a href="#">{{ tag.name }}</a></li>
+								<li><a href="{% url 'blog:tag_articles' tag_name=tag.name %}">{{ tag.name }}</a></li>
                                 {% endfor %}
 							</ul>
 

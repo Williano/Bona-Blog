@@ -166,7 +166,7 @@ class ArticleSearchListViewTest(TestCase):
 
     def test_article_search_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
-        self.assertTemplateUsed(response, 'blog/article_search_list_view.html')
+        self.assertTemplateUsed(response, 'blog/article_search_list.html')
 
     def test_article_search_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
