@@ -88,6 +88,9 @@ class ArticleSearchListView(ArticleListView):
             else:
                 messages.success(self.request, f"Results for '{query}'")
                 return search_results
+        else:
+            messages.error(self.request, f"Sorry you did not enter any keyword")
+            return []
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
