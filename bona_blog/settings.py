@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'taggit',
     'tinymce',
     'debug_toolbar',
+    'django_social_share',
 
     # My apps.
     'blog.apps.BlogConfig',

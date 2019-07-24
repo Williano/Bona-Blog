@@ -38,7 +38,7 @@ class CategoriesListViewTests(TestCase):
 
     def test_if_categories_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:categories_list'))
-        self.assertTemplateUsed(response, 'blog/categories_list.html')
+        self.assertTemplateUsed(response, 'article/categories_list.html')
 
     def test_if_categories_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
@@ -81,7 +81,7 @@ class CategoryArticlesListViewTest(TestCase):
     def test_if_category_article_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:category_articles',
                                            kwargs={'slug': self.category.slug}))
-        self.assertTemplateUsed(response, 'blog/category_articles.html')
+        self.assertTemplateUsed(response, 'article/category_articles.html')
 
     def test_if_category_articles_list_view_returns_the_right_number_of_articles(self):
         response = self.client.get(reverse('blog:category_articles',
@@ -151,16 +151,16 @@ class CategoryArticlesListViewTest(TestCase):
 #         test_user1.save()
 #
 #     def test_redirect_if_not_logged_in(self):
-#         response = self.client.get(reverse("blog:category_create"))
+#         response = self.client.get(reverse("article:category_create"))
 #         self.assertEqual(response.status_code, 302)
 #         self.assertRedirects(response, "/accounts/login/?next=/category/new/")
 #
 #     def test_logged_in_uses_correct_template(self):
 #         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
-#         response = self.client.get(reverse('blog:category_create'))
+#         response = self.client.get(reverse('article:category_create'))
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
-#         self.assertTemplateUsed(response, "blog/category_form.html")
+#         self.assertTemplateUsed(response, "article/category_form.html")
 #
 #     def test_create_a_new_category_with_valid_data(self):
 #         """
@@ -179,7 +179,7 @@ class CategoryArticlesListViewTest(TestCase):
 #
 #         category = mommy.make(Category)
 #         category1 = model_to_dict(category)
-#         response = self.client.post(reverse('blog:category_create'), category1)
+#         response = self.client.post(reverse('article:category_create'), category1)
 #         print(response.context_data)
 #         self.assertEqual(response.status_code, 200)
 #
@@ -208,7 +208,7 @@ class CategoryArticlesListViewTest(TestCase):
 #
 #         category = mommy.make(Category)
 #         category1 = model_to_dict(category)
-#         response = self.client.post(reverse('blog:category_create'), category1)
+#         response = self.client.post(reverse('article:category_create'), category1)
 #         # print(response.context_data)
 #         # self.assertEqual(response.status_code, 200)
 #         # self.assertFormError(response, "form", "name",

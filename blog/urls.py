@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 # Blog application imports.
-from blog.views.blog_views import (
+from blog.views.blog.blog_views import (
     ArticleListView,
     ArticleDetailView,
     ArticleSearchListView,
@@ -13,19 +13,19 @@ from blog.views.blog_views import (
     TagArticlesListView,
 )
 
-from blog.views.category_views import (
+from blog.views.blog.category_views import (
     CategoryArticlesListView,
     CategoriesListView,
     CategoryCreateView,
     CategoryUpdateCreateView,
 )
 
-from blog.views.author_views import (
+from blog.views.blog.author_views import (
     AuthorArticlesListView,
     AuthorsListView,
 )
 
-from blog.views.comment_views import (
+from blog.views.blog.comment_views import (
     CommentCreateView,
 )
 
@@ -33,7 +33,7 @@ from blog.views.comment_views import (
 # Specifies the app name for name spacing.
 app_name = "blog"
 
-# blog/urls.py
+# article/urls.py
 urlpatterns = [
 
     # ARTICLE URLS #
@@ -111,6 +111,6 @@ urlpatterns = [
 
     # Url for login
     path('accounts/login/',
-         auth_views.LoginView.as_view(template_name='account/login.html'),
+         auth_views.LoginView.as_view(template_name='author_dashboard/account/login.html'),
          name='login'),
 ]

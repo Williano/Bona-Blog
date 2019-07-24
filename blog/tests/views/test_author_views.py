@@ -41,7 +41,7 @@ class AuthorsListViewTests(TestCase):
 
     def test_if_authors_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:authors_list'))
-        self.assertTemplateUsed(response, 'blog/authors_list.html')
+        self.assertTemplateUsed(response, 'article/authors_list.html')
 
     def test_if_authors_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
@@ -96,7 +96,7 @@ class AuthorArticlesListViewTest(TestCase):
                                                    self.author.username}
                                            )
                                    )
-        self.assertTemplateUsed(response, 'blog/author_articles.html')
+        self.assertTemplateUsed(response, 'article/author_articles.html')
 
     def test_if_author_article_list_view_returns_the_right_author_details(self):
         response = self.client.get(reverse('blog:author_articles',

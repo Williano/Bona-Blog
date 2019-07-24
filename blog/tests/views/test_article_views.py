@@ -44,7 +44,7 @@ class ArticleListViewTests(TestCase):
 
     def test_if_article_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:home'))
-        self.assertTemplateUsed(response, 'blog/home.html')
+        self.assertTemplateUsed(response, 'article/home.html')
 
     def test_if_article_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
@@ -130,7 +130,7 @@ class ArticleDetailViewTest(TestCase):
     def test_if_categories_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:article_detail',
                                            kwargs={'slug': self.article.slug}))
-        self.assertTemplateUsed(response, 'blog/article_detail.html')
+        self.assertTemplateUsed(response, 'article/article_detail.html')
 
     def test_if_article_detail_view_returns_the_right_article_details(self):
         response = self.client.get(self.article.get_absolute_url())
@@ -166,11 +166,11 @@ class ArticleSearchListViewTest(TestCase):
 
     def test_article_search_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
-        self.assertTemplateUsed(response, 'blog/article_search_list.html')
+        self.assertTemplateUsed(response, 'article/article_search_list.html')
 
     def test_article_search_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
-        self.assertNotContains(response, 'blog/categories_list_view.html')
+        self.assertNotContains(response, 'article/categories_list_view.html')
 
     def test_article_search_list_view_returns_the_right_query_results(self):
         response = self.client.get(f"/search/?q={self.articles[0].title}")
@@ -210,7 +210,7 @@ class ArticleCreateViewTest(TestCase):
         response = self.client.get(reverse('blog:article_create'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(str(response.context['user']), 'testuser1')
-        self.assertTemplateUsed(response, "blog/article_form.html")
+        self.assertTemplateUsed(response, "article/article_form.html")
 
     def test_create_a_new_article_with_valid_data(self):
         """
@@ -341,18 +341,18 @@ class ArticleDeleteViewTest(TestCase):
 #         self.article = mommy.make(Article, author=self.test_user1)
 #
 #     def test_redirect_if_not_logged_in(self):
-#         response = self.client.get(reverse("blog:article_update",
+#         response = self.client.get(reverse("article:article_update",
 #                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 302)
 #         #self.assertRedirects(response, f"accounts/login/?next=/article/{self.article.slug}/update/")
 #
 #     def test_logged_in_uses_correct_template(self):
 #         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
-#         response = self.client.get(reverse('blog:article_update',
+#         response = self.client.get(reverse('article:article_update',
 #                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
-#         self.assertTemplateUsed(response, "blog/article_form.html")
+#         self.assertTemplateUsed(response, "article/article_form.html")
 #
 #     def test_update_article(self):
 #         """
@@ -374,7 +374,7 @@ class ArticleDeleteViewTest(TestCase):
 #         new_article = mommy.make(Article, category=new_category, title="Coming",
 #                                  body="New is going to be awesome")
 #         article = model_to_dict(new_article)
-#         update_response = self.client.get(reverse('blog:article_update',
+#         update_response = self.client.get(reverse('article:article_update',
 #                                                   kwargs={'slug': self.article.slug}),
 #                                           article)
 #
@@ -384,7 +384,7 @@ class ArticleDeleteViewTest(TestCase):
 #         # self.assertEqual(response.context['article'].slug, art.slug)
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
-#         self.assertTemplateUsed(response, "blog/article_form.html")
+#         self.assertTemplateUsed(response, "article/article_form.html")
 
 
 
