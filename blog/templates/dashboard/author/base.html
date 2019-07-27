@@ -9,6 +9,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+        <!-- Favicon-->
+    <link rel="icon" href="{% static 'blog/images/favicon.png' %}"
+          type="image/gif" sizes="16x16">
+
     <title>Bona | {% block title %}{% endblock title %}</title>
 
     <!-- Custom fonts for this template-->
@@ -81,8 +85,8 @@
             aria-expanded="true"
             aria-controls="collapseTwo"
           >
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+            <i class="fas fa-fw fa-newspaper"></i>
+            <span>Article</span>
           </a>
           <div
             id="collapseTwo"
@@ -91,9 +95,13 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Custom Components:</h6>
-              <a class="collapse-item" href="buttons.html">Buttons</a>
-              <a class="collapse-item" href="cards.html">Cards</a>
+{#              <h6 class="collapse-header">Custom Components:</h6>#}
+                <a class="collapse-item" href="{% url 'blog:article_create' %}">
+                  <i class="fas fa-fw fa-pencil-alt"></i> Write A New Article
+              </a>
+               <a class="collapse-item" href="">
+                  <i class="fas fa-fw fa-upload"></i>
+                   Publish Drafted Article</a>
             </div>
           </div>
         </li>
@@ -446,6 +454,7 @@
               <div class="topbar-divider d-none d-sm-block"></div>
 
               <!-- Nav Item - User Information -->
+              {% if request.user.is_authenticated %}
               <li class="nav-item dropdown no-arrow">
                 <a
                   class="nav-link dropdown-toggle"
@@ -457,11 +466,11 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Valerie Luna</span
+                    >{{ user.username }}</span
                   >
                   <img alt=""
                     class="img-profile rounded-circle"
-                    src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
+                    src="{{ user.profile.image.url }}"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -495,6 +504,7 @@
                   </a>
                 </div>
               </li>
+              {% endif %}
             </ul>
           </nav>
           <!-- End of Topbar -->
@@ -509,7 +519,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; mPedigree 2019</span>
+              <span>Copyright &copy; Bona Dashboard 2018</span>
             </div>
           </div>
         </footer>

@@ -145,6 +145,7 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
     context_object_name = 'article'
     success_url = reverse_lazy("blog:home")
     success_message = "Article Deleted Successfully"
+    template_name = "blog/article/article_confirm_delete.html"
 
     def test_func(self):
         """
