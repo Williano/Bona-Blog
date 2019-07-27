@@ -29,10 +29,13 @@ from blog.views.blog.comment_views import (
     CommentCreateView,
 )
 
-from blog.views.dashboard.author.index import (
-    Index,
+from blog.views.dashboard.author.dashboard_views import (
+    DashboardView,
 
 )
+
+from blog.views.account.logout import LogoutView
+
 
 # Specifies the app name for name spacing.
 app_name = "blog"
@@ -157,11 +160,18 @@ urlpatterns = [
 
     # ACCOUNTS URLS #
 
-    # Url for login
+    # accounts/login/
     path(
         route='accounts/login/',
         view=auth_views.LoginView.as_view(template_name='account/login.html'),
         name='login'
+    ),
+
+    # accounts/logout/
+    path(
+        route='accounts/logout/',
+        view=LogoutView.as_view(),
+        name='logout'
     ),
 
 
@@ -171,7 +181,7 @@ urlpatterns = [
     # /author/dashboard/
     path(
         route="author/dashboard/",
-        view=Index.as_view(),
+        view=DashboardView.as_view(),
         name="dashboard_home"
     )
 ]
