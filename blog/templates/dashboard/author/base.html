@@ -99,7 +99,7 @@
                 <a class="collapse-item" href="{% url 'blog:article_create' %}">
                   <i class="fas fa-fw fa-pencil-alt"></i> Write A New Article
               </a>
-               <a class="collapse-item" href="">
+               <a class="collapse-item" href="{% url 'blog:drafted_articles' %}">
                   <i class="fas fa-fw fa-upload"></i>
                    Publish Drafted Article</a>
             </div>
@@ -127,12 +127,12 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
 {#              <h6 class="collapse-header">Custom Utilities:</h6>#}
-              <a class="collapse-item" href=""><i class="fas fa-newspaper fa-sm fa-fw mr-2 text-gray-400">
+              <a class="collapse-item" href="{% url 'blog:written_articles' %}"><i class="fas fa-newspaper fa-sm fa-fw mr-2 text-gray-400">
               </i>All Articles</a>
-              <a class="collapse-item" href=""><i class="fas fa-upload fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="collapse-item" href="{% url 'blog:published_articles' %}"><i class="fas fa-upload fa-sm fa-fw mr-2 text-gray-400"></i>
                   Published Articles
               </a>
-              <a class="collapse-item" href=""><i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="collapse-item" href="{% url 'blog:drafted_articles' %}"><i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>
                   Drafted Articles
               </a>
             </div>

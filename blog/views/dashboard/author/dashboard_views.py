@@ -58,3 +58,68 @@ class ArticlePublishView(LoginRequiredMixin, View):
 
         messages.success(request, f"'{article.title}' Published successfully.")
         return redirect('blog:dashboard_home')
+
+
+class AuthorWrittenArticleView(LoginRequiredMixin, View):
+    """
+       Displays all articles written by an author.
+    """
+
+    def get(self, request):
+        """
+           Returns all articles written by an author.
+        """
+        template_name = ''
+        context_object = {}
+
+        written_articles = Article.objects.filter(author=request.user.id)
+        total_articles_written = len(written_articles)
+
+        context_object['written_articles'] = written_articles
+        context_object['total_articles_written'] = total_articles_written
+
+        return render(request, template_name, context_object)
+
+
+class AuthorPublishedArticleView(LoginRequiredMixin, View):
+    """
+       Displays published articles by an author.
+    """
+
+    def get(self, request):
+        """
+           Returns published articles by an author.
+        """
+        template_name = ''
+        context_object = {}
+
+        published_articles = Article.objects.filter(author=request.user.id,
+                                                    status=Article.PUBLISHED)
+        total_articles_published = len(published_articles)
+
+        context_object['published_articles'] = published_articles
+        context_object['total_articles_published'] = total_articles_published
+
+        return render(request, template_name, context_object)
+
+
+class AuthorDraftedArticleView(LoginRequiredMixin, View):
+    """
+       Displays drafted articles by an author.
+    """
+
+    def get(self, request):
+        """
+           Returns drafted articles by an author.
+        """
+        template_name = ''
+        context_object = {}
+
+        drafted_articles = Article.objects.filter(author=request.user.id,
+                                                  status=Article.DRAFT)
+        total_articles_drafted = len(drafted_articles)
+
+        context_object['drafted_articles'] = drafted_articles
+        context_object['total_articles_drafted'] = total_articles_drafted
+
+        return render(request, template_name, context_object)

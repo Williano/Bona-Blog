@@ -32,6 +32,9 @@ from blog.views.blog.comment_views import (
 from blog.views.dashboard.author.dashboard_views import (
     DashboardView,
     ArticlePublishView,
+    AuthorWrittenArticleView,
+    AuthorPublishedArticleView,
+    AuthorDraftedArticleView,
 
 )
 
@@ -213,9 +216,30 @@ urlpatterns = [
 
     # /article/<str:slug>/publish/
     path(
-        route="/article/<str:slug>/publish/",
+        route="article/<str:slug>/publish/",
         view=ArticlePublishView.as_view(),
         name="publish_article"
+    ),
+
+    # /author/articles/written/
+    path(
+        route="author/articles/written/",
+        view=AuthorWrittenArticleView.as_view(),
+        name="written_articles"
+    ),
+
+    # /author/articles/published/
+    path(
+        route="author/articles/published/",
+        view=AuthorPublishedArticleView.as_view(),
+        name="published_articles"
+    ),
+
+    # /author/articles/drafted/
+    path(
+        route="author/articles/drafted/",
+        view=AuthorDraftedArticleView.as_view(),
+        name="drafted_articles"
     ),
 
 ]
