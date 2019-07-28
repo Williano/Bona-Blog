@@ -41,6 +41,7 @@ Article Detail
 
 ## Technologies
 * Python 3.7
+* Javascript
 * Django 2.2
 * HTML5
 * CSS3 
