@@ -132,6 +132,8 @@ Article Detail
 * Article Minute Read
 * Article Number of Words
 * Article Number of Views
+* Article Tags
+* Tag Related Articles
 * Markdown Support
 * Responsive on all devices
 * Pagination
