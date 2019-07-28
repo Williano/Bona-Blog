@@ -116,15 +116,21 @@ Article Detail
 ## Features
 
 * [iOS Mobile App](https://github.com/Williano/Bona-Mobile.git)
+* Dashboard for Authors
+* Author Login
+* Author Password Reset
 * Authors List
 * Author Articles List
 * Category List
 * Category Articles List
 * Related Articles
 * Comments
+* Article Newsletter Subscribe
+* Articles Search
+* Article Social Media Share
 * Article Minute Read
 * Article Number of Words
-* Aricle Number of Views
+* Article Number of Views
 * Markdown Support
 * Responsive on all devices
 * Pagination
