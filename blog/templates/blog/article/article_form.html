@@ -11,12 +11,19 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Article Post</legend>
+                <legend class="border-bottom mb-4">Create Article</legend>
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Post</button>
-            </div>
+                <div class="form-group ">
+                    <button class="btn btn-outline-info" name="action" value="PREVIEW"
+                            type="submit">Preview</button>
+
+                    <button class="btn btn-outline-danger" name="action"
+                            value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
+
+                    <button class="btn btn-outline-primary" name="action" value="PUBLISH"
+                            type="submit">PUBLISH</button>
+                </div>
         </form>
     </div>
     </div>

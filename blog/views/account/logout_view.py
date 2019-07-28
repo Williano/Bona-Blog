@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import View
 
 
-class LogoutView(LoginRequiredMixin, View):
+class UserLogoutView(LoginRequiredMixin, View):
     """
      Logs user out of the dashboard.
     """

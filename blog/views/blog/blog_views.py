@@ -3,9 +3,12 @@ from functools import reduce
 import operator
 
 # Core Django imports.
+from django.http import HttpResponseBadRequest
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils import timezone
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -106,25 +109,103 @@ class ArticleSearchListView(ListView):
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Article
     fields = ["title", "category", "image", "body", "tags", "status"]
-    success_url = reverse_lazy("blog:home")
-    success_message = "Article Posted Successfully"
     template_name = 'blog/article/article_form.html'
 
+    PREVIEW = "PREVIEW"
+    SAVE_AS_DRAFT = "SAVE_AS_DRAFT"
+    PUBLISH = "PUBLISH"
+
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+        action = self.request.POST.get("action")
+
+        if action == self.PREVIEW:
+            template = ''
+
+            title = form.cleaned_data['title']
+            category = form.cleaned_data['category']
+            image = form.cleaned_data['image']
+            body = form.cleaned_data['body']
+            tags = form.cleaned_data['tags']
+
+            article_preview = Article(title=title, category=category,
+                                      image=image, body=body, tags=tags,
+                                      author=self.request.user)
+
+            context_object = {'article_preview': article_preview}
+
+            messages.info(self.request, f"Preview of '{form.instance.title}' ")
+
+            return render(self.request, template, context_object)
+
+        elif action == self.SAVE_AS_DRAFT:
+            form.instance.author = self.request.user
+            form.instance.date_published = None
+            form.instance.save()
+            messages.success(self.request, f"'{form.instance.title}'"
+                                           f" successfully saved as Draft.")
+            return redirect("/")
+
+        elif action == self.PUBLISH:
+            form.instance.author = self.request.user
+            form.instance.save()
+            messages.success(self.request, f"'{form.instance.title}' "
+                                           f"published successfully.")
+            return redirect("/")
+
+        else:
+            return HttpResponseBadRequest
 
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, UpdateView):
     model = Article
     fields = ["title", "category", "image", "body", "tags", "status"]
-    success_message = "Article Updated Successfully"
     template_name = 'blog/article/article_form.html'
 
+    PREVIEW = "PREVIEW"
+    SAVE_AS_DRAFT = "SAVE_AS_DRAFT"
+    PUBLISH = "PUBLISH"
+
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+        action = self.request.POST.get("action")
+
+        if action == self.PREVIEW:
+            template = ''
+
+            title = form.cleaned_data['title']
+            category = form.cleaned_data['category']
+            image = form.cleaned_data['image']
+            body = form.cleaned_data['body']
+            tags = form.cleaned_data['tags']
+
+            article_preview = Article(title=title, category=category,
+                                      image=image, body=body, tags=tags,
+                                      author=self.request.user)
+
+            context_object = {'article_preview': article_preview}
+
+            messages.info(self.request, f"Preview of '{form.instance.title}' ")
+
+            return render(self.request, template, context_object)
+
+        elif action == self.SAVE_AS_DRAFT:
+            form.instance.author = self.request.user
+            form.instance.date_published = None
+            form.instance.save()
+            messages.success(self.request, f"'{form.instance.title}'"
+                                           f" successfully saved as Draft.")
+            return redirect("/")
+
+        elif action == self.PUBLISH:
+            form.instance.author = self.request.user
+            form.instance.date_published = timezone.now()
+            form.instance.save()
+            messages.success(self.request, f"'{form.instance.title}' "
+                                           f"published successfully.")
+            return redirect("/")
+
+        else:
+            return HttpResponseBadRequest
 
     def test_func(self):
         """

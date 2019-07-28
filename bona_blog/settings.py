@@ -179,3 +179,4 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 
 LOGIN_REDIRECT_URL = '/author/dashboard/'
+LOGOUT_REDIRECT_URL = '/account/logout/'

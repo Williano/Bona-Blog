@@ -37,7 +37,8 @@ class Article(models.Model):
                               upload_to='article_pics')
     body = HTMLField('Content')
     tags = TaggableManager(blank=True)
-    date_published = models.DateTimeField(default=timezone.now)
+    date_published = models.DateTimeField(null=True, blank=True,
+                                          default=timezone.now)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,

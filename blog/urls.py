@@ -34,7 +34,8 @@ from blog.views.dashboard.author.dashboard_views import (
 
 )
 
-from blog.views.account.logout import LogoutView
+from blog.views.account.logout_view import UserLogoutView
+from blog.views.account.login_view import UserLoginView
 
 
 # Specifies the app name for name spacing.
@@ -70,7 +71,7 @@ urlpatterns = [
 
     # /article-new/
     path(
-        route='article/new/',
+        route='article/create/',
         view=ArticleCreateView.as_view(),
         name="article_create"
     ),
@@ -132,7 +133,7 @@ urlpatterns = [
 
     # /category/new/
     path(
-        route='category/new/',
+        route='category/create/',
         view=CategoryCreateView.as_view(),
         name="category_create"
     ),
@@ -163,14 +164,14 @@ urlpatterns = [
     # accounts/login/
     path(
         route='accounts/login/',
-        view=auth_views.LoginView.as_view(template_name='account/login.html'),
+        view=UserLoginView.as_view(),
         name='login'
     ),
 
     # accounts/logout/
     path(
         route='accounts/logout/',
-        view=LogoutView.as_view(),
+        view=UserLogoutView.as_view(),
         name='logout'
     ),
 

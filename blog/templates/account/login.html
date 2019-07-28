@@ -1,34 +1,94 @@
-{% extends "account/base.html" %}
-{% load crispy_forms_tags %}
+{% extends 'account/base.html' %}
 
+{% block title %}
+    Login
+{% endblock title %}
 
 {% block content %}
 
-<div class="container">
-    <h1 class="text-center logo my-4">
-      <a href="{% url 'blog:home' %}">Bona Blog</a>
-    </h1>
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6 col-sm-8">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Log in</h3>
-            <form method="post" action="{% url 'blog:login' %}" novalidate>
-              {% csrf_token %}
-               {{ form|crispy }}
-              <button type="submit" class="btn btn-primary btn-block">Log in</button>
-            </form>
+      <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+          <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+              <!-- Nested Row within Card Body -->
+              <div class="row">
+                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-6">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    </div>
+                    <form method="POST" action="{% url 'blog:login' %}" class="user">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                      <div class="alert alert-block alert-danger"> <ul>
+                          <li>Please enter a correct username and password.
+                              Note that both fields may be case-sensitive.</li>
+                      </ul>
+                      </div>
+                         {% endif %}
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="username"
+                          id="id_username"
+                          class="form-control form-control-user"
+                          placeholder="Enter Username..."
+                        />
+                      </div>
+                      <div class="form-group">
+                          <input
+                          type="password"
+                          name="password"
+                          class="form-control form-control-user"
+                          id="id_password"
+                          placeholder="Enter Password"
+                        />
+                      </div>
+{#                      <div class="form-group">#}
+{#                        <div class="custom-control custom-checkbox small">#}
+{#                          <input#}
+{#                            type="checkbox"#}
+{#                            class="custom-control-input"#}
+{#                            id="customCheck"#}
+{#                          />#}
+{#                          <label class="custom-control-label" for="customCheck"#}
+{#                            >Remember Me</label#}
+{#                          >#}
+{#                        </div>#}
+{#                      </div>#}
+                      <a
+                        href="{% url 'blog:login' %}"
+                        class="btn btn-primary btn-user btn-block"
+                      >
+                        Login
+                      </a>
+                      <!-- <hr /> -->
+                      <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                    </a> -->
+                    </form>
+                    <hr />
+                    <div class="text-center">
+                      <a class="small" href=""
+                        >Forgot Password?</a
+                      >
+                    </div>
+                    <div class="text-center">
+                      <a class="small" href="register.html"
+                        >Create an Account!</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-footer text-muted text-center">
-            New to Bona Blog? <a href="">Sign up</a>
-          </div>
-        </div>
-        <div class="text-center py-2">
-          <small>
-            <a href="#" class="text-muted">Forgot your password?</a>
-          </small>
         </div>
       </div>
-    </div>
-  </div>
+
 {% endblock content %}
