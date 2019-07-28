@@ -38,7 +38,13 @@ from blog.views.dashboard.author.dashboard_views import (
 
 )
 
+from blog.views.account.author_profile_views import (
+    AuthorProfileUpdateView,
+    AuthorProfileView,
+)
+
 from blog.views.account.logout_view import UserLogoutView
+
 from blog.views.account.login_view import UserLoginView
 
 
@@ -174,31 +180,39 @@ urlpatterns = [
 
     # accounts/logout/
     path(
-        route='accounts/logout/',
+        route='accounts/login/',
         view=UserLogoutView.as_view(),
         name='logout'
     ),
 
+    # author/profile/update/
+    path(
+        route='author/profile/update/',
+        view=AuthorProfileUpdateView.as_view(),
+        name='author_profile_update'
+    ),
+
+
     # Url for password reset.
-    path('accounts/password-reset/',
+    path('account/password-reset/',
          auth_views.PasswordResetView.as_view(
              template_name='account/password_reset.html'),
          name='password_reset'),
 
     # Url for successful password reset.
-    path('accounts/password-reset/done/',
+    path('account/password-reset/done/',
          auth_views.PasswordResetDoneView.as_view(
              template_name='account/password_reset_done.html'),
          name='password_reset_done'),
 
     # Url for successful password reset confirm.
-    path('accounts/password-reset-confirm/<uidb64>/<token>/',
+    path('account/password-reset-confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
              template_name='account/password_reset_confirm.html'),
          name='password_reset_confirm'),
 
     # Url for password reset done.
-    path('accounts/password-reset-complete/',
+    path('account/password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(
              template_name='account/password_reset_complete.html'),
          name='password_reset_complete'),
@@ -212,6 +226,13 @@ urlpatterns = [
         route="author/dashboard/",
         view=DashboardView.as_view(),
         name="dashboard_home"
+    ),
+
+    # author/profile/details
+    path(
+        route='author/profile/details/',
+        view=AuthorProfileView.as_view(),
+        name='author_profile_details'
     ),
 
     # /article/<str:slug>/publish/

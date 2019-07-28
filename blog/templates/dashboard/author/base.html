@@ -168,10 +168,12 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
 {#              <h6 class="collapse-header">Login Screens:</h6>#}
-              <a class="collapse-item" href=""><i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="collapse-item" href="{% url 'blog:author_profile_details' %}">
+                  <i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
               </a>
-              <a class="collapse-item" href=""><i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="collapse-item" href="{% url 'blog:author_profile_update' %}">
+                  <i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                   Update Profile
               </a>
 {#              <a class="collapse-item" href="../../account/forgot-password.html"#}
@@ -315,7 +317,7 @@
                   class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="userDropdown"
                 >
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="{% url 'blog:author_profile_details' %}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
