@@ -124,6 +124,7 @@ Article Detail
 * Author Articles List
 * Category List
 * Category Articles List
+* New Category Submission
 * Related Articles
 * Comments
 * Article Newsletter Subscribe
