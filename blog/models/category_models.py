@@ -10,6 +10,7 @@ class Category(models.Model):
     slug = models.SlugField()
     image = models.ImageField(default='category-default.jpg',
                               upload_to='category_images')
+    approved = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 

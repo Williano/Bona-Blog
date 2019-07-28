@@ -9,7 +9,7 @@ from django.urls import reverse
 from model_mommy import mommy
 
 # Blog application imports.
-from blog.models.blog_models import Article
+from blog.models.article_models import Article
 from blog.models.category_models import Category
 
 

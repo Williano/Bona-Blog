@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # Blog application imports.
-from .models.blog_models import Article
+from .models.article_models import Article
 from .models.category_models import Category
 from .models.comment_models import Comment
 from .models.author_models import Profile
@@ -20,8 +20,8 @@ admin.site.register(Profile, ProfileAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'slug', 'image')
-    list_filter = ('name',)
+    list_display = ('name', 'slug', 'image', 'approved')
+    list_filter = ('name', 'approved',)
     search_fields = ('name',)
     prepopulated_fields = {'slug': ('name',)}
     ordering = ['name', ]

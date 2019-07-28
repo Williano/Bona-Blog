@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 # Blog application imports.
-from blog.views.blog.blog_views import (
+from blog.views.blog.article_views import (
     ArticleListView,
     ArticleDetailView,
     ArticleSearchListView,

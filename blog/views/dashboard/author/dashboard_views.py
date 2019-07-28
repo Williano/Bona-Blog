@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.views.generic import View
 
 # Blog app imports.
-from blog.models.blog_models import Article
+from blog.models.article_models import Article
 
 
 class DashboardView(LoginRequiredMixin, View):

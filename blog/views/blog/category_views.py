@@ -1,8 +1,9 @@
 # Core Django imports.
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     CreateView,
     ListView,
@@ -10,7 +11,7 @@ from django.views.generic import (
 )
 
 # Blog application imports.
-from blog.models.blog_models import Article, Category
+from blog.models.article_models import Article, Category
 
 
 class CategoryArticlesListView(ListView):
@@ -44,8 +45,14 @@ class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Category
     fields = ["name", "image"]
     template_name = 'blog/category/category_form.html'
-    success_url = reverse_lazy("blog:categories_list")
-    success_message = "Category Created Successfully"
+
+    def form_valid(self, form):
+        form.instance.save()
+        messages.success(self.request, f"'{form.instance.name}' "
+                                       f"submitted successfully. You will be "
+                                       f"notified when it is approved."
+                                       f"Thank you !!!")
+        return redirect('/')
 
 
 class CategoryUpdateCreateView(LoginRequiredMixin, SuccessMessageMixin,

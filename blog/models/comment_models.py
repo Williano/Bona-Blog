@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 # Blog application imports.
-from blog.models.blog_models import Article
+from blog.models.article_models import Article
 
 
 class Comment(models.Model):

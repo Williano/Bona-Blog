@@ -20,7 +20,8 @@ from django.views.generic import (
 )
 
 # Blog application imports.
-from blog.models.blog_models import Article
+from blog.models.article_models import Article
+from blog.forms.blog.article_forms import ArticleCreateForm
 from blog.models.category_models import Category
 from blog.forms.blog.comment_forms import CommentForm
 
@@ -33,7 +34,7 @@ class ArticleListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.filter(approved=True)
         return context
 
 
@@ -102,14 +103,14 @@ class ArticleSearchListView(ListView):
             Add categories to context data
         """
         context = super(ArticleSearchListView, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.filter(approved=True)
         return context
 
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Article
-    fields = ["title", "category", "image", "body", "tags", "status"]
+
     template_name = 'blog/article/article_form.html'
+    form_class = ArticleCreateForm
 
     PREVIEW = "PREVIEW"
     SAVE_AS_DRAFT = "SAVE_AS_DRAFT"
@@ -158,8 +159,9 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, UpdateView):
+
     model = Article
-    fields = ["title", "category", "image", "body", "tags", "status"]
+    form_class = ArticleCreateForm
     template_name = 'blog/article/article_form.html'
 
     PREVIEW = "PREVIEW"
@@ -275,5 +277,5 @@ class TagArticlesListView(ListView):
             Add categories to context data
         """
         context = super(TagArticlesListView, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.filter(approved=True)
         return context
