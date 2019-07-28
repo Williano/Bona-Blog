@@ -21,7 +21,10 @@ from django.views.generic import (
 
 # Blog application imports.
 from blog.models.article_models import Article
-from blog.forms.blog.article_forms import ArticleCreateForm
+from blog.forms.blog.article_forms import (
+    ArticleCreateForm,
+    ArticleUpdateForm,
+)
 from blog.models.category_models import Category
 from blog.forms.blog.comment_forms import CommentForm
 
@@ -109,7 +112,7 @@ class ArticleSearchListView(ListView):
 
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
-    template_name = 'blog/article/article_form.html'
+    template_name = 'blog/article/article_create_form.html'
     form_class = ArticleCreateForm
 
     PREVIEW = "PREVIEW"
@@ -139,19 +142,44 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             return render(self.request, template, context_object)
 
         elif action == self.SAVE_AS_DRAFT:
-            form.instance.author = self.request.user
-            form.instance.date_published = None
-            form.instance.save()
-            messages.success(self.request, f"'{form.instance.title}'"
-                                           f" successfully saved as Draft.")
-            return redirect("/")
+            template_name = 'blog/article/article_create_form.html'
+            context_object = {'form': form}
+
+            if form.instance.status == Article.DRAFT:
+                form.instance.author = self.request.user
+                form.instance.date_published = None
+                form.instance.save()
+                messages.success(self.request, f"'{form.instance.title}'"
+                                               f" successfully saved as Draft.")
+                return redirect("/")
+            else:
+                messages.error(self.request,
+                               "You saved the article as draft but selected "
+                               "the status as 'PUBLISHED'. You can't save an "
+                               "article whose status is 'PUBLISHED' as draft. "
+                               "Please change the status to 'DRAFT' before you "
+                               "save the article as draft.")
+                return render(self.request, template_name, context_object)
 
         elif action == self.PUBLISH:
-            form.instance.author = self.request.user
-            form.instance.save()
-            messages.success(self.request, f"'{form.instance.title}' "
-                                           f"published successfully.")
-            return redirect("/")
+            template_name = 'blog/article/article_create_form.html'
+            context_object = {'form': form}
+
+            if form.instance.status == Article.PUBLISHED:
+                form.instance.author = self.request.user
+                form.instance.save()
+                messages.success(self.request, f"'{form.instance.title}' "
+                                               f"published successfully.")
+                return redirect("/")
+            else:
+                messages.error(self.request,
+                               "You clicked on 'PUBLISH' to publish the article"
+                               " but selected the status as 'DRAFT'. "
+                               "You can't Publish an article whose status is "
+                               "'DRAFT'. Please change the status to "
+                               "'PUBLISHED' before you can Publish the "
+                               "article.")
+                return render(self.request, template_name, context_object)
 
         else:
             return HttpResponseBadRequest
@@ -161,8 +189,8 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, UpdateView):
 
     model = Article
-    form_class = ArticleCreateForm
-    template_name = 'blog/article/article_form.html'
+    form_class = ArticleUpdateForm
+    template_name = 'blog/article/article_update_form.html'
 
     PREVIEW = "PREVIEW"
     SAVE_AS_DRAFT = "SAVE_AS_DRAFT"
@@ -191,20 +219,46 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
             return render(self.request, template, context_object)
 
         elif action == self.SAVE_AS_DRAFT:
-            form.instance.author = self.request.user
-            form.instance.date_published = None
-            form.instance.save()
-            messages.success(self.request, f"'{form.instance.title}'"
-                                           f" successfully saved as Draft.")
-            return redirect("/")
+
+            if form.instance.status == Article.DRAFT:
+                form.instance.author = self.request.user
+                form.instance.date_published = None
+                form.instance.save()
+                messages.success(self.request, f"'{form.instance.title}'"
+                                               f" successfully saved as Draft.")
+                return redirect("/")
+            else:
+                template_name = 'blog/article/article_update_form.html'
+                context_object = {'form': form}
+
+                messages.error(self.request,
+                               "You saved the article as draft but selected "
+                               "the status as 'PUBLISHED'. You can't save an "
+                               "article whose status is 'PUBLISHED' as draft. "
+                               "Please change the status to 'DRAFT' before you "
+                               "save the article as draft.")
+                return render(self.request, template_name, context_object)
 
         elif action == self.PUBLISH:
-            form.instance.author = self.request.user
-            form.instance.date_published = timezone.now()
-            form.instance.save()
-            messages.success(self.request, f"'{form.instance.title}' "
-                                           f"published successfully.")
-            return redirect("/")
+            template_name = 'blog/article/article_update_form.html'
+            context_object = {'form': form}
+
+            if form.instance.status == Article.PUBLISHED:
+                form.instance.author = self.request.user
+                form.instance.date_published = timezone.now()
+                form.instance.save()
+                messages.success(self.request, f"'{form.instance.title}' "
+                                               f"published successfully.")
+                return redirect("/")
+            else:
+                messages.error(self.request,
+                               "You clicked on 'PUBLISH' to publish the article"
+                               " but selected the status as 'DRAFT'. "
+                               "You can't Publish an article whose status is "
+                               "'DRAFT'. Please change the status to "
+                               "'PUBLISHED' before you can Publish the "
+                               "article.")
+                return render(self.request, template_name, context_object)
 
         else:
             return HttpResponseBadRequest

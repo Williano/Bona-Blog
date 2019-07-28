@@ -210,7 +210,7 @@ class ArticleCreateViewTest(TestCase):
         response = self.client.get(reverse('blog:article_create'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(str(response.context['user']), 'testuser1')
-        self.assertTemplateUsed(response, "article/article_form.html")
+        self.assertTemplateUsed(response, "article/article_create_form.html")
 
     def test_create_a_new_article_with_valid_data(self):
         """
@@ -352,7 +352,7 @@ class ArticleDeleteViewTest(TestCase):
 #                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
-#         self.assertTemplateUsed(response, "article/article_form.html")
+#         self.assertTemplateUsed(response, "article/article_create_form.html")
 #
 #     def test_update_article(self):
 #         """
@@ -384,7 +384,7 @@ class ArticleDeleteViewTest(TestCase):
 #         # self.assertEqual(response.context['article'].slug, art.slug)
 #         self.assertEqual(response.status_code, 200)
 #         self.assertEqual(str(response.context['user']), 'testuser1')
-#         self.assertTemplateUsed(response, "article/article_form.html")
+#         self.assertTemplateUsed(response, "article/article_create_form.html")
 
 
 

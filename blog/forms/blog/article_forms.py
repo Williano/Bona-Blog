@@ -14,3 +14,13 @@ class ArticleCreateForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ["title", "category", "image", "body", "tags", "status"]
+
+
+class ArticleUpdateForm(forms.ModelForm):
+    category = forms.ModelChoiceField(queryset=Category.objects.filter(
+                                      approved=True),
+                                      empty_label="Select Category")
+
+    class Meta:
+        model = Article
+        fields = ["title", "category", "image", "body", "tags", "status"]

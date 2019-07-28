@@ -148,7 +148,7 @@
 
       <!-- Nav Item - Category -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{% url 'blog:category_create' %}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Submit New Category</span></a>
       </li>
@@ -362,6 +362,27 @@
           </nav>
           <!-- End of Topbar -->
         {% endblock Topbar %}
+
+        <!-- Messages -->
+      {% block messages %}
+       <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="text-center font-weight-bold alert
+                       {% if message.level_tag == 'error' %}
+                       alert-danger
+                       {% else %}
+                       alert-{{ message.tags }}
+                       {% endif %}">
+
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+        </div>
+      </div>
+      {% endblock messages %}
 
     {% block content %}
 
