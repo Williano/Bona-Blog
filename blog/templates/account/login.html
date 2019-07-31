@@ -29,22 +29,11 @@
                       </div>
                          {% endif %}
                       <div class="form-group">
-                        <input
-                          type="text"
-                          name="username"
-                          id="id_username"
-                          class="form-control form-control-user"
-                          placeholder="Enter Username..."
-                        />
+                        {{  login_form.username }}
                       </div>
                       <div class="form-group">
-                          <input
-                          type="password"
-                          name="password"
-                          class="form-control form-control-user"
-                          id="id_password"
-                          placeholder="Enter Password"
-                        />
+                         {{ login_form.password }}
+
                       </div>
 {#                      <div class="form-group">#}
 {#                        <div class="custom-control custom-checkbox small">#}

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 
 # Blog app imports.
-from blog.forms.account.author_forms import UserRegisterForm
+from blog.forms.account.login_forms import UserRegisterForm
 
 
 class UserRegisterView(View):

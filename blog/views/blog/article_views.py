@@ -1,9 +1,11 @@
 # Standard Python Library imports.
 from functools import reduce
 import operator
+import json
 
 # Core Django imports.
 from django.http import HttpResponseBadRequest
+from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -121,25 +123,28 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         action = self.request.POST.get("action")
+        print(action)
 
         if action == self.PREVIEW:
-            template = ''
 
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']
             image = form.cleaned_data['image']
             body = form.cleaned_data['body']
             tags = form.cleaned_data['tags']
+            status = form.cleaned_data['status']
+
+            print(form.cleaned_data)
 
             article_preview = Article(title=title, category=category,
                                       image=image, body=body, tags=tags,
-                                      author=self.request.user)
+                                      author=self.request.user, status=status)
+            print(article_preview)
 
             context_object = {'article_preview': article_preview}
-
-            messages.info(self.request, f"Preview of '{form.instance.title}' ")
-
-            return render(self.request, template, context_object)
+            # output = JsonResponse(context_object)
+            # print(output)
+            return JsonResponse()
 
         elif action == self.SAVE_AS_DRAFT:
             template_name = 'blog/article/article_create_form.html'
@@ -200,7 +205,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
         action = self.request.POST.get("action")
 
         if action == self.PREVIEW:
-            template = ''
+            template = 'blog/article/article_preview.html'
 
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']

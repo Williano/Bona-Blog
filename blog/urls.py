@@ -27,6 +27,7 @@ from blog.views.blog.author_views import (
 
 from blog.views.blog.comment_views import (
     CommentCreateView,
+    ArticleCommentList
 )
 
 from blog.views.dashboard.author.dashboard_views import (
@@ -167,6 +168,12 @@ urlpatterns = [
         name="comment_create"
     ),
 
+    # /<str:slug>/comments/
+    path(
+        route='<str:slug>/comments/',
+        view=ArticleCommentList.as_view(),
+        name="article_comments"
+    ),
 
 
     # ACCOUNTS URLS #

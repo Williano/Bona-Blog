@@ -175,37 +175,9 @@
 						</form>
 					</div><!-- comment-form -->
 
-					<h4><b>COMMENT{{ article.comments.count|pluralize|upper }} ({{ article.comments.count }})</b></h4>
 
-                    {% if article.comments.all %}
-					<div class="commnets-area text-left">
-                        {% for comment in article.comments.all %}
-						<div class="comment">
-
-							<div class="post-info">
-
-								<div class="middle-area">
-									<b>{{ comment.name }}</b>
-									<h6 class="date">on {{ comment.date_created.date }} at {{ comment.date_created.time }}</h6>
-								</div>
-
-{#								<div class="right-area">#}
-{#									<h5 class="reply-btn" ><a href="#"><b>REPLY</b></a></h5>#}
-{#								</div>#}
-
-							</div><!-- post-info -->
-
-							<p>{{ comment.comment }}</p>
-
-						</div>
-                        {% endfor %}
-
-					</div><!-- commnets-area -->
-                    {% else %}
-                      <div class="alert alert-warning"><b>No Comments</b></div>
-                    {% endif %}
-
-                    <a class="more-comment-btn" href="#"><b>VIEW MORE COMMENTS</b></a>
+                    <a class="more-comment-btn" href="{% url 'blog:article_comments' article.slug %}">
+                        <b>SEE COMMENTS ({{ article.comments.count }})</b></a>
 
 				</div><!-- col-lg-8 col-md-12 -->
 

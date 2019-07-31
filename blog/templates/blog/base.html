@@ -74,14 +74,16 @@
         <div class="col-md-12">
             {% if messages %}
                 {% for message in messages %}
-                  <div class="text-center font-weight-bold alert
+                  <div class="text-center font-weight-bold alert alert-dismissible fade show
                        {% if message.level_tag == 'error' %}
                        alert-danger
                        {% else %}
                        alert-{{ message.tags }}
                        {% endif %}">
-
                     {{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
                   </div>
                 {% endfor %}
               {% endif %}
@@ -182,6 +184,7 @@
 	<script src="{% static 'blog/js/common-js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'blog/js/common-js/tether.min.js' %}"></script>
 	<script src="{% static 'blog/js/common-js/bootstrap.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'blog/js/common-js/swiper.js' %}"></script>
 	<script src="{% static 'blog/js/common-js/scripts.js' %}"></script>
     <script src="{% static 'blog/js/tinymce/highlight.pack.js' %}"></script>
