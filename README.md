@@ -16,7 +16,7 @@ An Open-Source Blogging platform.
 
 
 ## General info
-An Open-Source bloggig plaform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has a number of [features](#features) needed for a standard bloggin platform.
+An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has a number of [features](#features) needed for a standard bloggin platform.
 
 ## Screenshots
 
@@ -42,10 +42,12 @@ Article Detail
 ## Technologies
 * Python 3.7
 * Javascript
+* Jquery 
+* Ajax
 * Django 2.2
 * HTML5
 * CSS3 
-* Bootstrap 
+* Bootstrap 4
 * Ion Icons
 * Font awesome
 * TinyMCE
@@ -133,6 +135,7 @@ Article Detail
 * Article Minute Read
 * Article Number of Words
 * Article Number of Views
+* Article Preview
 * Article Tags
 * Tag Related Articles
 * Markdown Support
