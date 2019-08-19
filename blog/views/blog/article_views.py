@@ -1,7 +1,6 @@
 # Standard Python Library imports.
 from functools import reduce
 import operator
-import json
 
 # Core Django imports.
 from django.http import HttpResponseBadRequest
@@ -112,7 +111,7 @@ class ArticleSearchListView(ListView):
         return context
 
 
-class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
 
     template_name = 'blog/article/article_create_form.html'
     form_class = ArticleCreateForm
@@ -123,34 +122,34 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         action = self.request.POST.get("action")
-        print(action)
 
         if action == self.PREVIEW:
 
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']
-            image = form.cleaned_data['image']
             body = form.cleaned_data['body']
             tags = form.cleaned_data['tags']
             status = form.cleaned_data['status']
 
-            print(form.cleaned_data)
+            article_object = Article(title=title, category=category,
+                                     body=body, status=status,
+                                     tags=tags)
 
-            article_preview = Article(title=title, category=category,
-                                      image=image, body=body, tags=tags,
-                                      author=self.request.user, status=status)
-            print(article_preview)
+            article_preview = {"title": article_object.title,
+                               "category": str(article_object.category),
+                               "body": article_object.body,
+                               "tags": article_object.tags,
+                               "status": article_object.status
+                               }
 
-            context_object = {'article_preview': article_preview}
-            # output = JsonResponse(context_object)
-            # print(output)
-            return JsonResponse()
+            return JsonResponse(data=article_preview)
 
         elif action == self.SAVE_AS_DRAFT:
             template_name = 'blog/article/article_create_form.html'
             context_object = {'form': form}
 
             if form.instance.status == Article.DRAFT:
+
                 form.instance.author = self.request.user
                 form.instance.date_published = None
                 form.instance.save()
@@ -190,8 +189,7 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             return HttpResponseBadRequest
 
 
-class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
-                        SuccessMessageMixin, UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = Article
     form_class = ArticleUpdateForm
@@ -205,23 +203,27 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin,
         action = self.request.POST.get("action")
 
         if action == self.PREVIEW:
-            template = 'blog/article/article_preview.html'
-
+            
             title = form.cleaned_data['title']
             category = form.cleaned_data['category']
             image = form.cleaned_data['image']
             body = form.cleaned_data['body']
             tags = form.cleaned_data['tags']
+            status = form.cleaned_data['status']
 
-            article_preview = Article(title=title, category=category,
-                                      image=image, body=body, tags=tags,
-                                      author=self.request.user)
+            article_object = Article(title=title, category=category,
+                                     image=image, body=body, status=status,
+                                     tags=tags)
 
-            context_object = {'article_preview': article_preview}
+            article_preview = {"title": article_object.title,
+                               "category": str(article_object.category),
+                               "image": str(article_object.image),
+                               "body": article_object.body,
+                               "tags": article_object.tags,
+                               "status": article_object.status
+                               }
 
-            messages.info(self.request, f"Preview of '{form.instance.title}' ")
-
-            return render(self.request, template, context_object)
+            return JsonResponse(data=article_preview)
 
         elif action == self.SAVE_AS_DRAFT:
 
@@ -332,9 +334,6 @@ class TagArticlesListView(ListView):
             return []
 
     def get_context_data(self, **kwargs):
-        """
-            Add categories to context data
-        """
-        context = super(TagArticlesListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.filter(approved=True)
         return context
