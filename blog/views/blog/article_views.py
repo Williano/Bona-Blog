@@ -33,7 +33,7 @@ from blog.forms.blog.comment_forms import CommentForm
 class ArticleListView(ListView):
     context_object_name = "articles"
     paginate_by = 12
-    queryset = Article.objects.filter(status='PUBLISHED')
+    queryset = Article.objects.filter(status=Article.PUBLISHED)
     template_name = "blog/article/home.html"
 
     def get_context_data(self, **kwargs):
@@ -148,7 +148,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
             template_name = 'blog/article/article_create_form.html'
             context_object = {'form': form}
 
-            if form.instance.status == Article.DRAFT:
+            if form.instance.status == Article.DRAFTED:
 
                 form.instance.author = self.request.user
                 form.instance.date_published = None
@@ -227,7 +227,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
         elif action == self.SAVE_AS_DRAFT:
 
-            if form.instance.status == Article.DRAFT:
+            if form.instance.status == Article.DRAFTED:
                 form.instance.author = self.request.user
                 form.instance.date_published = None
                 form.instance.save()

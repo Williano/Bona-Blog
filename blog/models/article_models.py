@@ -17,13 +17,13 @@ from blog.models.category_models import Category
 class Article(models.Model):
 
     # Article status constants
-    DRAFT = "DRAFT"
+    DRAFTED = "DRAFTED"
     PUBLISHED = "PUBLISHED"
 
     # CHOICES
     STATUS_CHOICES = (
-        (DRAFT, 'Draft'),
-        (PUBLISHED, 'Published'),
+        (DRAFTED, 'Draft'),
+        (PUBLISHED, 'Publish'),
     )
 
     # BLOG MODEL FIELDS
