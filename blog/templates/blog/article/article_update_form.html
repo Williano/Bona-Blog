@@ -3,33 +3,51 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
+    Update Article
 {% endblock title %}
+
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'blog/css/tinymce/tomorrow-night-blue.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
 
 {% block content %}
     {{ form.media }}
     <br />
-    <div class="container"> <div class="content-section">
+    <div class="container">
+        <div class="content-section">
+
+            <div class="card shadow-sm mb-3 w-100">
+
+              <h4 class="card-header">Update Article</h4>
+
+               <div class="card-body">
+
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Update Article</legend>
+
                 {{ form|crispy }}
-            </fieldset>
-                <div class="form-group ">
-                    <button class="btn btn-outline-info" name="action"
+
+                <div class="form-group float-right">
+                    <button type="reset" class="btn btn-danger">Reset Form</button>
+                    <button class="btn btn-info" name="action"
                             value="PREVIEW" id="preview-article"
                             type="submit" data-toggle="modal"
                             data-target="#formModalCenter"
                             data-url="{% url 'blog:article_update' article.slug %}">
                             PREVIEW</button>
 
-                    <button class="btn btn-outline-danger" name="action"
+                    <button class="btn btn-dark" name="action"
                             value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
 
-                    <button class="btn btn-outline-primary" name="action" value="PUBLISH"
+                    <button class="btn btn-primary" name="action" value="PUBLISH"
                             type="submit">PUBLISH</button>
                 </div>
         </form>
+               </div>
+            </div>
     </div>
     </div>
 
@@ -109,4 +127,6 @@
     {{ block.super }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="{%  static 'blog/js/blog/blog.js'%}"></script>
+    <script src="{% static 'blog/js/tinymce/highlight.pack.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 {% endblock script %}

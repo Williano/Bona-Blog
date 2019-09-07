@@ -115,10 +115,20 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
     template_name = 'blog/article/article_create_form.html'
     form_class = ArticleCreateForm
+    object = None
 
     PREVIEW = "PREVIEW"
     SAVE_AS_DRAFT = "SAVE_AS_DRAFT"
     PUBLISH = "PUBLISH"
+
+    def get_context_data(self, **kwargs):
+        """Insert the form into the context dict."""
+        if 'form' not in kwargs:
+            kwargs['article_form'] = self.form_class()
+        return super().get_context_data(**kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.render_to_response(self.get_context_data())
 
     def form_valid(self, form):
         action = self.request.POST.get("action")

@@ -1,8 +1,8 @@
 {% extends "dashboard/author/base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block title %}
+    Create Article
 {% endblock title %}
 
 {% block stylesheets %}
@@ -14,28 +14,61 @@
 {% block content %}
     {{ form.media }}
     <br />
-    <div class="container"> <div class="content-section">
-        <form method="POST" id="articleForm" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Create Article</legend>
-                {{ form|crispy }}
-            </fieldset>
-                <div class="form-group ">
-                    <button class="btn btn-outline-info" name="action"
-                            value="PREVIEW" id="preview-article"
-                            type="submit" data-toggle="modal"
-                            data-target="#formModalCenter"
-                            data-url="{% url 'blog:article_create' %}">
-                            PREVIEW</button>
+    <div class="container">
+        <div class="content-section">
 
-                    <button class="btn btn-outline-danger" name="action"
-                            value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
+            <div class="card shadow-sm mb-3 w-100">
 
-                    <button class="btn btn-outline-primary" name="action" value="PUBLISH"
-                            type="submit">PUBLISH</button>
-                </div>
-        </form>
+            <h4 class="card-header">Create Article</h4>
+
+            <div class="card-body">
+                    <form method="POST" action="{% url 'blog:article_create' %}" id="articleForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                              <div class="form-group">
+                                <label for="articleTitle">Article Title</label>
+                                    {{ article_form.title }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleCategory">Select Category</label>
+                                    {{ article_form.category }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Upload Article Image</label>
+                                    {{ article_form.image }}
+                              </div>
+                              <div class="form-group">
+                                  <label for="articleImage">Write Article</label>
+                                  {{ article_form.body }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleTags">Enter Tags</label>
+                                   {{ article_form.tags }}
+
+                              <small id="hint_id_tags" class="form-text text-muted">
+                                  A comma-separated list of tags.</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Status</label>
+                                   {{ article_form.status }}
+                              </div>
+                            <div class="form-group float-right">
+                                <button type="reset" class="btn btn-danger">Reset Form</button>
+                                <button class="btn btn-info" name="action"
+                                        value="PREVIEW" id="preview-article"
+                                        type="submit" data-toggle="modal"
+                                        data-target="#formModalCenter"
+                                        data-url="{% url 'blog:article_create' %}">
+                                        PREVIEW</button>
+
+                                <button class="btn btn-dark" name="action"
+                                        value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
+
+                                <button class="btn btn-primary" name="action" value="PUBLISH"
+                                        type="submit">PUBLISH</button>
+                            </div>
+                    </form>
+            </div>
+            </div>
     </div>
     </div>
 
@@ -81,7 +114,6 @@
 {% block script %}
     {{ block.super }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="{%  static 'dashboard/author/js/js.storage.min.js'%}"></script>
     <script src="{%  static 'blog/js/blog/blog.js'%}"></script>
     <script src="{% static 'blog/js/tinymce/highlight.pack.js' %}"></script>
     <script>hljs.initHighlightingOnLoad();</script>

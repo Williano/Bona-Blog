@@ -66,7 +66,7 @@ urlpatterns = [
 
     # /article/<str:slug>/
     path(
-        route='bona/<str:slug>/',
+        route='article-detail/<str:slug>/',
         view=ArticleDetailView.as_view(),
         name='article_detail'
 

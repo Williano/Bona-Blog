@@ -2,23 +2,29 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Create New Category
+    Submit New Category
 {% endblock title %}
 
 {% block content %}
     <br />
     <div class="container">
         <div class="content-section">
+            <div class="card shadow-sm w-100">
+
+              <h4 class="card-header">Submit New Category</h4>
+
+               <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Create Category</legend>
                 {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-primary" type="submit">Create</button>
+
+            <div class="form-group float-right">
+                <button type="reset" class="btn btn-danger">Reset Form</button>
+                <button class="btn btn-primary" type="submit">SUBMIT</button>
             </div>
         </form>
+               </div>
+            </div>
     </div>
     </div>
     <br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
