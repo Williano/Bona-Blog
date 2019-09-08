@@ -39,7 +39,7 @@ from blog.views.dashboard.author.dashboard_views import (
 
 )
 
-from blog.views.account.author_profile_views import (
+from blog.views.dashboard.author.author_profile_views import (
     AuthorProfileUpdateView,
     AuthorProfileView,
 )
@@ -176,18 +176,18 @@ urlpatterns = [
     ),
 
 
-    # ACCOUNTS URLS #
+    # ACCOUNT URLS #
 
-    # accounts/login/
+    # account/login/
     path(
-        route='accounts/login/',
+        route='account/login/',
         view=UserLoginView.as_view(),
         name='login'
     ),
 
-    # accounts/logout/
+    # account/logout/
     path(
-        route='accounts/login/',
+        route='account/logout/',
         view=UserLogoutView.as_view(),
         name='logout'
     ),

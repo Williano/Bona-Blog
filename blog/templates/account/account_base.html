@@ -33,8 +33,30 @@
   </head>
 
   <body class="bg-gradient-primary">
+        {% block messages %}
+       <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="text-center font-weight-bold alert alert-dismissible fade show
+                       {% if message.level_tag == 'error' %}
+                       alert-danger
+                       {% else %}
+                       alert-{{ message.tags }}
+                       {% endif %}">
+                    {{ message }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+        </div>
+      </div>
+      {% endblock messages %}
     <div class="container">
       <!-- Outer Row -->
+
       {% block content %}
       {% endblock content %}
 
@@ -53,4 +75,5 @@
   {% endblock script %}
 
   </body>
+
 </html>

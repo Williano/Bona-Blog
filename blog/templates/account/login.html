@@ -1,4 +1,4 @@
-{% extends 'account/base.html' %}
+{% extends 'account/account_base.html' %}
 
 {% block title %}
     Login
@@ -21,13 +21,6 @@
                     <form method="POST" action="{% url 'blog:login' %}" class="user">
                         {% csrf_token %}
 
-                        {% if form.errors %}
-                      <div class="alert alert-block alert-danger"> <ul>
-                          <li>Please enter a correct username and password.
-                              Note that both fields may be case-sensitive.</li>
-                      </ul>
-                      </div>
-                         {% endif %}
                       <div class="form-group">
                         {{  login_form.username }}
                       </div>
@@ -47,12 +40,10 @@
 {#                          >#}
 {#                        </div>#}
 {#                      </div>#}
-                      <a
-                        href="{% url 'blog:login' %}"
-                        class="btn btn-primary btn-user btn-block"
-                      >
+                      <button type="submit"
+                              class="btn btn-primary btn-user btn-block">
                         Login
-                      </a>
+                      </button>
                       <!-- <hr /> -->
                       <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google

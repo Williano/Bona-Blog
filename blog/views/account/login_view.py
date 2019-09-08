@@ -20,7 +20,7 @@ class UserLoginView(View):
 
     def post(self, request, *args, **kwargs):
 
-        login_form = UserLoginForm(request=request, data=request.POST)
+        login_form = UserLoginForm(data=request.POST)
 
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
@@ -29,20 +29,17 @@ class UserLoginView(View):
             user = authenticate(request, username=username, password=password)
 
             if user:
-                if user.is_active:
-                    login(request, user)
-                    messages.success(request, f"Welcome {user.username}")
-                    return redirect('blog:dashboard_home')
-                else:
-                    messages.error(request, "Your account has been disabled")
-                    return render(request, self.template_name)
+                login(request, user)
+                messages.success(request, f"Welcome {user.username}")
+                return redirect('blog:dashboard_home')
+
             else:
                 messages.error(request,
                                f"Invalid Login details: {username}, {password}")
-                return render(request, self.template_name)
+                return render(request, self.template_name, self.context_object)
 
         else:
-            messages.error(request, "Invalid username and password")
+            messages.error(request, f"Invalid username and password")
             return render(request, self.template_name, self.context_object)
 
 
