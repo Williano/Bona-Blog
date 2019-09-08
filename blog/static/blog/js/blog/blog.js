@@ -21,16 +21,12 @@ $(document).ready(function () {
          let articleTags = $('#id_tags').val();
          let articleStatus = $('#id_status').val();
 
-         console.log(articleImage);
-
          // Create an article object with extracted form data.
          let articleData = {csrfmiddlewaretoken: $.cookie("csrftoken"), action: articleAction,
                             title: articleTitle, category: articleCategory,
                             image: articleImage, body: articleBody,
                             tags: articleTags, status: articleStatus
          };
-
-         console.log(articleData);
 
          // Call post article function and send the data to the endpoint
          postArticle(articleURL, articleData);
