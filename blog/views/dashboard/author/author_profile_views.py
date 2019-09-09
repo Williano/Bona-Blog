@@ -21,7 +21,6 @@ class AuthorProfileView(LoginRequiredMixin, View):
 
     def get(self, request):
         author = User.objects.get(username=request.user)
-        print(author.username, author.profile.job_title)
 
         self.context_object['author_profile_details'] = author
         return render(request, self.template_name, self.context_object)
