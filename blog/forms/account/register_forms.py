@@ -13,12 +13,13 @@ class UserRegisterForm(UserCreationForm):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.pop("autofocus", None)
 
-    email = forms.EmailField(widget=
+    email = forms.EmailField(max_length=254, required=True, widget=
                              forms.EmailInput(attrs={
                                  "name": "email", "class": "input100",
                                  "placeholder": "Email"
                                                     }
                                               ),
+                             help_text='Required. Input a valid email address.'
                              )
     password1 = forms.CharField(widget=
                                 forms.PasswordInput(attrs={

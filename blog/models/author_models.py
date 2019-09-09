@@ -47,6 +47,8 @@ class Profile(models.Model):
                                   help_text=
                                   "Enter # if you don't have an account")
 
+    email_confirmed = models.BooleanField(default=False)
+
     created_on = models.DateTimeField(default=timezone.now)
 
     updated_on = models.DateTimeField(auto_now=True)

@@ -43,7 +43,12 @@ from blog.views.dashboard.author.author_profile_views import (
     AuthorProfileView,
 )
 
-from blog.views.account.register_view import UserRegisterView
+from blog.views.account.register_view import \
+    (
+      ActivateView,
+      AccountActivationSentView,
+      UserRegisterView,
+    )
 from blog.views.account.logout_view import UserLogoutView
 from blog.views.account.login_view import UserLoginView
 
@@ -198,12 +203,16 @@ urlpatterns = [
         name='logout'
     ),
 
-    # author/profile/update/
-    path(
-        route='author/profile/update/',
-        view=AuthorProfileUpdateView.as_view(),
-        name='author_profile_update'
-    ),
+    path(route='account_activation_sent/',
+         view=AccountActivationSentView.as_view(),
+         name='account_activation_sent'
+         ),
+
+    path(route='activate/<uidb64>/<token>/',
+         view=ActivateView.as_view(),
+         name='activate'
+         ),
+
 
 
     # DASHBOARD URLS #
@@ -220,6 +229,13 @@ urlpatterns = [
         route='author/profile/details/',
         view=AuthorProfileView.as_view(),
         name='author_profile_details'
+    ),
+
+    # author/profile/update/
+    path(
+        route='author/profile/update/',
+        view=AuthorProfileUpdateView.as_view(),
+        name='author_profile_update'
     ),
 
     # /article/<str:slug>/publish/
