@@ -181,7 +181,7 @@ TINYMCE_DEFAULT_CONFIG = {
 # Account Settings
 LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/author/dashboard/'
-LOGOUT_REDIRECT_URL = '/account/login/'
+LOGOUT_REDIRECT_URL = '/account/logout/'
 
 # Email Settings (Development)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

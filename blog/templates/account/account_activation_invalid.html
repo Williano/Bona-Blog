@@ -6,10 +6,23 @@
 
 {% block content %}
 
-        <div class="alert alert-danger font-weight-bold text-dark text-center">
+        <div class="container">
 
-            The confirmation link was invalid, possibly because it has already been used.
+        <div class="card shadow-sm">
 
-        </div>
+                <h4 class="card-header">Invalid Link</h4>
 
+                <div class="card-body">
+                        <div class="alert alert-danger font-weight-bold text-dark text-center">
+                            The confirmation link was invalid, possibly because it has already been used.
+                        </div>
+                    <hr />
+                    <div class="text-center font-weight-bold">
+                      <a class="small text-info" href="{% url 'blog:home' %}">
+                          Home
+                      </a>
+                    </div>
+                </div>
+            </div>
+    </div>
 {% endblock content %}
