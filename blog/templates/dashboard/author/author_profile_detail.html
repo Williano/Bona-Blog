@@ -56,10 +56,15 @@
                                     <h1>{{ author_profile_details.username }}</h1>
                                     {% endif %}
 
+                                    {% if  author_profile_details.profile.job_title %}
                                     <h5>{{ author_profile_details.profile.job_title }}</h5>
+                                    {% else %}
+                                    <h5>No Profession/Job Title</h5>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
-                                    <a href="{% url 'blog:home' %}" target="_blank" class="btn btn-primary btn-block"><i class="fas fa-paper-plane fa-sm text-white-50"></i> Visit Website</a></a>
+                                    <a href="{% url 'blog:home' %}" target="_blank" class="btn btn-primary btn-block">
+                                        <i class="fas fa-paper-plane fa-sm text-white-50"></i> Visit Website</a>
                                 </div>
                             </div>
                         </div>
@@ -107,8 +112,12 @@
                                                                     <label class="font-italic text-dark">Location</label>
                                                                 </div>
                                                                 <div class="col-md-9">
+                                                                    {% if author_profile_details.profile.city and author_profile_details.profile.country %}
                                                                     <p>{{ author_profile_details.profile.city }},
                                                                         {{ author_profile_details.profile.country }}</p>
+                                                                    {% else %}
+                                                                    <p></p>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -144,9 +153,12 @@
                                                                     <label class="font-italic text-dark">Address</label>
                                                                 </div>
                                                                 <div class="col-md-8">
-                                                                    <p>{{ author_profile_details.profile.address }},
-                                                                        {{ author_profile_details.profile.city }},
+                                                                    {% if author_profile_details.profile.address and author_profile_details.profile.city and author_profile_details.profile.country %}
+                                                                    <p>{{ author_profile_details.profile.address }}, {{ author_profile_details.profile.city }},
                                                                         {{ author_profile_details.profile.country }}</p>
+                                                                    {% else %}
+                                                                    <p></p>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
