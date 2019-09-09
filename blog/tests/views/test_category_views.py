@@ -153,7 +153,7 @@ class CategoryArticlesListViewTest(TestCase):
 #     def test_redirect_if_not_logged_in(self):
 #         response = self.client.get(reverse("article:category_create"))
 #         self.assertEqual(response.status_code, 302)
-#         self.assertRedirects(response, "/accounts/login/?next=/category/new/")
+#         self.assertRedirects(response, "/account/login/?next=/category/new/")
 #
 #     def test_logged_in_uses_correct_template(self):
 #         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')

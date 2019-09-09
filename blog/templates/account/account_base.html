@@ -15,63 +15,87 @@
     <title>Bona | {% block title %}{% endblock title %}</title>
 
   {% block stylesheet %}
-    <!-- Custom fonts for this template-->
-    <link
-      href="{% static 'account/vendor/fontawesome-free/css/all.min.css' %}"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
-
-    <!-- Custom styles for this template-->
-    <link href="{% static 'account/css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/fonts/Linearicons-Free-v1.0.0/icon-font.min.css'%}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/animate/animate.css'%}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/css/util.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/css/main.css' %}">
+    <!--===============================================================================================-->
   {% endblock stylesheet %}
 
   </head>
 
-  <body class="bg-gradient-primary">
-        {% block messages %}
-       <div class="row">
-        <div class="col-md-12">
-            {% if messages %}
-                {% for message in messages %}
-                  <div class="text-center font-weight-bold alert alert-dismissible fade show
-                       {% if message.level_tag == 'error' %}
-                       alert-danger
-                       {% else %}
-                       alert-{{ message.tags }}
-                       {% endif %}">
-                    {{ message }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                {% endfor %}
-              {% endif %}
-        </div>
-      </div>
+  <body>
+    <div class="limiter">
+		<div class="container-login100" style="background-image: url('/static/account/images/bg-6.jpg');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+
+            {% block messages %}
+                        {% if messages %}
+                            {% for message in messages %}
+                              <div class="text-center font-weight-bold alert alert-dismissible fade show
+                                   {% if message.level_tag == 'error' %}
+                                   alert-danger
+                                   {% else %}
+                                   alert-{{ message.tags }}
+                                   {% endif %}">
+                                {{ message }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                            {% endfor %}
+                          {% endif %}
       {% endblock messages %}
-    <div class="container">
-      <!-- Outer Row -->
+
 
       {% block content %}
+
       {% endblock content %}
 
+             </div>
+        </div>
     </div>
+        <div id="dropDownSelect1"></div>
 
   {% block script %}
-    <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'account/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'account/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{% static 'account/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/animsition/js/animsition.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/bootstrap/js/popper.js' %}"></script>
+        <script src="{%  static 'account/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/select2/select2.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/daterangepicker/moment.min.js' %}"></script>
+        <script src="{%  static 'account/vendor/daterangepicker/daterangepicker.js'%}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/countdowntime/countdowntime.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/js/main.js' %}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{% static 'account/js/sb-admin-2.min.js' %}"></script>
   {% endblock script %}
 
   </body>

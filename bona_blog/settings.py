@@ -178,5 +178,15 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     }
 
+# Account Settings
+LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/author/dashboard/'
 LOGOUT_REDIRECT_URL = '/account/login/'
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = ''
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''

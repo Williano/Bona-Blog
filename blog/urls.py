@@ -1,5 +1,4 @@
 # Core Django imports.
-from django.contrib.auth import views as auth_views
 from django.urls import path
 
 # Blog application imports.
@@ -44,8 +43,8 @@ from blog.views.dashboard.author.author_profile_views import (
     AuthorProfileView,
 )
 
+from blog.views.account.register_view import UserRegisterView
 from blog.views.account.logout_view import UserLogoutView
-
 from blog.views.account.login_view import UserLoginView
 
 
@@ -185,6 +184,13 @@ urlpatterns = [
         name='login'
     ),
 
+    # account/login/
+    path(
+        route='account/register/',
+        view=UserRegisterView.as_view(),
+        name='register'
+    ),
+
     # account/logout/
     path(
         route='account/logout/',
@@ -198,32 +204,6 @@ urlpatterns = [
         view=AuthorProfileUpdateView.as_view(),
         name='author_profile_update'
     ),
-
-
-    # Url for password reset.
-    path('account/password-reset/',
-         auth_views.PasswordResetView.as_view(
-             template_name='account/password_reset.html'),
-         name='password_reset'),
-
-    # Url for successful password reset.
-    path('account/password-reset/done/',
-         auth_views.PasswordResetDoneView.as_view(
-             template_name='account/password_reset_done.html'),
-         name='password_reset_done'),
-
-    # Url for successful password reset confirm.
-    path('account/password-reset-confirm/<uidb64>/<token>/',
-         auth_views.PasswordResetConfirmView.as_view(
-             template_name='account/password_reset_confirm.html'),
-         name='password_reset_confirm'),
-
-    # Url for password reset done.
-    path('account/password-reset-complete/',
-         auth_views.PasswordResetCompleteView.as_view(
-             template_name='account/password_reset_complete.html'),
-         name='password_reset_complete'),
-
 
 
     # DASHBOARD URLS #

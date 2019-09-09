@@ -25,27 +25,14 @@ class UserRegisterView(View):
         register_form = UserRegisterForm(request.POST)
 
         if register_form.is_valid():
-            first_name = register_form.cleaned_data["first_name"]
-            last_name = register_form.cleaned_data["last_name"]
-            username = register_form.cleaned_data['username']
-            email = register_form.cleaned_data["email"]
-            password = register_form.cleaned_data["password"]
+            register_form.save()
 
-            try:
-                new_user = User(
-                                first_name=first_name, last_name=last_name,
-                                username=username, email=email,
-                                password=password
-                                )
-                
-                new_user.save()
+            username = register_form.cleaned_data.get('username')
 
-            except Exception as e:
-                messages.error(request, e.args)
-            else:
-                messages.success(request, f"Congratulations {username} !!! "
-                                 f"Your account was created successfully")
-                return redirect('blog:login')
+            messages.success(request, f"Congratulations {username} !!! "
+                                      f"Your account was created successfully")
+            return redirect('blog:login')
+
         else:
             messages.error(request, "Please provide valid information.")
             # Redirect user to register page

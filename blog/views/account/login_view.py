@@ -30,12 +30,14 @@ class UserLoginView(View):
 
             if user:
                 login(request, user)
-                messages.success(request, f"Welcome {user.username}")
+                messages.success(request, f"Welcome {user.username}.")
                 return redirect('blog:dashboard_home')
 
             else:
                 messages.error(request,
-                               f"Invalid Login details: {username}, {password}")
+                               f"Invalid Login details: {username}, {password} "
+                               f"are not valid username and password !!! Please "
+                               f"enter a valid username and password.")
                 return render(request, self.template_name, self.context_object)
 
         else:

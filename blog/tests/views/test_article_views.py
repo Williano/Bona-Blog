@@ -202,7 +202,7 @@ class ArticleCreateViewTest(TestCase):
     def test_redirect_if_not_logged_in(self):
         response = self.client.get(reverse("blog:article_create"))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, "/accounts/login/?next=/article-new/")
+        self.assertRedirects(response, "/account/login/?next=/article-new/")
 
     def test_logged_in_uses_correct_template(self):
         self.client.login(username='testuser1',
@@ -344,7 +344,7 @@ class ArticleDeleteViewTest(TestCase):
 #         response = self.client.get(reverse("article:article_update",
 #                                            kwargs={'slug': self.article.slug}))
 #         self.assertEqual(response.status_code, 302)
-#         #self.assertRedirects(response, f"accounts/login/?next=/article/{self.article.slug}/update/")
+#         #self.assertRedirects(response, f"account/login/?next=/article/{self.article.slug}/update/")
 #
 #     def test_logged_in_uses_correct_template(self):
 #         self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
