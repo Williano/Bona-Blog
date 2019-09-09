@@ -94,6 +94,25 @@ class ArticleUpdateForm(forms.ModelForm):
                                     )
 
     class Meta:
+        # Article status constants
+        DRAFTED = "DRAFTED"
+        PUBLISHED = "PUBLISHED"
+
+        # CHOICES
+        STATUS_CHOICES = (
+            (DRAFTED, 'Draft'),
+            (PUBLISHED, 'Publish'),
+        )
+
         model = Article
         fields = ["title", "category", "image", "body", "tags", "status"]
-        widgets = {}
+        widgets = {
+            'status': Select(choices=STATUS_CHOICES,
+                             attrs=
+                             {
+                                 "class": "form-control selectpicker",
+                                 "name": "status", "type": "text",
+                                 "id": "articleStatus",
+                             }
+                             ),
+        }

@@ -30,7 +30,7 @@ class UserLoginView(View):
 
             if user:
                 login(request, user)
-                messages.success(request, f"Login Successful! "
+                messages.success(request, f"Login Successful ! "
                                           f"Welcome {user.username}.")
                 return redirect('blog:dashboard_home')
 
