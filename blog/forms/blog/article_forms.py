@@ -44,6 +44,7 @@ class ArticleCreateForm(forms.ModelForm):
                                    "type": "text",
                                    "name": "article-category",
                                    "id": "articleCategory",
+                                   "data-live-search": "true"
 
                                        }
                                ),
@@ -74,6 +75,7 @@ class ArticleCreateForm(forms.ModelForm):
                                  "class": "form-control selectpicker",
                                  "name": "status", "type": "text",
                                  "id": "articleStatus",
+                                 "data-live-search": "true"
                              }
                              ),
         }
@@ -89,6 +91,7 @@ class ArticleUpdateForm(forms.ModelForm):
                                                               "type": "text",
                                                               "name": "article-category",
                                                               "id": "articleCategory",
+                                                              "data-live-search": "true"
                                                           }
                                       )
                                     )
@@ -113,6 +116,7 @@ class ArticleUpdateForm(forms.ModelForm):
                                  "class": "form-control selectpicker",
                                  "name": "status", "type": "text",
                                  "id": "articleStatus",
+                                 "data-live-search": "true"
                              }
                              ),
         }
