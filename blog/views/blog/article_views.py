@@ -265,7 +265,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.date_published = timezone.now()
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}' "
-                                               f"published successfully.")
+                                               f"updated successfully.")
                 return redirect("blog:dashboard_home")
             else:
                 messages.error(self.request,
