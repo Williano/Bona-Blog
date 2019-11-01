@@ -6,7 +6,7 @@ django-pagedown==1.0.6
 django-taggit==1.1.0
 djangorestframework==3.9.2
 model-mommy==1.6.0
-Pillow==6.0.0
+Pillow==6.2.0
 pytz==2019.1
 six==1.12.0
 django-tinymce4-lite==1.7.4
