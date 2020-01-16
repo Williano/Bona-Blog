@@ -14,6 +14,19 @@ class TinyMCEWidget(TinyMCE):
 
 
 class ArticleCreateForm(forms.ModelForm):
+    category = forms.ModelChoiceField(queryset=Category.objects.filter(
+                                      approved=True),
+                                      empty_label="Select Category",
+                                      widget=forms.Select(attrs=
+                                                          {
+                                                              "class": "form-control selectpicker",
+                                                              "type": "text",
+                                                              "name": "article-category",
+                                                              "id": "articleCategory",
+                                                              "data-live-search": "true"
+                                                          }
+                                      )
+                                    )
 
     class Meta:
 
@@ -37,17 +50,17 @@ class ArticleCreateForm(forms.ModelForm):
                                      'id': "articleTitle"
                                      }),
 
-            'category': Select(choices=Category.objects.filter(approved=True),
-                               attrs={
-
-                                   "class": "form-control selectpicker",
-                                   "type": "text",
-                                   "name": "article-category",
-                                   "id": "articleCategory",
-                                   "data-live-search": "true"
-
-                                       }
-                               ),
+            # 'category': Select(choices=Category.objects.filter(approved=True),
+            #                    attrs={
+            #
+            #                        "class": "form-control selectpicker",
+            #                        "type": "text",
+            #                        "name": "article-category",
+            #                        "id": "articleCategory",
+            #                        "data-live-search": "true"
+            #
+            #                            }
+            #                    ),
 
             'image': FileInput(attrs={
                                         "class": "form-control clearablefileinput",
