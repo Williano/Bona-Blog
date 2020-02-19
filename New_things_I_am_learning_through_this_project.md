@@ -21,3 +21,17 @@ HTML Forms
     - By default function based views returns get() method. 
       Unless you explicitly check the for post it will 
       return only get() method.
+      
+   
+      
+Error
+   
+   -  Error: 
+        ```Traceback (most recent call last):
+        File "manage.py", line 8, in <module>
+         from django.core.management import execute_from_command_line
+        ImportError: No module named django.core.management
+   - To fix the above error in any Django project, just install the requirements.txt file 
+   
+       ```pip install -r requirements.txt   ```   
+      
