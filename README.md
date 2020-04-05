@@ -1,5 +1,5 @@
 # Bona Blog
-An Open-Source Blogging platform.
+An Open-Source Web Blogging platform.
 
 
 ## Table of contents
@@ -118,7 +118,7 @@ Article Detail
 
 ## Features
 
-* [iOS Mobile App](https://github.com/Williano/Bona-Mobile.git)
+* [Mobile App Version](https://github.com/Williano/Bona-Blog-Mobile)
 * Dashboard for Authors
 * Author Login
 * Author Password Reset
