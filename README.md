@@ -142,7 +142,7 @@ Article Detail
 * Responsive on all devices
 * Pagination
 * Clean Code
-* 80% test coverage
+* 90% test coverage
 
 ## Status
 Project is: _in progress_
