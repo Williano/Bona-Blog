@@ -45,7 +45,7 @@ Article Detail
 * Jquery 
 * Ajax
 * Vuejs
-* Django 2.2
+* Django 3
 * HTML5
 * CSS3 
 * Bootstrap 4
