@@ -1,5 +1,5 @@
 # Dockerfile
-
+# Author: William Kwabla
 # Python version
 FROM python:3.7-alpine
 
