@@ -57,7 +57,6 @@ Article Detail
 ### Setup
 ## Installation on Linux and Mac OS
 
-* [Follow the guide here](https://help.github.com/articles/fork-a-repo) on how to clone or fork a repo
 * [Follow the guide here](http://simononsoftware.com/virtualenv-tutorial/) on how to create virtualenv
 
 * To create a normal virtualenv (example _myvenv_) and activate it (see Code below).
