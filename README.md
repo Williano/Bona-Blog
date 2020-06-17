@@ -53,6 +53,7 @@ Article Detail
 * Font awesome
 * TinyMCE
 * SQLite
+* PostgreSQL
 
 ### Setup
 ## Installation on Linux and Mac OS
