@@ -5,6 +5,7 @@ __pycache__/
 media/article_pics
 media/category_images
 media/profile_pics
+media/banner
 
 # Pycharm Files
 .idea
