@@ -20,6 +20,7 @@ django-debug-toolbar = "==3.0a1"
 django-social-share = "==1.4.0"
 Pillow = "==7.1.2"
 django = "*"
+pyenchant = "*"
 
 [requires]
 python_version = "3.8"
