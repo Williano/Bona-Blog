@@ -15,8 +15,9 @@
   }
   .image-section img{
     width: 100% !important;
-    height:250px !important;
+    height:425px !important;
     position: relative !important;
+    object-fit: cover;
   }
   .user-image{
     position: absolute !important;
@@ -28,6 +29,7 @@
   .user-image img{
     width:100px !important;
     height:100px !important;
+    object-fit: cover;
   }
   .user-profil-part{
     padding-bottom:30px !important;

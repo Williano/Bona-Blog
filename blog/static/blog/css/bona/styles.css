@@ -42,13 +42,22 @@ button:focus, button:active, button:hover{ text-decoration: none; color: #498BF9
 
 b{ font-weight: 500; }
 
-img{ width: 100%; }
+img{ width: 100%; object-fit: cover;}
 
 .profile-image {
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+  width: 70px;
+ height: 70px;
+ max-width: 70px;
+ max-height: 70px;
+ object-fit: cover;
+}
+
+.article-author-profile-image {
+  width: 70px;
+ height: 70px;
+ max-width: 70px;
+ max-height: 70px;
+ object-fit: cover;
 }
 
 li{ list-style: none; display: inline-block; }
@@ -130,8 +139,18 @@ header .visible.main-menu{ display: block; }
 
 header .src-area{ position: relative; height: 60px; width: 50%; float: right; display: inline-block; background: #F5F7F6; }
 
-header .src-area .src-input{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%;
-	padding: 0 20px 0 70px; background: transparent; border: 0; outline: 0; }
+header .src-area .src-input{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 90%;
+    padding: 0 20px 0 70px;
+    background: #d6dde0;
+    border: 0;
+    outline: 0;
+}
 
 header .src-area .src-input:focus{ box-shadow: 0px 0px 1px #aaa; }
 
@@ -167,7 +186,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 	left: 0; right: 0; z-index: -1; background: rgba(0,0,0,.4); width: 100%;
 	margin-top: 10px; margin-left: 10px; border-radius: 10px;}
 
-.category-image { margin-top: 10px; margin-left: 10px; border-radius: 10px; }
+.category-image { margin-top: 10px; margin-left: 10px; border-radius: 10px; object-fit: cover;}
 
 
 /* SLIDER CONTROLER */
@@ -215,6 +234,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .load-more-btn:hover{ transform: translateY(-2px); box-shadow: 5px 10px 20px rgba(0,0,0,.3); }
 
+.article-image {width: 100%; object-fit: cover; height: 500px;}
 
 
 /* ---------------------------------
@@ -224,7 +244,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 .post-area .post-info{ position: relative; padding: 30px 0; }
 
 .post-area .post-info .left-area{ height: 70px; width: 70px; border-radius: 100px; overflow: hidden; position: absolute;
-	top: 50%; margin-top: -35px; border: 6px solid #fff; box-shadow: 0px 0px 5px rgba(0,0,0,.3); }
+	top: 50%; margin-top: -35px; border: 1px solid #fff; box-shadow: 0px 0px 5px rgba(0,0,0,.3); }
 
 .post-area .post-info .middle-area{ padding-left: 90px; display: inline-block; }
 
@@ -294,8 +314,18 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .recomended-area .single-post .title{ padding: 20px 30px 30px; }
 
-.single-post .avatar{ margin: 0 auto; margin-top: -40px; width: 70px; height: 70px; overflow: hidden; z-index: 10;
-	border-radius: 100px; position: relative; border: 7px solid #fff; box-shadow: 0px 0px 10px rgba(0,0,0,.2); }
+.single-post .avatar{
+    margin: 0 auto;
+    margin-top: -40px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    z-index: 10;
+    border-radius: 100px;
+    position: relative;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+}
 
 .single-post .post-footer{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
 
@@ -619,7 +649,8 @@ footer .input-area .submit-btn{ position: absolute; top: 0; bottom: 0; right: 0;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 5px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.5);
+    object-fit: cover;
 }
 
 .card.hovercard .info {

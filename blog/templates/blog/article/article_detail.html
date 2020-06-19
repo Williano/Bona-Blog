@@ -7,7 +7,7 @@
 {% block content %}
 	<div class="slider" style="height: 400px; width: 100%;
     background-image: url({{ article.category.image.url }});
-    background-size: cover;" >
+    background-size: contain" >
 	</div><!-- slider -->
 
 	<section class="post-area">
@@ -30,11 +30,11 @@
 
 								<div class="left-area">
 									<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
-                                        <img src="{{ article.author.profile.image.url }}" alt="Profile Image" class="profile-image"></a>
+                                        <img src="{{ article.author.profile.image.url }}" alt="Profile Image" class="article-author-profile-image"></a>
 								</div>
 
 								<div class="middle-area">
-									<a class="name" href="{% url 'blog:author_articles' article.author.username %}">
+									By <a class="name" href="{% url 'blog:author_articles' article.author.username %}">
                                         <b>{{ article.author.username }}</b></a>
 									<h6 class="date">on {{ article.date_published.date }} at {{ article.date_published.time }}</h6>
                                     <h6>Updated on {{ article.date_updated.date }} at {{ article.date_updated.time }}</h6>
@@ -56,21 +56,21 @@
 									<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
 								</ul>
 							</div>
-							<p class="para">
-                            {% if object.author == user %}
-                            <div>
-                                <a class="btn btn-info btn-sm mt-1 mb-1"
-                                   href="{% url 'blog:article_update' article.slug %}">Update
-                                </a>
-                                <a class="btn btn-danger btn-sm mt-1 mb-1"
-                                   href="{% url 'blog:article_delete' article.slug %}">Delete
-                                </a>
-                          </div>
-                          {% endif %}
-                        <br ><br >
+{#							<p class="para">#}
+{#                            {% if object.author == user %}#}
+{#                            <div>#}
+{#                                <a class="btn btn-info btn-sm mt-1 mb-1"#}
+{#                                   href="{% url 'blog:article_update' article.slug %}">Update#}
+{#                                </a>#}
+{#                                <a class="btn btn-danger btn-sm mt-1 mb-1"#}
+{#                                   href="{% url 'blog:article_delete' article.slug %}">Delete#}
+{#                                </a>#}
+{#                          </div>#}
+{#                          {% endif %}#}
+
 						</div><!-- post-top-area -->
 
-						<figure class="post-image"><img src="{{ article.image.url }}" alt="Blog Image">
+						<figure class="post-image"><img class="article-image" src="{{ article.image.url }}" alt="Blog Image">
                           <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a>
                           </figcaption>
                         </figure>

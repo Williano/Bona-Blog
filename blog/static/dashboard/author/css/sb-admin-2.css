@@ -7105,6 +7105,7 @@ button.bg-dark:focus {
 
 .rounded-circle {
   border-radius: 50% !important;
+  object-fit: cover !important;
 }
 
 .rounded-pill {
@@ -10916,6 +10917,7 @@ a:focus {
 .topbar .nav-item .nav-link .img-profile {
   height: 2rem;
   width: 2rem;
+  object-fit: cover!important;
 }
 
 .topbar {
