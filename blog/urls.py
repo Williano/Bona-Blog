@@ -70,7 +70,7 @@ urlpatterns = [
 
     # /article/<str:slug>/
     path(
-        route='article-detail/<str:slug>/',
+        route='<str:slug>/',
         view=ArticleDetailView.as_view(),
         name='article_detail'
 
