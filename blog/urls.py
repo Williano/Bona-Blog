@@ -247,21 +247,21 @@ urlpatterns = [
 
     # /author/articles/written/
     path(
-        route="author/articles/written/",
+        route="me/articles/written/",
         view=AuthorWrittenArticleView.as_view(),
         name="written_articles"
     ),
 
     # /author/articles/published/
     path(
-        route="author/articles/published/",
+        route="me/articles/published/",
         view=AuthorPublishedArticleView.as_view(),
         name="published_articles"
     ),
 
     # /author/articles/drafted/
     path(
-        route="author/articles/drafted/",
+        route="me/articles/drafts/",
         view=AuthorDraftedArticleView.as_view(),
         name="drafted_articles"
     ),
