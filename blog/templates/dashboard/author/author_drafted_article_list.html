@@ -13,30 +13,107 @@
 
 {% block content %}
 
-             <section class="blog-list px-3 py-5 p-md-5">
+     <section class="blog-list px-3 py-5 p-md-5">
+     {% if drafted_articles_list %}
 		    <div class="container">
-
+           {% for article in drafted_articles_list  %}
 			    <div class="item mb-5">
 				    <div class="media">
-					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-8.jpg" alt="image">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
 					    <div class="media-body">
-						    <h3 class="title mb-1"><a href="blog-post.html">Heading Lorem Ipsum Dolor Sit Amet</a></h3>
-						    <div class="meta mb-1"><span class="date">Published 4 months ago</span><span class="time">3 min read</span><span class="comment"><a href="#">2 comments</a></span><span class="time"><div class="btn-group">
+						    <h3 class="title mb-1"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+						    <div class="meta mb-1"><span class="date">Created {{ article.date_created|timesince}} ago</span>
+                                <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                                <span class="time">
 								<i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								</i>
 								<div class="dropdown-menu">
-								    <a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
+								    <a class="dropdown-item" href="{% url 'blog:article_update' article.slug %}">Edit Article</a>
+                                    <div class="dropdown-divider w-100" ></div>
+									<a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
 								</div>
-							  </div></span></div>
-						    <div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-						    <a class="more-link" href="blog-post.html"><i class="fas fa-sign-in-alt"></i></a>
+							  </span>
+                            </div>
+						    <div class="intro">{{ article.body|truncatewords:32 }}</div>
+						    <a class="more-link" href="{{ article.get_absolute_url }}">View details &rarr;</a>
 					    </div><!--//media-body-->
 				    </div><!--//media-->
 			    </div><!--//item-->
-
+         {% endfor %}
 		    </div>
+     {% else %}
+               <center><div class="alert alert-info"><b>No Drafted Articles</b></div></center>
+     {% endif %}
 	    </section>
+
+             {# Pagination for article post #}
+            {% if is_paginated %}
+
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
+
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Delete Article" below if you want to delete the article.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-danger" href="">Delete Article</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock content %}
