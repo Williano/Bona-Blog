@@ -73,7 +73,7 @@ class AuthorWrittenArticleView(LoginRequiredMixin, View):
         template_name = 'dashboard/author/author_written_article_list.html'
         context_object = {}
 
-        written_articles = Article.objects.filter(author=request.user.id)
+        written_articles = Article.objects.filter(author=request.user.id).order_by('-date_created')
         total_articles_written = len(written_articles)
 
         page = request.GET.get('page', 1)
