@@ -1,6 +1,7 @@
 # Django imports.
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.views.generic import View
@@ -69,13 +70,23 @@ class AuthorWrittenArticleView(LoginRequiredMixin, View):
         """
            Returns all articles written by an author.
         """
-        template_name = ''
+        template_name = 'dashboard/author/author_written_article_list.html'
         context_object = {}
 
         written_articles = Article.objects.filter(author=request.user.id)
         total_articles_written = len(written_articles)
 
-        context_object['written_articles'] = written_articles
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(written_articles, 25)
+        try:
+            written_articles_list = paginator.page(page)
+        except PageNotAnInteger:
+            written_articles_list = paginator.page(1)
+        except EmptyPage:
+            written_articles_list = paginator.page(paginator.num_pages)
+
+        context_object['written_articles_list'] = written_articles_list
         context_object['total_articles_written'] = total_articles_written
 
         return render(request, template_name, context_object)
@@ -90,14 +101,24 @@ class AuthorPublishedArticleView(LoginRequiredMixin, View):
         """
            Returns published articles by an author.
         """
-        template_name = ''
+        template_name = 'dashboard/author/author_published_article_list.html'
         context_object = {}
 
         published_articles = Article.objects.filter(author=request.user.id,
                                                     status=Article.PUBLISHED)
         total_articles_published = len(published_articles)
 
-        context_object['published_articles'] = published_articles
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(published_articles, 25)
+        try:
+            published_articles_list = paginator.page(page)
+        except PageNotAnInteger:
+            published_articles_list = paginator.page(1)
+        except EmptyPage:
+            published_articles_list = paginator.page(paginator.num_pages)
+
+        context_object['published_articles_list'] = published_articles_list
         context_object['total_articles_published'] = total_articles_published
 
         return render(request, template_name, context_object)
@@ -107,19 +128,28 @@ class AuthorDraftedArticleView(LoginRequiredMixin, View):
     """
        Displays drafted articles by an author.
     """
-
     def get(self, request):
         """
            Returns drafted articles by an author.
         """
-        template_name = ''
+        template_name = 'dashboard/author/author_drafted_article_list.html'
         context_object = {}
 
         drafted_articles = Article.objects.filter(author=request.user.id,
-                                                  status=Article.DRAFT)
+                                                  status=Article.DRAFTED)
         total_articles_drafted = len(drafted_articles)
 
-        context_object['drafted_articles'] = drafted_articles
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(drafted_articles, 25)
+        try:
+            drafted_articles_list = paginator.page(page)
+        except PageNotAnInteger:
+            drafted_articles_list = paginator.page(1)
+        except EmptyPage:
+            drafted_articles_list = paginator.page(paginator.num_pages)
+
+        context_object['drafted_articles_list'] = drafted_articles_list
         context_object['total_articles_drafted'] = total_articles_drafted
 
         return render(request, template_name, context_object)
