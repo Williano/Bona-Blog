@@ -22,7 +22,7 @@
 					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
 					    <div class="media-body">
 						    <h3 class="title mb-1"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-						    <div class="meta mb-1"><span class="date">Published {{ article.date_published|timesince:article.date_published}} ago</span>
+						    <div class="meta mb-1"><span class="date">Published {{ article.date_published|timesince}} ago</span>
                                 <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
                                 <span class="comment">{{ article.views }} view{{ article.views|pluralize }}</span>
                                 <span class="comment"><a href="#">{{ article.comments.count }} comment{{ article.comments.count|pluralize }}</a></span>
