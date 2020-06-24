@@ -184,7 +184,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}' "
                                                f"published successfully.")
-                return redirect("blog:dashboard_home")
+                return redirect("blog:dashboard_article_detail")
             else:
                 messages.error(self.request,
                                "You clicked on 'PUBLISH' to publish the article"
@@ -242,7 +242,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}'"
                                                f" successfully saved as Draft.")
-                return redirect("blog:dashboard_home")
+                return redirect("blog:drafted_articles")
             else:
                 template_name = 'blog/article/article_update_form.html'
                 context_object = {'form': form}
@@ -265,7 +265,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}' "
                                                f"updated successfully.")
-                return redirect("blog:dashboard_home")
+                return redirect("blog:dashboard_article_detail")
             else:
                 messages.error(self.request,
                                "You clicked on 'PUBLISH' to publish the article"
