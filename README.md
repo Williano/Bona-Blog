@@ -31,8 +31,7 @@ Category Articles List Page       |  Author Articles List Page
 
 List of Authors Page    |  Create Article Page
 :-------------------------:|:-------------------------:
-![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) | 
-![Screenshot_2020-06-24 Bona Dashboard Create Article](https://user-images.githubusercontent.com/19711677/85521488-edbf1b80-b5c9-11ea-93c6-787c68fc71f7.png)
+![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) | ![Screenshot_2020-06-24 Bona Dashboard Create Article](https://user-images.githubusercontent.com/19711677/85521488-edbf1b80-b5c9-11ea-93c6-787c68fc71f7.png)
 
 
 Authors Dashboard    |  Authors Profile Details Page
