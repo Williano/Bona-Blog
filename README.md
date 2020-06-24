@@ -20,23 +20,28 @@ An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Py
 
 ## Screenshots
 
-Home Page            |  Categories List
+Home Page            |  List of Categories Page
 :-------------------------:|:-------------------------:
 ![Home](https://user-images.githubusercontent.com/19711677/56363189-264fb200-61db-11e9-9bba-77a3e7f7c1de.jpg) | ![Categories List](https://user-images.githubusercontent.com/19711677/56363187-264fb200-61db-11e9-8a90-0af49eb33758.jpg)
 
-Category Articles List          |  Author Articles List
+Category Articles List Page       |  Author Articles List Page
 :-------------------------:|:-------------------------:
 ![Category Article List](https://user-images.githubusercontent.com/19711677/56363188-264fb200-61db-11e9-8fef-fc83fb29f056.png) | ![Author Articles](https://user-images.githubusercontent.com/19711677/56363185-25b71b80-61db-11e9-9a42-2fffaa369d28.jpg)
 
 
+List of Authors Page    |  Article Detail Page
+:-------------------------:|:-------------------------:
+![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) | ![Article Detail](https://user-images.githubusercontent.com/19711677/56364113-55672300-61dd-11e9-869d-5a30adea9e21.jpg)
 
-Authors List     
-![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) 
+Authors Dashboard    |  Authors Profile Details Page
+:-------------------------:|:-------------------------:
+![Screenshot_2020-06-24 Bona Dashboard Home](https://user-images.githubusercontent.com/19711677/85521498-f0ba0c00-b5c9-11ea-87d8-0cf005038a62.png) | ![Screenshot_2020-06-24 Bona Dashboard Profile Details](https://user-images.githubusercontent.com/19711677/85521493-ee57b200-b5c9-11ea-8405-655cdd09408a.png)
 
+Create Article Page 
+:-------------------------:
+![Screenshot_2020-06-24 Bona Dashboard Create Article](https://user-images.githubusercontent.com/19711677/85521488-edbf1b80-b5c9-11ea-93c6-787c68fc71f7.png)
 
-
-Article Detail
-![Article Detail](https://user-images.githubusercontent.com/19711677/56364113-55672300-61dd-11e9-869d-5a30adea9e21.jpg)
+ 
 
 
 ## Technologies
