@@ -131,7 +131,13 @@ class ArticleUpdateForm(forms.ModelForm):
                                  "name": "status", "type": "text",
                                  "id": "articleStatus",
                                  "data-live-search": "true",
-                                "title": "Select Status"
+                                 "title": "Select Status"
                              }
                              ),
+            'tags': TextInput(attrs={
+                'name': "article-title",
+                'class': "form-control",
+                'placeholder': "Enter Tags",
+                'id': "articleTags"
+            }),
         }

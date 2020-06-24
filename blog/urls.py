@@ -70,7 +70,7 @@ urlpatterns = [
 
     # /article/<str:slug>/
     path(
-        route='<str:slug>/',
+        route='@<str:username>/<str:slug>/',
         view=ArticleDetailView.as_view(),
         name='article_detail'
 
@@ -268,7 +268,7 @@ urlpatterns = [
 
     # /dashboard/<str:slug>/
     path(
-        route="dashboard/<str:slug>/",
+        route="me/<str:slug>/",
         view=DashboardArticleDetailView.as_view(),
         name='dashboard_article_detail'
 

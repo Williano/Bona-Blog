@@ -236,6 +236,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
             if form.instance.status == Article.DRAFTED:
                 form.instance.author = self.request.user
+                form.instance.tags = form.cleaned_data['tags']
                 form.instance.date_published = None
                 form.instance.save()
                 messages.success(self.request, f"Article drafted successfully.")
@@ -258,6 +259,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
             if form.instance.status == Article.PUBLISHED:
                 form.instance.author = self.request.user
+                form.instance.tags = form.cleaned_data['tags']
                 form.instance.date_published = timezone.now()
                 form.instance.save()
                 messages.success(self.request, f"Article updated successfully.")
