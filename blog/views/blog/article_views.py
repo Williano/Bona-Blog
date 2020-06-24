@@ -163,8 +163,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                 form.instance.author = self.request.user
                 form.instance.date_published = None
                 form.instance.save()
-                messages.success(self.request, f"'{form.instance.title}'"
-                                               f" successfully saved as Draft.")
+                messages.success(self.request, f"Article drafted successfully.")
                 return redirect("blog:drafted_articles")
             else:
                 messages.error(self.request,
@@ -182,8 +181,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
             if form.instance.status == Article.PUBLISHED:
                 form.instance.author = self.request.user
                 form.instance.save()
-                messages.success(self.request, f"'{form.instance.title}' "
-                                               f"published successfully.")
+                messages.success(self.request, f"Article published successfully.")
                 return redirect(to="blog:dashboard_article_detail", slug=form.instance.slug)
             else:
                 messages.error(self.request,
@@ -240,8 +238,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.author = self.request.user
                 form.instance.date_published = None
                 form.instance.save()
-                messages.success(self.request, f"'{form.instance.title}'"
-                                               f" successfully saved as Draft.")
+                messages.success(self.request, f"Article drafted successfully.")
                 return redirect("blog:drafted_articles")
             else:
                 template_name = 'blog/article/article_update_form.html'
@@ -263,8 +260,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.author = self.request.user
                 form.instance.date_published = timezone.now()
                 form.instance.save()
-                messages.success(self.request, f"'{form.instance.title}' "
-                                               f"updated successfully.")
+                messages.success(self.request, f"Article updated successfully.")
                 return redirect(to="blog:dashboard_article_detail", slug=form.instance.slug)
             else:
                 messages.error(self.request,
