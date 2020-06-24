@@ -54,7 +54,7 @@ class ArticleDetailView(DetailView):
             self.request.session[session_key] = True
 
         kwargs['related_articles'] = \
-            Article.objects.filter(category=self.object.category).order_by('?')[:3]
+            Article.objects.filter(category=self.object.category, status=Article.PUBLISHED).order_by('?')[:3]
         kwargs['article'] = self.object
         kwargs['comment_form'] = CommentForm()
         return super().get_context_data(**kwargs)
@@ -94,10 +94,10 @@ class ArticleSearchListView(ListView):
 
             if not search_results:
                 messages.info(self.request, f"No results for '{query}'")
-                return search_results
+                return search_results.filter(status=Article.PUBLISHED)
             else:
                 messages.success(self.request, f"Results for '{query}'")
-                return search_results
+                return search_results.filter(status=Article.PUBLISHED)
         else:
             messages.error(self.request, f"Sorry you did not enter any keyword")
             return []
@@ -326,7 +326,7 @@ class TagArticlesListView(ListView):
         tag_name = self.kwargs.get('tag_name', '')
 
         if tag_name:
-            tag_articles_list = Article.objects.filter(tags__name__in=[tag_name])
+            tag_articles_list = Article.objects.filter(tags__name__in=[tag_name], status=Article.PUBLISHED)
 
             if not tag_articles_list:
                 messages.info(self.request, f"No Results for '{tag_name}' tag")
