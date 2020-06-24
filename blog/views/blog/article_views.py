@@ -184,7 +184,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}' "
                                                f"published successfully.")
-                return redirect("blog:dashboard_article_detail")
+                return redirect(to="blog:dashboard_article_detail", slug=form.instance.slug)
             else:
                 messages.error(self.request,
                                "You clicked on 'PUBLISH' to publish the article"
@@ -265,7 +265,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}' "
                                                f"updated successfully.")
-                return redirect("blog:dashboard_article_detail")
+                return redirect(to="blog:dashboard_article_detail", slug=form.instance.slug)
             else:
                 messages.error(self.request,
                                "You clicked on 'PUBLISH' to publish the article"
