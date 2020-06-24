@@ -189,9 +189,6 @@
 
                 </div>
 
-
-
-
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel"
              aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
@@ -213,15 +210,15 @@
                         <div class="container">
                             <div class="apps-wrap">
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                    <a href="{% url 'blog:dashboard_home' %}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                 </div>
                                 <div class="app-item dropdown">
                                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false"><i class="ik ik-book"></i><span>Articles</span></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Write A New Article</a>
-                                        <a class="dropdown-item" href="#">List of Published Articles</a>
-                                        <a class="dropdown-item" href="#">List of Drafted Articles</a>
+                                        <a class="dropdown-item" href="{% url 'blog:article_create' %}">Write A New Article</a>
+                                        <a class="dropdown-item" href="{% url 'blog:published_articles' %}">List of Published Articles</a>
+                                        <a class="dropdown-item" href="{% url 'blog:drafted_articles' %}">List of Drafted Articles</a>
                                         <a class="dropdown-item" href="#">List of Deleted Articles</a>
                                     </div>
                                 </div>
@@ -229,15 +226,15 @@
                                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false"><i class="ik ik-users"></i><span>Accounts</span></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Profile</a>
-                                        <a class="dropdown-item" href="#">Update Profile</a>
+                                        <a class="dropdown-item" href="{% url 'blog:author_profile_details' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'blog:author_profile_update' %}">Update Profile</a>
                                     </div>
                                 </div>
                                 <div class="app-item">
                                     <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#" target="_blank"><i class="ik ik-send"></i><span>Visit Website</span></a>
+                                    <a href="{% url 'blog:home' %}" target="_blank"><i class="ik ik-send"></i><span>Visit Website</span></a>
                                 </div>
                             </div>
                         </div>
