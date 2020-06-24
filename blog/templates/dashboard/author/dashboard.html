@@ -5,6 +5,11 @@
     Dashboard
 {% endblock %}
 
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
 {% block content %}
                <!-- Begin Page Content -->
           <div class="container-fluid">
@@ -123,33 +128,59 @@
             </div>
 
             <!-- Content Row -->
-         <section class="blog-list px-3 py-5 p-md-5">
-		    <div class="container">
+         <div class="container mb-3">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4 class="title">Recent Published Articles</h4>
+                            </div>
+                          <div class="card-body">
+                            <div class="content">
+                    <section class="blog-list px-3 py-5 p-md-5">
+                     {% if recent_published_articles_list %}
+                            <div class="container">
+                           {% for article in recent_published_articles_list  %}
+                                <div class="item mb-5">
+                                    <div class="media">
+                                        <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
+                                        <div class="media-body">
+                                            <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
+                                            <div class="meta mb-1"><span class="date">Published {{ article.date_published|timesince}} ago</span>
+                                                <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                                                <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                                                <span class="comment">{{ article.views }} view{{ article.views|pluralize }}</span>
+                                                <span class="comment"><a href="#">{{ article.comments.count }} comment{{ article.comments.count|pluralize }}</a></span>
+                                                <span class="time">
+                                                <i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                </i>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
+                                                    <div class="dropdown-divider w-100" ></div>
+                                                    <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
+                                                </div>
+                                              </span>
+                                            </div>
+                                            <div class="intro">{{ article.body|safe|truncatewords:32 }}</div>
+                                            <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
+                                          <hr class="solid"><!-- Solid divider -->
+                                        </div><!--//media-body-->
+                                    </div><!--//media-->
+                                </div><!--//item-->
+                         {% endfor %}
+                            </div>
+                     {% else %}
+                               <center><div class="alert alert-info"><b>No Published Articles</b></div></center>
+                     {% endif %}
+                        </section>
 
-			    <div class="item mb-5">
-				    <div class="media">
-					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-8.jpg" alt="image">
-					    <div class="media-body">
-						    <h3 class="title mb-1"><a href="blog-post.html">Heading Lorem Ipsum Dolor Sit Amet</a></h3>
-						    <div class="meta mb-1"><span class="date">Published 4 months ago</span><span class="time">3 min read</span><span class="comment"><a href="#">2 comments</a></span><span class="time"><div class="btn-group">
-								<i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								</i>
-								<div class="dropdown-menu">
-								    <a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</div>
-							  </div></span></div>
-						    <div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-						    <a class="more-link" href="blog-post.html"><i class="fas fa-sign-in-alt"></i></a>
-					    </div><!--//media-body-->
-				    </div><!--//media-->
-			    </div><!--//item-->
-
-		    </div>
-	    </section>
-
+                          </div>
+                  <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+                          </div>
+                        </div>
+                </div>
+            </div>
+         </div>
           </div>
-          <!-- /.container-fluid -->
-        <!-- End of Main Content -->
 {% endblock content %}

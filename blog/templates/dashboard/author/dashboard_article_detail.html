@@ -1,0 +1,48 @@
+{% extends 'dashboard/author/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+{{ article_title }}
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+
+{% block content %}
+
+<div class="main-wrapper">
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">{{ article.title }}</h2>
+				    <div class="meta mb-3">
+                        {% if article.status == "PUBLISHED" %}
+                           <span class="date">Published {{ article.date_published.date|timesince }} ago</span>
+                        {% else  %}
+                            <span class="date">Created {{ article.date_created.date|timesince }} ago</span>
+                        {% endif %}
+                        <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                        <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                      <div class="float-right">
+                        <span class="date"><a href="#"><i class="fab fa-twitter h5"></i></a></span>
+                        <span class="date"><a href="#"><i class="fab fa-facebook h5"></i></a></span>
+                        <span class="date"><a href="#"><i class="fab fa-linkedin h5"></i></a></span>
+                    </div>
+                    </div>
+
+			    </header>
+
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="{{ article.image.url }}" alt="image"></a>
+				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
+				    </figure>
+				    <p>{{ article.body | safe }}</p>
+                </div>
+            </div>
+        </article>
+</div>
+{% endblock content %}

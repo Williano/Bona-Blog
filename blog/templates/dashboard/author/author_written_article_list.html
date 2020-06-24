@@ -12,81 +12,98 @@
 
 
 {% block content %}
-
-     <section class="blog-list px-3 py-5 p-md-5">
-     {% if written_articles_list %}
-		    <div class="container">
-           {% for article in written_articles_list  %}
-			    <div class="item mb-5">
-				    <div class="media">
-					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
-					    <div class="media-body">
-						    <h3 class="title mb-1"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-						    <div class="meta mb-1">
-                               <span class="date">Created {{ article.date_created|timesince }}</span>
-                                <span class="date">Status:
-                                    <b {% if article.status == "PUBLISHED" %} class="text-success"
-                                       {% elif article.status == "DRAFTED" %} class="text-primary"
-                                        {% else %}
-                                        class="text-danger"
-                                       {% endif %}
-                                    >
-                                    {{ article.status }}</b>
-                                </span>
-                                <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
-                                <span class="time">
-								<i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								</i>
-								<div class="dropdown-menu">
-								    <a class="dropdown-item" href="{% url 'blog:article_update' article.slug %}">Edit Article</a>
-                                    <div class="dropdown-divider w-100" ></div>
-									<a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
-								</div>
-							  </span>
+        <div class="container mb-3">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4 class="title">All Written Articles</h4>
                             </div>
-						    <div class="intro">{{ article.body|truncatewords:32 }}</div>
-						    <a class="more-link" href="{{ article.get_absolute_url }}">View details &rarr;</a>
-					    </div><!--//media-body-->
-				    </div><!--//media-->
-			    </div><!--//item-->
-         {% endfor %}
-		    </div>
-     {% else %}
-               <center><div class="alert alert-info"><b>No Drafted Articles</b></div></center>
-     {% endif %}
-	    </section>
+                          <div class="card-body">
+                            <div class="content">
+                             <section class="blog-list px-3 py-5 p-md-5">
+                             {% if written_articles_list %}
+                                    <div class="container">
+                                   {% for article in written_articles_list  %}
+                                        <div class="item mb-5">
+                                            <div class="media">
+                                                <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
+                                                <div class="media-body">
+                                                    <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
+                                                    <div class="meta mb-1">
+                                                       <span class="date">Created {{ article.date_created|timesince }}</span>
+                                                        <span class="date">Status:
+                                                            <b {% if article.status == "PUBLISHED" %} class="text-success"
+                                                               {% elif article.status == "DRAFTED" %} class="text-primary"
+                                                                {% else %}
+                                                                class="text-danger"
+                                                               {% endif %}
+                                                            >
+                                                            {{ article.status }}</b>
+                                                        </span>
+                                                        <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                                                        <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                                                        <span class="time">
+                                                        <i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        </i>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
+                                                            <div class="dropdown-divider w-100" ></div>
+                                                            <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
+                                                        </div>
+                                                      </span>
+                                                    </div>
+                                                    <div class="intro">{{ article.body|safe|truncatewords:32 }}</div>
+                                                    <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
+                                                <hr class="solid"><!-- Solid divider -->
+                                                </div><!--//media-body-->
+                                            </div><!--//media-->
+                                        </div><!--//item-->
+                                 {% endfor %}
+                                    </div>
+                             {% else %}
+                                       <center><div class="alert alert-info"><b>No Drafted Articles</b></div></center>
+                             {% endif %}
+                                </section>
 
-             {# Pagination for article post #}
-            {% if is_paginated %}
+                                     {# Pagination for article post #}
+                                    {% if is_paginated %}
 
-                {# Displays previous pages #}
-                {% if page_obj.has_previous %}
-                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-                    <a class="btn btn-outline-info mb-4"
-                       href="?page={{ page_obj.previous_page_number }}">Previous
-                    </a>
-                {% endif %}
+                                        {# Displays previous pages #}
+                                        {% if page_obj.has_previous %}
+                                            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                                            <a class="btn btn-outline-info mb-4"
+                                               href="?page={{ page_obj.previous_page_number }}">Previous
+                                            </a>
+                                        {% endif %}
 
-                {# Displays current page #}
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                    {% endif %}
-                 {% endfor %}
+                                        {# Displays current page #}
+                                        {% for num in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == num %}
+                                                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                                            {% endif %}
+                                         {% endfor %}
 
-                {# Displays next pages #}
-               {% if page_obj.has_next %}
-                    <a class="btn btn-outline-info mb-4"
-                       href="?page={{ page_obj.next_page_number }}">Next
-                    </a>
-                    <a class="btn btn-outline-info mb-4"
-                       href="?page={{ page_obj.paginator.num_pages }}">Last
-                    </a>
-                {% endif %}
+                                        {# Displays next pages #}
+                                       {% if page_obj.has_next %}
+                                            <a class="btn btn-outline-info mb-4"
+                                               href="?page={{ page_obj.next_page_number }}">Next
+                                            </a>
+                                            <a class="btn btn-outline-info mb-4"
+                                               href="?page={{ page_obj.paginator.num_pages }}">Last
+                                            </a>
+                                        {% endif %}
 
-            {% endif %}
+                                    {% endif %}
+
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
 
     <div
       class="modal fade"

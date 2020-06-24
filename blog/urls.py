@@ -31,11 +31,11 @@ from blog.views.blog.comment_views import (
 
 from blog.views.dashboard.author.dashboard_views import (
     DashboardView,
+    DashboardArticleDetailView,
     ArticlePublishView,
     AuthorWrittenArticleView,
     AuthorPublishedArticleView,
     AuthorDraftedArticleView,
-
 )
 
 from blog.views.dashboard.author.author_profile_views import (
@@ -264,6 +264,14 @@ urlpatterns = [
         route="me/articles/drafts/",
         view=AuthorDraftedArticleView.as_view(),
         name="drafted_articles"
+    ),
+
+    # /dashboard/<str:slug>/
+    path(
+        route="dashboard/<str:slug>/",
+        view=DashboardArticleDetailView.as_view(),
+        name='dashboard_article_detail'
+
     ),
 
 ]

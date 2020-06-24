@@ -116,3 +116,7 @@
  .blog-post .blockquote p {
 	 font-size: 1.5rem;
 }
+
+ hr.solid {
+    border-top: 4px solid #999;
+}

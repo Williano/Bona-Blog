@@ -31,12 +31,35 @@ class DashboardView(LoginRequiredMixin, View):
         total_articles_comments = sum(
             article.comments.count() for article in articles_list)
 
+        recent_published_articles_list = articles_list.filter(
+            status=Article.PUBLISHED).order_by("-date_published")[:5]
+
         self.context['total_articles_written'] = total_articles_written
         self.context['total_articles_published'] = total_articles_published
         self.context['total_articles_views'] = total_articles_views
         self.context['total_articles_comments'] = total_articles_comments
+        self.context['recent_published_articles_list'] = recent_published_articles_list
 
         return render(request, self.template_name, self.context)
+
+
+class DashboardArticleDetailView(LoginRequiredMixin, View):
+    """
+       Displays article details.
+    """
+    def get(self, request,  *args, **kwargs):
+        """
+           Returns article details.
+        """
+        template_name = 'dashboard/author/dashboard_article_detail.html'
+        context_object = {}
+
+        article = get_object_or_404(Article, slug=self.kwargs.get("slug"))
+
+        context_object['article_title'] = article.title
+        context_object['article'] = article
+
+        return render(request, template_name, context_object)
 
 
 class ArticlePublishView(LoginRequiredMixin, View):
@@ -78,7 +101,7 @@ class AuthorWrittenArticleView(LoginRequiredMixin, View):
 
         page = request.GET.get('page', 1)
 
-        paginator = Paginator(written_articles, 25)
+        paginator = Paginator(written_articles, 5)
         try:
             written_articles_list = paginator.page(page)
         except PageNotAnInteger:
@@ -105,12 +128,12 @@ class AuthorPublishedArticleView(LoginRequiredMixin, View):
         context_object = {}
 
         published_articles = Article.objects.filter(author=request.user.id,
-                                                    status=Article.PUBLISHED)
+                                                    status=Article.PUBLISHED).order_by('-date_published')
         total_articles_published = len(published_articles)
 
         page = request.GET.get('page', 1)
 
-        paginator = Paginator(published_articles, 25)
+        paginator = Paginator(published_articles, 5)
         try:
             published_articles_list = paginator.page(page)
         except PageNotAnInteger:
@@ -136,12 +159,12 @@ class AuthorDraftedArticleView(LoginRequiredMixin, View):
         context_object = {}
 
         drafted_articles = Article.objects.filter(author=request.user.id,
-                                                  status=Article.DRAFTED)
+                                                  status=Article.DRAFTED).order_by('-date_published')
         total_articles_drafted = len(drafted_articles)
 
         page = request.GET.get('page', 1)
 
-        paginator = Paginator(drafted_articles, 25)
+        paginator = Paginator(drafted_articles, 5)
         try:
             drafted_articles_list = paginator.page(page)
         except PageNotAnInteger:
@@ -153,3 +176,4 @@ class AuthorDraftedArticleView(LoginRequiredMixin, View):
         context_object['total_articles_drafted'] = total_articles_drafted
 
         return render(request, template_name, context_object)
+

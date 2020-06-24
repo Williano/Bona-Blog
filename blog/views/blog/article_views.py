@@ -154,7 +154,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
             return JsonResponse(data=article_preview)
 
-        elif action == self.SAVE_AS_DRAFT:
+        if action == self.SAVE_AS_DRAFT:
             template_name = 'blog/article/article_create_form.html'
             context_object = {'form': form}
 
@@ -165,7 +165,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                 form.instance.save()
                 messages.success(self.request, f"'{form.instance.title}'"
                                                f" successfully saved as Draft.")
-                return redirect("/")
+                return redirect("blog:drafted_articles")
             else:
                 messages.error(self.request,
                                "You saved the article as draft but selected "
@@ -175,7 +175,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                                "save the article as draft.")
                 return render(self.request, template_name, context_object)
 
-        elif action == self.PUBLISH:
+        if action == self.PUBLISH:
             template_name = 'blog/article/article_create_form.html'
             context_object = {'form': form}
 
@@ -195,8 +195,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
                                "article.")
                 return render(self.request, template_name, context_object)
 
-        else:
-            return HttpResponseBadRequest
+        return HttpResponseBadRequest
 
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
