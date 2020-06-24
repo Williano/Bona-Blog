@@ -15,7 +15,7 @@ class DashboardView(LoginRequiredMixin, View):
     Display homepage of the dashboard.
     """
     context = {}
-    template_name = 'dashboard/author/dashboard.html'
+    template_name = 'dashboard/author/dashboard_home.html'
 
     def get(self, request, *args, **kwargs):
         """

@@ -219,7 +219,7 @@ urlpatterns = [
 
     # /author/dashboard/
     path(
-        route="author/dashboard/",
+        route="author/dashboard/home/",
         view=DashboardView.as_view(),
         name="dashboard_home"
     ),

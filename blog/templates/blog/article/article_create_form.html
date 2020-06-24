@@ -13,13 +13,26 @@
 
 {% block content %}
     {{ form.media }}
-    <br />
+
+      <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="ik ik-file-text bg-blue"></i>
+                    <div class="d-inline">
+                        <h5>Write Article</h5>
+                        <span>Write a new article.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="content-section">
 
             <div class="card shadow-sm mb-3 w-100">
 
-            <h4 class="card-header">Create Article</h4>
+            <h4 class="card-header">Write A New Article</h4>
 
             <div class="card-body">
                     <form method="POST" action="{% url 'blog:article_create' %}" id="articleForm" enctype="multipart/form-data">

@@ -88,7 +88,8 @@ class ArticleCreateForm(forms.ModelForm):
                                  "class": "form-control selectpicker",
                                  "name": "status", "type": "text",
                                  "id": "articleStatus",
-                                 "data-live-search": "true"
+                                 "data-live-search": "true",
+                                 "title": "Select Status"
                              }
                              ),
         }
