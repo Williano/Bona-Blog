@@ -50,9 +50,36 @@
 
 								<ul class="icons">
 									<li>SHARE : </li>
-									<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ article.get_absolute_url }}"><i class="ion-social-facebook"></i></a></li>
-									<li><a href="#"><i class="ion-social-twitter"></i></a></li>
-									<li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+                                    <li>
+                                        <a href="mailto:?subject={{ article.title }}&amp;body=Check out this article {{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-android-mail"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ article.title }}&summary={{ article.body|safe|truncatewords:32 }}&source={{ request.build_absolute_uri }}"  target="_blank">
+                                        <i class="ion-social-linkedin"></i>
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-social-facebook"></i>
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="http://twitter.com/share?text=I just published {{ article.title }}. &url={{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-social-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank">
+                                            <i class="ion-social-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank">
+                                            <i class="fa fa-telegram"></i>
+                                        </a>
+                                    </li>
 								</ul>
 							</div>
 {#							<p class="para">#}

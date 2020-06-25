@@ -1,5 +1,6 @@
-{% extends 'dashboard/author/dashboard_base.html' %}
+{% extends 'dashboard/dashboard_base.html' %}
 {% load static %}
+{% load only_hours %}
 
 {% block title %}
     Published Articles
@@ -44,7 +45,7 @@
                                                         <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
                                                         <div class="media-body">
                                                             <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
-                                                            <div class="meta mb-1"><span class="date">Published {{ article.date_published|timesince}} ago</span>
+                                                            <div class="meta mb-1"><span class="date">Published {{ article.date_published|timesince|upto:','}} ago</span>
                                                                 <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                                                                 <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
                                                                 <span class="comment">{{ article.views }} view{{ article.views|pluralize }}</span>

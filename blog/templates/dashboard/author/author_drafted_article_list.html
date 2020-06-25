@@ -1,5 +1,6 @@
-{% extends 'dashboard/author/dashboard_base.html' %}
+{% extends 'dashboard/dashboard_base.html' %}
 {% load static %}
+{% load only_hours %}
 
 {% block title %}
     Drafted Articles
@@ -46,7 +47,7 @@
                                                 <div class="media-body">
                                                     <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
                                                     <div class="meta mb-1">
-                                                        <span class="date">Created {{ article.date_created|timesince}} ago</span>
+                                                        <span class="date">Created {{ article.date_created|timesince|upto:','}} ago</span>
                                                         <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                                                         <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
                                                         <span class="time">
