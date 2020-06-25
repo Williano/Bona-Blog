@@ -27,9 +27,33 @@
                         <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                         <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
                       <div class="float-right">
-                        <span class="date"><a href="#"><i class="fab fa-twitter h5"></i></a></span>
-                        <span class="date"><a href="#"><i class="fab fa-facebook h5"></i></a></span>
-                        <span class="date"><a href="#"><i class="fab fa-linkedin h5"></i></a></span>
+                        <span class="date">
+                            <a href="mailto:?subject={{ article.title }}&amp;body=Check out this article {{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fa fa-envelope h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ article.title }}&summary={{ article.body|safe|truncatewords:32 }}&source={{ request.build_absolute_uri }}"  target="_blank">
+                                <i class="fab fa-linkedin h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-facebook h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="http://twitter.com/share?text=I just published {{ article.title }}. &url={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-twitter h6"></i></a>
+                        </span>
+                          <span class="date">
+                            <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-whatsapp-square h6"></i></a>
+                        </span>
+                         <span class="date">
+                            <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank">
+                                <i class="fab fa-telegram h6"></i></a>
+                        </span>
                     </div>
                     </div>
 
