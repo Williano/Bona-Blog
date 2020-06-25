@@ -55,6 +55,7 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'article', 'comment')
     date_hierarchy = 'date_created'
     ordering = ['date_created', ]
+    readonly_fields = ('name', 'email', 'comment', 'article', 'date_created', 'date_updated',)
 
 
 # Registers the comment model at the admin backend.

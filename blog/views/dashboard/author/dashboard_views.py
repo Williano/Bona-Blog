@@ -223,6 +223,24 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
+class ArticleDelete(LoginRequiredMixin, View):
+    """
+      Deletes user article
+    """
+
+    def post(self, *args, **kwargs):
+        # get article with slug
+        # check if article author is same as current user
+        # if user is not owner of article, return permission denied error
+        # dispaly error message that "You can't delete an article you have no right to"
+        # if author is owner of article, set deleted to true
+        # redirect to list of published articles
+        # display success message "Article deleted successfully"
+        pass
+
+
+
+
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
                         SuccessMessageMixin, DeleteView):
     model = Article
