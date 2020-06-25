@@ -6,9 +6,6 @@ from blog.views.blog.article_views import (
     ArticleListView,
     ArticleDetailView,
     ArticleSearchListView,
-    ArticleCreateView,
-    ArticleUpdateView,
-    ArticleDeleteView,
     TagArticlesListView,
 )
 
@@ -30,7 +27,10 @@ from blog.views.blog.comment_views import (
 )
 
 from blog.views.dashboard.author.dashboard_views import (
-    DashboardView,
+    DashboardHomeView,
+    ArticleCreateView,
+    ArticleUpdateView,
+    ArticleDeleteView,
     DashboardArticleDetailView,
     ArticlePublishView,
     AuthorWrittenArticleView,
@@ -220,7 +220,7 @@ urlpatterns = [
     # /author/dashboard/
     path(
         route="author/dashboard/home/",
-        view=DashboardView.as_view(),
+        view=DashboardHomeView.as_view(),
         name="dashboard_home"
     ),
 
