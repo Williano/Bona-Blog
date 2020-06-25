@@ -41,6 +41,7 @@ class ArticleAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'date_published'
     ordering = ['status', 'date_published', ]
+    readonly_fields = ('views', 'count_words', 'read_time')
 
 
 # Registers the article model at the admin backend.
