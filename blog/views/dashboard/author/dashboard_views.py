@@ -68,33 +68,12 @@ class ArticleWriteView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         action = self.request.POST.get("action")
 
-        if action == self.PREVIEW:
-            title = form.cleaned_data['title']
-            category = form.cleaned_data['category']
-            body = form.cleaned_data['body']
-            tags = form.cleaned_data['tags']
-            status = form.cleaned_data['status']
-
-            article_object = Article(title=title, category=category,
-                                     body=body, status=status,
-                                     tags=tags)
-
-            article_preview = {"title": article_object.title,
-                               "category": str(article_object.category),
-                               "body": article_object.body,
-                               "tags": article_object.tags,
-                               "status": article_object.status
-                               }
-
-            return JsonResponse(data=article_preview)
-
         if action == self.SAVE_AS_DRAFT:
             template_name = 'dashboard/author/article_create_form.html'
             context_object = {'form': form}
 
             if form.instance.status == Article.DRAFTED:
                 form.instance.author = self.request.user
-                form.instance.tags = form.cleaned_data['tags']
                 form.instance.date_published = None
                 form.instance.save()
                 messages.success(self.request, f"Article drafted successfully.")
@@ -142,30 +121,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         action = self.request.POST.get("action")
 
-        if action == self.PREVIEW:
-
-            title = form.cleaned_data['title']
-            category = form.cleaned_data['category']
-            image = form.cleaned_data['image']
-            body = form.cleaned_data['body']
-            tags = form.cleaned_data['tags']
-            status = form.cleaned_data['status']
-
-            article_object = Article(title=title, category=category,
-                                     image=image, body=body, status=status,
-                                     tags=tags)
-
-            article_preview = {"title": article_object.title,
-                               "category": str(article_object.category),
-                               "image": str(article_object.image),
-                               "body": article_object.body,
-                               "tags": article_object.tags,
-                               "status": article_object.status
-                               }
-
-            return JsonResponse(data=article_preview)
-
-        elif action == self.SAVE_AS_DRAFT:
+        if action == self.SAVE_AS_DRAFT:
 
             if form.instance.status == Article.DRAFTED:
                 form.instance.author = self.request.user
@@ -186,7 +142,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                                "save the article as draft.")
                 return render(self.request, template_name, context_object)
 
-        elif action == self.PUBLISH:
+        if action == self.PUBLISH:
             template_name = 'dashboard/author/article_update_form.html'
             context_object = {'form': form}
 
@@ -206,8 +162,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                                "article.")
                 return render(self.request, template_name, context_object)
 
-        else:
-            return HttpResponseBadRequest
+        return HttpResponseBadRequest
 
     def test_func(self):
         """
