@@ -109,11 +109,15 @@
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">
 
+                                <div class="nav-lavel">Home</div>
+                                <div class="nav-item">
+                                    <a href="{% url 'blog:dashboard_home' %}"><i class="ik ik-home"></i><span>Home</span></a>
+                                </div>
                                 <div class="nav-lavel">Article</div>
                                 <div class="nav-item has-sub">
                                     <a href="javascript:void(0)"><i class="ik ik-book"></i><span>Article</span></a>
                                     <div class="submenu-content">
-                                        <a href="{% url 'blog:article_create' %}" class="menu-item">
+                                        <a href="{% url 'blog:article_write' %}" class="menu-item">
                                             <i class="ik ik-edit-2"></i><span>Write A New Article</span></a>
                                     </div>
                                 </div>
@@ -127,7 +131,7 @@
                                             <i class="ik ik-layers"></i><span>Published Articles</span></a>
                                         <a href="{% url 'blog:drafted_articles' %}" class="menu-item">
                                             <i class="ik ik-file-text"></i><span>Drafted Articles</span></a>
-                                        <a href="pages/register.html" class="menu-item"><i class="ik ik-x-circle"></i>
+                                        <a href="{% url 'blog:deleted_articles' %}" class="menu-item"><i class="ik ik-x-circle"></i>
                                             <span>Deleted Articles</span></a>
                                     </div>
                                 </div>
@@ -216,10 +220,10 @@
                                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false"><i class="ik ik-book"></i><span>Articles</span></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{% url 'blog:article_create' %}">Write A New Article</a>
+                                        <a class="dropdown-item" href="{% url 'blog:article_write' %}">Write A New Article</a>
                                         <a class="dropdown-item" href="{% url 'blog:published_articles' %}">List of Published Articles</a>
                                         <a class="dropdown-item" href="{% url 'blog:drafted_articles' %}">List of Drafted Articles</a>
-                                        <a class="dropdown-item" href="#">List of Deleted Articles</a>
+                                        <a class="dropdown-item" href="{% url 'blog:deleted_articles' %}">List of Deleted Articles</a>
                                     </div>
                                 </div>
                                 <div class="app-item dropdown">

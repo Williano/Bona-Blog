@@ -28,14 +28,15 @@ from blog.views.blog.comment_views import (
 
 from blog.views.dashboard.author.dashboard_views import (
     DashboardHomeView,
-    ArticleCreateView,
+    ArticleWriteView,
     ArticleUpdateView,
     ArticleDeleteView,
     DashboardArticleDetailView,
     ArticlePublishView,
-    AuthorWrittenArticleView,
-    AuthorPublishedArticleView,
-    AuthorDraftedArticleView,
+    AuthorWrittenArticlesView,
+    AuthorPublishedArticlesView,
+    AuthorDraftedArticlesView,
+    AuthorDeletedArticlesView,
 )
 
 from blog.views.dashboard.author.author_profile_views import (
@@ -83,27 +84,6 @@ urlpatterns = [
         name='article_search_list_view'
 
      ),
-
-    # /article-new/
-    path(
-        route='article/create/',
-        view=ArticleCreateView.as_view(),
-        name="article_create"
-    ),
-
-    # /article/<str:slug>/update/
-    path(
-        route='article/<str:slug>/update/',
-        view=ArticleUpdateView.as_view(),
-        name="article_update"
-    ),
-
-    # /article/<str:slug>/delete/
-    path(
-        route='article/<str:slug>/delete/',
-        view=ArticleDeleteView.as_view(),
-        name="article_delete"
-    ),
 
     # /tag/<str:tag_name>/
     path(
@@ -238,35 +218,63 @@ urlpatterns = [
         name='author_profile_update'
     ),
 
-    # /article/<str:slug>/publish/
+    # me/article/write
+    path(
+        route='me/article/write/',
+        view=ArticleWriteView.as_view(),
+        name="article_write"
+    ),
+
+    # me/article/<str:slug>/update/
+    path(
+        route='me/article/<str:slug>/update/',
+        view=ArticleUpdateView.as_view(),
+        name="article_update"
+    ),
+
+    # /article/<str:slug>/delete/
+    path(
+        route='me/article/<str:slug>/delete/',
+        view=ArticleDeleteView.as_view(),
+        name="article_delete"
+    ),
+
+    # /me/<str:slug>/publish/
     path(
         route="article/<str:slug>/publish/",
         view=ArticlePublishView.as_view(),
         name="publish_article"
     ),
 
-    # /author/articles/written/
+    # /me/articles/written/
     path(
         route="me/articles/written/",
-        view=AuthorWrittenArticleView.as_view(),
+        view=AuthorWrittenArticlesView.as_view(),
         name="written_articles"
     ),
 
-    # /author/articles/published/
+    # /me/articles/published/
     path(
         route="me/articles/published/",
-        view=AuthorPublishedArticleView.as_view(),
+        view=AuthorPublishedArticlesView.as_view(),
         name="published_articles"
     ),
 
-    # /author/articles/drafted/
+    # /me/articles/drafted/
     path(
         route="me/articles/drafts/",
-        view=AuthorDraftedArticleView.as_view(),
+        view=AuthorDraftedArticlesView.as_view(),
         name="drafted_articles"
     ),
 
-    # /dashboard/<str:slug>/
+    # /me/articles/deleted/
+    path(
+        route="me/articles/deleted/",
+        view=AuthorDeletedArticlesView.as_view(),
+        name="deleted_articles"
+    ),
+
+    # /me/<str:slug>/
     path(
         route="me/<str:slug>/",
         view=DashboardArticleDetailView.as_view(),

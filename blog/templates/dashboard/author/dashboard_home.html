@@ -144,7 +144,7 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
                                                     <div class="dropdown-divider w-100" ></div>
-                                                    <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
+                                                    <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="javascript:void(0)">Delete Article</a>
                                                 </div>
                                               </span>
                                             </div>
@@ -154,6 +154,36 @@
                                         </div><!--//media-body-->
                                     </div><!--//media-->
                                 </div><!--//item-->
+                                  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
+                                            <button
+                                              class="close"
+                                              type="button"
+                                              data-dismiss="modal"
+                                              aria-label="Close"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Select "Delete Article" below if you want to delete the article.
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button
+                                              class="btn btn-secondary"
+                                              type="button"
+                                              data-dismiss="modal"
+                                            >
+                                              Cancel
+                                            </button>
+                                            <a class="btn btn-danger" href="{% url 'blog:article_delete' slug=article.slug %}">Delete Article</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
                          {% endfor %}
                             </div>
                      {% else %}
@@ -170,6 +200,8 @@
             </div>
          </div>
      </div>
+
+
 
 {% endblock content %}
 

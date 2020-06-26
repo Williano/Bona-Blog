@@ -35,7 +35,7 @@
             <h4 class="card-header">Write A New Article</h4>
 
             <div class="card-body">
-                    <form method="POST" action="{% url 'blog:article_create' %}" id="articleForm" enctype="multipart/form-data">
+                    <form method="POST" action="{% url 'blog:article_write' %}" id="articleForm" enctype="multipart/form-data">
                         {% csrf_token %}
                               <div class="form-group">
                                 <label for="articleTitle">Article Title*</label>

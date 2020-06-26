@@ -22,7 +22,7 @@ class CategoryArticlesListView(ListView):
 
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs.get('slug'))
-        return Article.objects.filter(category=category)
+        return Article.objects.filter(category=category, status=Article.PUBLISHED, deleted=False)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryArticlesListView, self).get_context_data(**kwargs)

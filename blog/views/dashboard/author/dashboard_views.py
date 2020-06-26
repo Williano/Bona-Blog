@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.views.generic import View, UpdateView, CreateView, DeleteView
@@ -30,13 +30,13 @@ class DashboardHomeView(LoginRequiredMixin, View):
 
         total_articles_written = len(articles_list)
         total_articles_published = len(
-            articles_list.filter(status=Article.PUBLISHED))
+            articles_list.filter(status=Article.PUBLISHED, deleted=False))
         total_articles_views = sum(article.views for article in articles_list)
         total_articles_comments = sum(
             article.comments.count() for article in articles_list)
 
         recent_published_articles_list = articles_list.filter(
-            status=Article.PUBLISHED).order_by("-date_published")[:5]
+            status=Article.PUBLISHED, deleted=False).order_by("-date_published")[:5]
 
         self.context['total_articles_written'] = total_articles_written
         self.context['total_articles_published'] = total_articles_published
@@ -47,7 +47,7 @@ class DashboardHomeView(LoginRequiredMixin, View):
         return render(request, self.template_name, self.context)
 
 
-class ArticleCreateView(LoginRequiredMixin, CreateView):
+class ArticleWriteView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/author/article_create_form.html'
     form_class = ArticleCreateForm
     object = None
@@ -93,8 +93,8 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
             context_object = {'form': form}
 
             if form.instance.status == Article.DRAFTED:
-
                 form.instance.author = self.request.user
+                form.instance.tags = form.cleaned_data['tags']
                 form.instance.date_published = None
                 form.instance.save()
                 messages.success(self.request, f"Article drafted successfully.")
@@ -223,50 +223,38 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class ArticleDelete(LoginRequiredMixin, View):
+class ArticleDeleteView(LoginRequiredMixin, View):
     """
-      Deletes user article
+      Deletes article
     """
 
-    def post(self, *args, **kwargs):
-        # get article with slug
-        # check if article author is same as current user
-        # if user is not owner of article, return permission denied error
-        # dispaly error message that "You can't delete an article you have no right to"
-        # if author is owner of article, set deleted to true
-        # redirect to list of published articles
-        # display success message "Article deleted successfully"
-        pass
-
-
-
-
-class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin,
-                        SuccessMessageMixin, DeleteView):
-    model = Article
-    context_object_name = 'article'
-    success_url = reverse_lazy("blog:home")
-    success_message = "Article Deleted Successfully"
-    template_name = "dashboard/author/article_confirm_delete.html"
-
-    def test_func(self):
+    def get(self, *args, **kwargs):
         """
-             UserPassesTextMixin checks if it is the user before allowing
-             him/her to delete the article.
+           Checks if user who has requested to delete the article is the
+           owner of the article.
+           If the user is the owner, it sets the deleted field of the article to true and
+           return a successful message.
+           If the user is not the owner, it tells user he/she can't delete it
+        """
+        article = get_object_or_404(Article, slug=self.kwargs.get("slug"))
 
-          :return: bool:
-         """
-        article = self.get_object()
-        if self.request.user == article.author:
-            return True
-        return False
+        if self.request.user == article.author.username:
+            messages.error(request=self.request, message="You do not have permission to delete this article.")
+            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
+
+        article.deleted = True
+        article.save()
+
+        messages.success(request=self.request, message="Article Deleted Successfully")
+        return redirect(to='blog:deleted_articles')
 
 
 class DashboardArticleDetailView(LoginRequiredMixin, View):
     """
        Displays article details.
     """
-    def get(self, request,  *args, **kwargs):
+
+    def get(self, request, *args, **kwargs):
         """
            Returns article details.
         """
@@ -300,10 +288,10 @@ class ArticlePublishView(LoginRequiredMixin, View):
         article.save()
 
         messages.success(request, f"'{article.title}' Published successfully.")
-        return redirect('blog:dashboard_home')
+        return redirect('blog:published_articles')
 
 
-class AuthorWrittenArticleView(LoginRequiredMixin, View):
+class AuthorWrittenArticlesView(LoginRequiredMixin, View):
     """
        Displays all articles written by an author.
     """
@@ -315,7 +303,7 @@ class AuthorWrittenArticleView(LoginRequiredMixin, View):
         template_name = 'dashboard/author/author_written_article_list.html'
         context_object = {}
 
-        written_articles = Article.objects.filter(author=request.user.id).order_by('-date_created')
+        written_articles = Article.objects.filter(author=request.user.id, deleted=False).order_by('-date_created')
         total_articles_written = len(written_articles)
 
         page = request.GET.get('page', 1)
@@ -334,7 +322,7 @@ class AuthorWrittenArticleView(LoginRequiredMixin, View):
         return render(request, template_name, context_object)
 
 
-class AuthorPublishedArticleView(LoginRequiredMixin, View):
+class AuthorPublishedArticlesView(LoginRequiredMixin, View):
     """
        Displays published articles by an author.
     """
@@ -347,7 +335,7 @@ class AuthorPublishedArticleView(LoginRequiredMixin, View):
         context_object = {}
 
         published_articles = Article.objects.filter(author=request.user.id,
-                                                    status=Article.PUBLISHED).order_by('-date_published')
+                                                    status=Article.PUBLISHED, deleted=False).order_by('-date_published')
         total_articles_published = len(published_articles)
 
         page = request.GET.get('page', 1)
@@ -366,10 +354,11 @@ class AuthorPublishedArticleView(LoginRequiredMixin, View):
         return render(request, template_name, context_object)
 
 
-class AuthorDraftedArticleView(LoginRequiredMixin, View):
+class AuthorDraftedArticlesView(LoginRequiredMixin, View):
     """
        Displays drafted articles by an author.
     """
+
     def get(self, request):
         """
            Returns drafted articles by an author.
@@ -378,7 +367,7 @@ class AuthorDraftedArticleView(LoginRequiredMixin, View):
         context_object = {}
 
         drafted_articles = Article.objects.filter(author=request.user.id,
-                                                  status=Article.DRAFTED).order_by('-date_published')
+                                                  status=Article.DRAFTED, deleted=False).order_by('-date_published')
         total_articles_drafted = len(drafted_articles)
 
         page = request.GET.get('page', 1)
@@ -396,3 +385,34 @@ class AuthorDraftedArticleView(LoginRequiredMixin, View):
 
         return render(request, template_name, context_object)
 
+
+class AuthorDeletedArticlesView(LoginRequiredMixin, View):
+    """
+       Displays deleted articles by an author.
+    """
+
+    def get(self, request):
+        """
+           Returns deleted articles by an author.
+        """
+        template_name = 'dashboard/author/author_deleted_article_list.html'
+        context_object = {}
+
+        deleted_articles = Article.objects.filter(author=request.user.id,
+                                                  deleted=True).order_by('-date_published')
+        total_articles_deleted = len(deleted_articles)
+
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(deleted_articles, 5)
+        try:
+            deleted_articles_list = paginator.page(page)
+        except PageNotAnInteger:
+            deleted_articles_list = paginator.page(1)
+        except EmptyPage:
+            deleted_articles_list = paginator.page(paginator.num_pages)
+
+        context_object['deleted_articles_list'] = deleted_articles_list
+        context_object['total_articles_deleted'] = total_articles_deleted
+
+        return render(request, template_name, context_object)

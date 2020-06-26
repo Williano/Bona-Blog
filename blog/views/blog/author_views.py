@@ -17,7 +17,7 @@ class AuthorArticlesListView(ListView):
 
     def get_queryset(self):
         author = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Article.objects.filter(author=author)
+        return Article.objects.filter(author=author, status=Article.PUBLISHED, deleted=False)
 
     def get_context_data(self, **kwargs):
         context = super(AuthorArticlesListView, self).get_context_data(**kwargs)

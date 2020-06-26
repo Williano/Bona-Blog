@@ -49,11 +49,11 @@
                                                         <span class="date">Status:
                                                             <b {% if article.status == "PUBLISHED" %} class="text-success"
                                                                {% elif article.status == "DRAFTED" %} class="text-primary"
-                                                                {% else %}
+                                                                {% elif article.deleted == "True"%}
                                                                 class="text-danger"
                                                                {% endif %}
                                                             >
-                                                            {{ article.status }}</b>
+                                                            {{ article.deleted }}</b>
                                                         </span>
                                                         <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                                                         <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
@@ -63,7 +63,7 @@
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
                                                             <div class="dropdown-divider w-100" ></div>
-                                                            <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="#">Delete Article</a>
+                                                            <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="javascript:void(0)">Delete Article</a>
                                                         </div>
                                                       </span>
                                                     </div>
@@ -73,10 +73,40 @@
                                                 </div><!--//media-body-->
                                             </div><!--//media-->
                                         </div><!--//item-->
+                                       <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
+                                            <button
+                                              class="close"
+                                              type="button"
+                                              data-dismiss="modal"
+                                              aria-label="Close"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Select "Delete Article" below if you want to delete the article.
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button
+                                              class="btn btn-secondary"
+                                              type="button"
+                                              data-dismiss="modal"
+                                            >
+                                              Cancel
+                                            </button>
+                                            <a class="btn btn-danger" href="{% url 'blog:article_delete' slug=article.slug %}">Delete Article</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
                                  {% endfor %}
                                     </div>
                              {% else %}
-                                       <center><div class="alert alert-info"><b>No Drafted Articles</b></div></center>
+                                       <center><div class="alert alert-info"><b>No Written Articles</b></div></center>
                              {% endif %}
                                 </section>
 
@@ -119,42 +149,5 @@
             </div>
         </div>
 
-    <div
-      class="modal fade"
-      id="deleteModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Delete Article" below if you want to delete the article.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-danger" href="">Delete Article</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
 {% endblock content %}

@@ -19,7 +19,7 @@ from blog.forms.blog.comment_forms import CommentForm
 class ArticleListView(ListView):
     context_object_name = "articles"
     paginate_by = 12
-    queryset = Article.objects.filter(status=Article.PUBLISHED)
+    queryset = Article.objects.filter(status=Article.PUBLISHED, deleted=False)
     template_name = "blog/article/home.html"
 
     def get_context_data(self, **kwargs):
@@ -80,10 +80,10 @@ class ArticleSearchListView(ListView):
 
             if not search_results:
                 messages.info(self.request, f"No results for '{query}'")
-                return search_results.filter(status=Article.PUBLISHED)
+                return search_results.filter(status=Article.PUBLISHED, deleted=False)
             else:
                 messages.success(self.request, f"Results for '{query}'")
-                return search_results.filter(status=Article.PUBLISHED)
+                return search_results.filter(status=Article.PUBLISHED, deleted=False)
         else:
             messages.error(self.request, f"Sorry you did not enter any keyword")
             return []
@@ -114,7 +114,10 @@ class TagArticlesListView(ListView):
         tag_name = self.kwargs.get('tag_name', '')
 
         if tag_name:
-            tag_articles_list = Article.objects.filter(tags__name__in=[tag_name], status=Article.PUBLISHED)
+            tag_articles_list = Article.objects.filter(tags__name__in=[tag_name],
+                                                       status=Article.PUBLISHED,
+                                                       deleted=False
+                                                       )
 
             if not tag_articles_list:
                 messages.info(self.request, f"No Results for '{tag_name}' tag")
