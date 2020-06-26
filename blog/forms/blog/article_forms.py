@@ -1,6 +1,6 @@
 # Django imports
 from django import forms
-from django.forms import TextInput, Select, FileInput
+from django.forms import TextInput, Select, FileInput, CharField
 from tinymce import TinyMCE
 
 # Blog app imports
@@ -71,9 +71,12 @@ class ArticleCreateForm(forms.ModelForm):
 
                                ),
 
-            'body': TinyMCEWidget(
-                             attrs={'required': False, 'cols': 30, 'rows': 10}
-                             ),
+            'body': TextInput(attrs={
+                                     'required': 'false',
+                                     'id': 'body',
+                                     'name': "body",
+                                     'class': "form-control",
+                                     }),
 
             'tags': TextInput(attrs={
                                      'name': "article-title",
@@ -134,6 +137,22 @@ class ArticleUpdateForm(forms.ModelForm):
                                  "title": "Select Status"
                              }
                              ),
+            'body': TextInput(attrs={
+                'required': 'false',
+                'id': 'body',
+                'name': "body",
+                'class': "form-control",
+            }),
+
+            'image': FileInput(attrs={
+                "class": "form-control clearablefileinput",
+                "type": "file",
+                "id": "articleImage",
+                "name": "article-image"
+            }
+
+            ),
+
             'tags': TextInput(attrs={
                 'name': "article-title",
                 'class': "form-control",
