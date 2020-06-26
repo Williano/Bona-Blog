@@ -15,7 +15,7 @@ class Comment(models.Model):
                                 related_name='comments')
     date_created = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('-date_created',)

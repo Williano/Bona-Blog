@@ -40,7 +40,7 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('author',)
     date_hierarchy = 'date_published'
-    ordering = ['status', 'date_published', ]
+    ordering = ['status', '-date_created', ]
     readonly_fields = ('views', 'count_words', 'read_time')
 
 
@@ -54,7 +54,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('date_created', 'name',)
     search_fields = ('name', 'article', 'comment')
     date_hierarchy = 'date_created'
-    ordering = ['date_created', ]
+    ordering = ['-date_created', ]
     readonly_fields = ('name', 'email', 'comment', 'article', 'date_created', 'date_updated',)
 
 
