@@ -25,7 +25,7 @@
 
                <div class="card-body">
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'blog:article_update' %}" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
 
                 {{ form|crispy }}

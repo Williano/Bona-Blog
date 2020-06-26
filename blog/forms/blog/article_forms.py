@@ -50,18 +50,6 @@ class ArticleCreateForm(forms.ModelForm):
                                      'id': "articleTitle"
                                      }),
 
-            # 'category': Select(choices=Category.objects.filter(approved=True),
-            #                    attrs={
-            #
-            #                        "class": "form-control selectpicker",
-            #                        "type": "text",
-            #                        "name": "article-category",
-            #                        "id": "articleCategory",
-            #                        "data-live-search": "true"
-            #
-            #                            }
-            #                    ),
-
             'image': FileInput(attrs={
                                         "class": "form-control clearablefileinput",
                                         "type": "file",
@@ -72,16 +60,16 @@ class ArticleCreateForm(forms.ModelForm):
                                ),
 
             'body': TextInput(attrs={
-                                     'required': 'false',
-                                     'id': 'body',
-                                     'name': "body",
-                                     'class': "form-control",
-                                     }),
+                       "rows": 5, "cols": 20,
+                       'id': 'content',
+                       'name': "article_content",
+                       'class': "form-control",
+                       }),
 
             'tags': TextInput(attrs={
                                      'name': "article-title",
                                      'class': "form-control",
-                                     'placeholder': "Enter Tags",
+                                     'placeholder': "Enter comma-separated list of tags.",
                                      'id': "articleTags"
                                      }),
 
@@ -139,7 +127,7 @@ class ArticleUpdateForm(forms.ModelForm):
                              ),
             'body': TextInput(attrs={
                 'required': 'false',
-                'id': 'body',
+                'id': 'content',
                 'name': "body",
                 'class': "form-control",
             }),

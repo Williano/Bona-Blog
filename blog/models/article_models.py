@@ -35,7 +35,7 @@ class Article(models.Model):
                                related_name='articles')
     image = models.ImageField(default='article-default.jpg',
                               upload_to='article_pics')
-    body = HTMLField('Content')
+    body = HTMLField('Content', blank=True)
     tags = TaggableManager(blank=True)
     date_published = models.DateTimeField(null=True, blank=True,
                                           default=timezone.now)

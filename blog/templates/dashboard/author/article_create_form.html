@@ -12,7 +12,7 @@
 {% endblock stylesheets %}
 
 {% block content %}
-
+{{ form.media }}
     <div class="container">
         <div class="content-section">
 
@@ -21,7 +21,8 @@
             <h4 class="card-header">Write A New Article</h4>
 
             <div class="card-body">
-                    <form method="POST" action="{% url 'blog:article_write' %}" id="articleForm" enctype="multipart/form-data">
+                    <form method="POST" action="{% url 'blog:article_write' %}" id="articleForm" enctype="multipart/form-data"
+                          novalidate>
                         {% csrf_token %}
                               <div class="form-group">
                                 <label for="articleTitle">Article Title*</label>
@@ -68,7 +69,7 @@
                                 <button class="btn btn-dark" name="action"
                                         value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
 
-                                <button class="btn btn-primary" name="action" value="PUBLISH"
+                                <button href="{% url 'blog:article_write' %}" class="btn btn-primary" name="action" value="PUBLISH"
                                         type="submit">PUBLISH</button>
                             </div>
                     </form>
