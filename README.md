@@ -98,7 +98,7 @@ Article Detail Page
 
 To run this app, you will need to follow these 3 steps:
 
-##### 1. Requirements
+#### 1. Requirements
   - a Laptop
 
   - Text Editor or IDE (eg. vscode, PyCharm)
@@ -106,7 +106,7 @@ To run this app, you will need to follow these 3 steps:
   - Git installed on your Laptop.
 
 
-##### 2. Install Dart and Flutter
+#### 2. Install Dart and Flutter
   - [Python3](https://www.python.org/downloads/)
 
   - [Pipenv](https://pipenv-es.readthedocs.io/es/stable/)
