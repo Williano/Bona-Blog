@@ -46,6 +46,7 @@ class Article(models.Model):
     views = models.PositiveIntegerField(default=0)
     count_words = models.CharField(max_length=50, default=0)
     read_time = models.CharField(max_length=50, default=0)
+    deleted = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ("title",)
@@ -61,6 +62,6 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('blog:article_detail', kwargs={'username': self.author.username, 'slug': self.slug})
+        return reverse('blog:article_detail', kwargs={'username': self.author.username.lower(), 'slug': self.slug})
 
 
