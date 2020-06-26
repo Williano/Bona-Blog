@@ -5,9 +5,9 @@ An Open-Source Web Blogging platform.
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Features](#features)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features](#features)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
@@ -48,88 +48,11 @@ Article Detail Page
  
 
 
-## Technologies
-* Python 3
-* Javascript
-* Jquery 
-* Ajax
-* Vuejs
-* Django 3
-* HTML5
-* CSS3 
-* Bootstrap 4
-* Ion Icons
-* Font awesome
-* TinyMCE
-* SQLite
-* PostgreSQL
-
-### Setup
-## Installation on Linux and Mac OS
-
-* [Follow the guide here](http://simononsoftware.com/virtualenv-tutorial/) on how to create virtualenv
-
-* To create a normal virtualenv (example _myvenv_) and activate it (see Code below).
-
-  ```
-  sudo apt-get install python-virtualenv
-  
-  virtualenv --python=python3.6.5 myvenv
-  
-  source myvenv/bin/activate
-
-  (myvenv) $ pip install -r requirements.txt
-
-  (myvenv) $ python manage.py makemigrations
-
-  (myvenv) $ python manage.py migrate
-
-  (myvenv) $ python manage.py runserver
-  ```
-* Copy the IP address provided once your server has completed building the site. (It will say something like >> Serving at 127.0.0.1....).
-* Open the address in the browser
-* Don't forget to Change ALLOWED_HOSTS = ['127.0.0.1'] in settings.py
-* `Note`: It is important that when you create your virtualenv, do not create it in the same folder as the code you downloaded.
-
-
-## Installation on Windows
-
-* [Follow the guide here](https://help.github.com/articles/fork-a-repo) on how to clone or fork a repo
-* [Follow the guide here](http://pymote.readthedocs.io/en/latest/install/windows_virtualenv.html) on how to create virtualenv
-
-* To create a normal virtualenv (example _myvenv_) and activate it (see Code below).
-
-  ```
-  1. Create main project folder with name of your choice (eg.Bona-Blog-Project) 
-  
-  2. Clone (git clone url) the project into that folder.
-   
-  3. Open the command prompt and navigate the project folder (Bona-Blog-Project)
-  
-  4. virtualenv bona-blog-project-env   # Create a virtual environment for the project with it's own packages.
-  
-  5. bona-blog-project-env\Scripts\activate    # Move into the virtual environment folder and activate the environment.
-  
-  6. cd Bona-Blog    # Move into second (bona_blog) folder.
-  
-  7. pip install -r requirements.txt  # install the requirements.
-
-  8. python manage.py migrate   # Migrate the data into the database.
-
-  9. python manage.py runserver   # Run the server.
-  
-  NOTE: You can use any text editor or IDE of your choice. 
-  ```
-* Copy the IP address provided once your server has completed building the site. (It will say something like >> Serving at 127.0.0.1....).
-* Open the address in the browser
-* Don't forget to Change ALLOWED_HOSTS = ['127.0.0.1'] in settings.py
-* `Note`: It is important that when you create your virtualenv, do not create it in the same folder as the code you downloaded.
-
-
 ## Features
 
 * [Mobile App Version](https://github.com/Williano/Bona-Blog-Mobile)
 * Dashboard for Authors
+* WYSIWYG Editor
 * Author Login
 * Author Password Reset
 * Authors List
@@ -153,6 +76,78 @@ Article Detail Page
 * Pagination
 * Clean Code
 * 90% test coverage
+
+
+## Technologies
+* Python 3
+* Javascript
+* Jquery 
+* Ajax
+* Vuejs
+* Django 3
+* HTML5
+* CSS3 
+* Bootstrap 4
+* Ion Icons
+* Font awesome
+* TinyMCE 5
+* SQLite
+* PostgreSQL
+
+## Setup
+
+To run this app, you will need to follow these 3 steps:
+
+#### 1. Requirements
+  - a Laptop
+
+  - Text Editor or IDE (eg. vscode, PyCharm)
+
+  - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your Laptop.
+
+
+#### 2. Install Python and Pipenv
+  - [Python3](https://www.python.org/downloads/)
+  
+
+  - [Pipenv](https://pipenv-es.readthedocs.io/es/stable/)
+
+#### 3. Local Setup and Running on Windows, Linux and Mac OS
+
+  ```
+  # Clone this repository into the directory of your choice
+  $ git clone https://github.com/Williano/Bona-Blog.git
+
+  # Move into project folder
+  $ cd Bona-Blog
+
+  # Install from Pipfile
+  $ pipenv install
+
+  # Activate the Pipenv shell
+  $ pipenv shell
+
+  # Create database tables
+  (Bona-Blog-XXXX) $ python manage.py migrate
+  
+  # Create superuser account
+  (Bona-Blog-XXXX) $ python manage.py createsuperuser
+
+  # Start server
+  (Bona-Blog-XXXX) $ python manage.py runserver
+  
+  # Copy the IP address provided once your server has completed building the site. (It will say something like >> Serving at 127.0.0.1....).
+  
+  # Open the address in the browser
+  >>> http://127.0.0.1:XXXX
+  
+  # Login into Dashboard and write articles
+  >>> http://127.0.0.1:8000/author/dashboard/home/
+  
+  # Django Admin
+  >>> http://127.0.0.1:XXXX/admin/
+  ```
+
 
 ## Status
 Project is: _in progress_
