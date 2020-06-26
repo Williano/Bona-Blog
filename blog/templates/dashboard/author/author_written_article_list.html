@@ -1,5 +1,6 @@
 {% extends 'dashboard/dashboard_base.html' %}
 {% load static %}
+{% load only_hours %}
 
 {% block title %}
     All Articles
@@ -45,15 +46,13 @@
                                                 <div class="media-body">
                                                     <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
                                                     <div class="meta mb-1">
-                                                       <span class="date">Created {{ article.date_created|timesince }}</span>
+                                                       <span class="date">Created {{ article.date_created|timesince|upto:',' }}</span>
                                                         <span class="date">Status:
-                                                            <b {% if article.status == "PUBLISHED" %} class="text-success"
-                                                               {% elif article.status == "DRAFTED" %} class="text-primary"
-                                                                {% elif article.deleted == "True"%}
-                                                                class="text-danger"
-                                                               {% endif %}
+                                                            <b {% if article.status == "PUBLISHED"%} class="text-success" {% endif %}
+                                                               {% if article.status == "DRAFTED" %} class="text-primary" {% endif %}
                                                             >
-                                                            {{ article.deleted }}</b>
+                                                            {{ article.status }}
+                                                            </b>
                                                         </span>
                                                         <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                                                         <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
