@@ -5,9 +5,9 @@ An Open-Source Web Blogging platform.
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Features](#features)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features](#features)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
@@ -48,6 +48,36 @@ Article Detail Page
  
 
 
+## Features
+
+* [Mobile App Version](https://github.com/Williano/Bona-Blog-Mobile)
+* Dashboard for Authors
+* WYSIWYG Editor
+* Author Login
+* Author Password Reset
+* Authors List
+* Author Articles List
+* Category List
+* Category Articles List
+* New Category Submission
+* Related Articles
+* Comments
+* Article Newsletter Subscribe
+* Articles Search
+* Article Social Media Share
+* Article Minute Read
+* Article Number of Words
+* Article Number of Views
+* Article Preview
+* Article Tags
+* Tag Related Articles
+* Markdown Support
+* Responsive on all devices
+* Pagination
+* Clean Code
+* 90% test coverage
+
+
 ## Technologies
 * Python 3
 * Javascript
@@ -60,7 +90,7 @@ Article Detail Page
 * Bootstrap 4
 * Ion Icons
 * Font awesome
-* TinyMCE
+* TinyMCE 5
 * SQLite
 * PostgreSQL
 
@@ -125,34 +155,6 @@ Article Detail Page
 * Don't forget to Change ALLOWED_HOSTS = ['127.0.0.1'] in settings.py
 * `Note`: It is important that when you create your virtualenv, do not create it in the same folder as the code you downloaded.
 
-
-## Features
-
-* [Mobile App Version](https://github.com/Williano/Bona-Blog-Mobile)
-* Dashboard for Authors
-* Author Login
-* Author Password Reset
-* Authors List
-* Author Articles List
-* Category List
-* Category Articles List
-* New Category Submission
-* Related Articles
-* Comments
-* Article Newsletter Subscribe
-* Articles Search
-* Article Social Media Share
-* Article Minute Read
-* Article Number of Words
-* Article Number of Views
-* Article Preview
-* Article Tags
-* Tag Related Articles
-* Markdown Support
-* Responsive on all devices
-* Pagination
-* Clean Code
-* 90% test coverage
 
 ## Status
 Project is: _in progress_
