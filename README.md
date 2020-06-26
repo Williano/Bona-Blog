@@ -103,15 +103,16 @@ To run this app, you will need to follow these 3 steps:
 
   - Text Editor or IDE (eg. vscode, PyCharm)
 
-  - Git installed on your Laptop.
+  - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your Laptop.
 
 
-#### 2. Install Dart and Flutter
+#### 2. Install Python and Pipenv
   - [Python3](https://www.python.org/downloads/)
+  
 
   - [Pipenv](https://pipenv-es.readthedocs.io/es/stable/)
 
-### Local setup on Windows, Linux and Mac OS
+#### 3. Local Setup and Running on Windows, Linux and Mac OS
 
   ```
   # Clone this repository into the directory of your choice
