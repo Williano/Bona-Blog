@@ -16,4 +16,5 @@
                 'visualchars charmap hr pagebreak nonbreaking anchor code ',
       toolbar_mode: 'floating',
       custom_undo_redo_levels: 20,
+       codesample_global_prismjs: true
     });
