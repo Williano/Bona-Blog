@@ -20,6 +20,20 @@ An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Py
 
 ## Screenshots
 
+ Authors Dashboard Page
+:-------------------------:
+![Screenshot_2020-06-25 Bona Dashboard Home](https://user-images.githubusercontent.com/19711677/85830207-d4e17200-b751-11ea-9de2-0a86b5bd296a.png)
+
+ Create Article Page
+:-------------------------:
+![Screenshot_2020-06-26 Bona Dashboard Create Article(2)](https://user-images.githubusercontent.com/19711677/85830197-d1e68180-b751-11ea-9a10-9653fc0c1a9d.png)
+
+
+Authors Profile Details Page
+:-------------------------:
+![Screenshot_2020-06-25 Bona Dashboard Profile Details](https://user-images.githubusercontent.com/19711677/85830204-d317ae80-b751-11ea-86ff-c7b5683ffea5.png)
+
+
 Home Page            |  List of Categories Page
 :-------------------------:|:-------------------------:
 ![Home](https://user-images.githubusercontent.com/19711677/56363189-264fb200-61db-11e9-9bba-77a3e7f7c1de.jpg) | ![Categories List](https://user-images.githubusercontent.com/19711677/56363187-264fb200-61db-11e9-8a90-0af49eb33758.jpg)
@@ -28,19 +42,9 @@ Category Articles List Page       |  Author Articles List Page
 :-------------------------:|:-------------------------:
 ![Category Article List](https://user-images.githubusercontent.com/19711677/56363188-264fb200-61db-11e9-8fef-fc83fb29f056.png) | ![Author Articles](https://user-images.githubusercontent.com/19711677/56363185-25b71b80-61db-11e9-9a42-2fffaa369d28.jpg)
 
-
-List of Authors Page    |  Create Article Page
-:-------------------------:|:-------------------------:
-![Authors List](https://user-images.githubusercontent.com/19711677/56363186-25b71b80-61db-11e9-9a0b-7f9daa6f30e9.png) | ![Screenshot_2020-06-24 Bona Dashboard Create Article](https://user-images.githubusercontent.com/19711677/85521488-edbf1b80-b5c9-11ea-93c6-787c68fc71f7.png)
-
-
-Authors Dashboard    |  Authors Profile Details Page
-:-------------------------:|:-------------------------:
-![Screenshot_2020-06-24 Bona Dashboard Home](https://user-images.githubusercontent.com/19711677/85521498-f0ba0c00-b5c9-11ea-87d8-0cf005038a62.png) | ![Screenshot_2020-06-24 Bona Dashboard Profile Details](https://user-images.githubusercontent.com/19711677/85521493-ee57b200-b5c9-11ea-8405-655cdd09408a.png)
-
 Article Detail Page 
 :-------------------------:
-![Article Detail](https://user-images.githubusercontent.com/19711677/56364113-55672300-61dd-11e9-869d-5a30adea9e21.jpg)
+![Screenshot_2020-06-26 BONA Test Article](https://user-images.githubusercontent.com/19711677/85830620-854f7600-b752-11ea-8386-f618535cf97d.jpg)
  
 
 
