@@ -19,7 +19,6 @@
   background-color: transparent;
   padding: 0 6px;
   margin: 0;
-  width: 100%;
   max-width: inherit;
 }
 .bootstrap-tagsinput.form-control input::-moz-placeholder {
