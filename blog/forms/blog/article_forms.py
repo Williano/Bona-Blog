@@ -63,8 +63,8 @@ class ArticleCreateForm(forms.ModelForm):
             'tags': TextInput(attrs={
                                      'name': "tags",
                                      'class': "form-control",
-                                     'placeholder': "Enter comma-separated list of tags.",
-                                     'id': "articleTags",
+                                     'placeholder': "Example: sports, game, politics",
+                                     'id': "tags",
                                      'data-role': "tagsinput"
                                      }),
 
