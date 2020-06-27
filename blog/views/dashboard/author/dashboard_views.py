@@ -150,8 +150,6 @@ class ArticleUpdateView(LoginRequiredMixin, View):
                                "save the article as draft.")
                 return render(request, self.template_name, self.context_object)
 
-            # tags = article_create_form.cleaned_data['tags']
-
             if not request.user == old_article.author.username:
                 messages.error(request=self.request, message="You do not have permission to update this article.")
                 return redirect(to="blog:written_articles")
