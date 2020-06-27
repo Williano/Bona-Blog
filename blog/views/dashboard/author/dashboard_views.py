@@ -356,7 +356,7 @@ class AuthorDraftedArticlesView(LoginRequiredMixin, View):
         context_object = {}
 
         drafted_articles = Article.objects.filter(author=request.user.id,
-                                                  status=Article.DRAFTED, deleted=False).order_by('-date_published')
+                                                  status=Article.DRAFTED, deleted=False).order_by('-date_created')
         total_articles_drafted = len(drafted_articles)
         print(total_articles_drafted)
 
