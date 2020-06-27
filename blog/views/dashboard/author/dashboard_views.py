@@ -276,7 +276,7 @@ class ArticlePublishView(LoginRequiredMixin, View):
         article.date_updated = timezone.now()
         article.save()
 
-        messages.success(request, f"'{article.title}' Published successfully.")
+        messages.success(request, f"Article Published successfully.")
         return redirect('blog:published_articles')
 
 
