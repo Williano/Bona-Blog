@@ -273,6 +273,7 @@ class ArticlePublishView(LoginRequiredMixin, View):
         article = get_object_or_404(Article, slug=self.kwargs.get('slug'))
         article.status = Article.PUBLISHED
         article.date_published = timezone.now()
+        article.date_updated = timezone.now()
         article.save()
 
         messages.success(request, f"'{article.title}' Published successfully.")
