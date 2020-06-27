@@ -14,6 +14,7 @@
 
 {% block content %}
 
+    <figure class="dash-article">
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
@@ -61,12 +62,12 @@
 
 			    <div class="blog-post-body">
 				    <figure class="blog-banner">
-				        <a href="https://made4dev.com"><img class="img-fluid" src="{{ article.image.url }}" alt="image"></a>
+				        <a href="https://made4dev.com"><img class="img-fluid" id="article-detail-image" src="{{ article.image.url }}" alt="image"></a>
 				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
 				    </figure>
 				    <p>{{ article.body | safe }}</p>
                 </div>
             </div>
         </article>
-
+    </figure>
 {% endblock content %}

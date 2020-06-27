@@ -1,6 +1,5 @@
 {% extends "dashboard/dashboard_base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block title %}
     Update Article
@@ -25,25 +24,58 @@
 
                <div class="card-body">
 
-        <form method="POST" action="{% url 'blog:article_update' slug=article.slug %}" enctype="multipart/form-data"
+        <form method="POST" action="{% url 'blog:article_update'  slug=article.slug %}" enctype="multipart/form-data"
               novalidate>
             {% csrf_token %}
 
-                {{ form|crispy }}
+                <div class="form-group">
+                           <label for="articleTitle">Article Title*</label>
+                                    <h6>{{ article_update_form.title.errors }}</h6>
+                                    {{ article_update_form.title }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleCategory">Select Category*</label>
+                                  <h6>{{ article_update_form.category.errors }}</h6>
+                                    {{ article_update_form.category }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Upload Article Image*</label>
+                                  <h6>{{ article_update_form.image.errors }}</h6>
+                                  Current image: <a class="text-danger" href="{{ article.image.url }}">{{ article.image }}</a>
+                                    {{ article_update_form.image }}
+                              </div>
+                              <div class="form-group">
+                                  <label for="article-content">Content*</label>
+                                  <h6>{{ article_update_form.body.errors }}</h6>
+                                  {{ article_update_form.body }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleTags">Enter Tags*</label>
+                                  <h6>{{ article_update_form.tags.errors }}</h6>
+                                   {{ article_update_form.tags }}
+
+                              <small id="hint_id_tags" class="form-text text-muted">
+                                  A comma-separated list of tags.</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Status*</label>
+                                  <h6>{{ article_update_form.status.errors }}</h6>
+                                   {{ article_update_form.status }}
+                              </div>
 
                 <div class="form-group float-right">
                     <button class="btn btn-info" name="action"
                             value="PREVIEW" id="preview-article"
                             type="submit" data-toggle="modal"
                             data-target="#formModalCenter"
-                            data-url="{% url 'blog:article_update' article.slug %}">
+                            data-url="">
                             PREVIEW</button>
 
                     <button class="btn btn-dark" name="action"
                             value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
 
                     <button class="btn btn-primary" name="action" value="PUBLISH"
-                            type="submit">UPDATE</button>
+                            type="submit">PUBLISH</button>
                 </div>
         </form>
                </div>

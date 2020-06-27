@@ -1,16 +1,10 @@
 # Django imports
 from django import forms
-from django.forms import TextInput, Select, FileInput, CharField
-from tinymce import TinyMCE
+from django.forms import TextInput, Select, FileInput
 
 # Blog app imports
 from blog.models.article_models import Article
 from blog.models.category_models import Category
-
-
-class TinyMCEWidget(TinyMCE):
-    def use_required_attribute(self, *args):
-        return False
 
 
 class ArticleCreateForm(forms.ModelForm):
@@ -115,6 +109,13 @@ class ArticleUpdateForm(forms.ModelForm):
         model = Article
         fields = ["title", "category", "image", "body", "tags", "status"]
         widgets = {
+            'title': TextInput(attrs={
+                'name': "article-title",
+                'class': "form-control",
+                'placeholder': "Enter Article Title",
+                'id': "articleTitle"
+            }),
+
             'status': Select(choices=STATUS_CHOICES,
                              attrs=
                              {
