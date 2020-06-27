@@ -67,6 +67,14 @@
 				    </figure>
 				    <p>{{ article.body | safe }}</p>
                 </div>
+                <br>
+                <div class="mb-10">
+                    <ul>
+                        {% for tag in article.tags.all %}
+                            <span class="badge badge-dark text-white">{{ tag.name }}</span>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </article>
     </figure>
