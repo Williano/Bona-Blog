@@ -1,13 +1,11 @@
 # Django imports.
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.urls import reverse_lazy
-from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
-from django.views.generic import View, UpdateView, CreateView, DeleteView
+from django.views.generic import View
 
 # Blog app imports.
 from blog.forms.blog.article_forms import ArticleUpdateForm, ArticleCreateForm
@@ -81,14 +79,22 @@ class ArticleWriteView(LoginRequiredMixin, View):
                                "save the article as draft.")
                 return render(request, self.template_name, self.context_object)
 
-            new_article = article_create_form.save(commit=False)
-            new_article.author = request.user
-            new_article.date_published = None
-            new_article.save()
-            article_create_form.save_m2m()
+            if article_create_form.is_valid():
 
-            messages.success(request, f"Article drafted successfully.")
-            return redirect("blog:drafted_articles")
+                new_article = article_create_form.save(commit=False)
+                new_article.author = request.user
+                new_article.date_published = None
+                new_article.save()
+                article_create_form.save_m2m()
+
+                print(new_article.tags.names)
+
+                messages.success(request, f"Article drafted successfully.")
+                return redirect("blog:drafted_articles")
+
+            self.context_object["article_create_form"] = article_create_form
+            messages.error(request, "Please fill required fields")
+            return render(request, self.template_name, self.context_object)
 
         if action == self.PUBLISH:
 
@@ -104,13 +110,18 @@ class ArticleWriteView(LoginRequiredMixin, View):
                                "article.")
                 return render(request, self.template_name, self.context_object)
 
-            new_article = article_create_form.save(commit=False)
-            new_article.author = request.user
-            new_article.save()
-            article_create_form.save_m2m()
+            if article_create_form.is_valid():
+                new_article = article_create_form.save(commit=False)
+                new_article.author = request.user
+                new_article.save()
+                article_create_form.save_m2m()
 
-            messages.success(self.request, f"Article published successfully.")
-            return redirect(to="blog:dashboard_article_detail", slug=new_article.slug)
+                messages.success(self.request, f"Article published successfully.")
+                return redirect(to="blog:dashboard_article_detail", slug=new_article.slug)
+
+            self.context_object["article_create_form"] = article_create_form
+            messages.error(request, "Please fill required fields")
+            return render(request, self.template_name, self.context_object)
 
 
 class ArticleUpdateView(LoginRequiredMixin, View):
@@ -124,7 +135,7 @@ class ArticleUpdateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
 
         old_article = get_object_or_404(Article, slug=self.kwargs.get("slug"))
-        article_update_form = ArticleUpdateForm(instance=old_article)
+        article_update_form = ArticleUpdateForm(instance=old_article, initial={'tags': old_article.tags.names})
 
         self.context_object["article_update_form"] = article_update_form
         self.context_object["article"] = old_article
@@ -154,15 +165,20 @@ class ArticleUpdateView(LoginRequiredMixin, View):
                 messages.error(request=self.request, message="You do not have permission to update this article.")
                 return redirect(to="blog:written_articles")
 
-            updated_article = article_update_form.save(commit=False)
-            updated_article.author = request.user
-            updated_article.date_published = None
-            updated_article.date_updated = timezone.now()
-            updated_article.save()
-            article_update_form.save_m2m()
+            if article_update_form.is_valid():
+                updated_article = article_update_form.save(commit=False)
+                updated_article.author = request.user
+                updated_article.date_published = None
+                updated_article.date_updated = timezone.now()
+                updated_article.save()
+                article_update_form.save_m2m()
 
-            messages.success(request, f"Article drafted successfully.")
-            return redirect("blog:drafted_articles")
+                messages.success(request, f"Article drafted successfully.")
+                return redirect("blog:drafted_articles")
+
+            self.context_object["article_update_form"] = article_update_form
+            messages.error(request, "Please fill required fields")
+            return render(request, self.template_name, self.context_object)
 
         if action == self.PUBLISH:
 
@@ -178,15 +194,21 @@ class ArticleUpdateView(LoginRequiredMixin, View):
                                "article.")
                 return render(request, self.template_name, self.context_object)
 
-            updated_article = article_update_form.save(commit=False)
-            updated_article.author = request.user
-            updated_article.date_published = timezone.now()
-            updated_article.date_updated = timezone.now()
-            updated_article.save()
-            article_update_form.save_m2m()
+            if article_update_form.is_valid():
 
-            messages.success(self.request, f"Article published successfully.")
-            return redirect(to="blog:dashboard_article_detail", slug=updated_article.slug)
+                updated_article = article_update_form.save(commit=False)
+                updated_article.author = request.user
+                updated_article.date_published = timezone.now()
+                updated_article.date_updated = timezone.now()
+                updated_article.save()
+                article_update_form.save_m2m()
+
+                messages.success(self.request, f"Article published successfully.")
+                return redirect(to="blog:dashboard_article_detail", slug=updated_article.slug)
+
+            self.context_object["article_update_form"] = article_update_form
+            messages.error(request, "Please fill required fields")
+            return render(request, self.template_name, self.context_object)
 
 
 class ArticleDeleteView(LoginRequiredMixin, View):
@@ -335,6 +357,7 @@ class AuthorDraftedArticlesView(LoginRequiredMixin, View):
         drafted_articles = Article.objects.filter(author=request.user.id,
                                                   status=Article.DRAFTED, deleted=False).order_by('-date_published')
         total_articles_drafted = len(drafted_articles)
+        print(total_articles_drafted)
 
         page = request.GET.get('page', 1)
 
@@ -348,7 +371,7 @@ class AuthorDraftedArticlesView(LoginRequiredMixin, View):
 
         context_object['drafted_articles_list'] = drafted_articles_list
         context_object['total_articles_drafted'] = total_articles_drafted
-
+        print(drafted_articles)
         return render(request, template_name, context_object)
 
 

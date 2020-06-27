@@ -26,27 +26,27 @@
                         {% csrf_token %}
                               <div class="form-group">
                                 <label for="articleTitle">Article Title*</label>
-                                    <h6>{{ article_create_form.title.errors }}</h6>
+                                    <h6 class="text-danger">{{ article_create_form.title.errors }}</h6>
                                     {{ article_create_form.title }}
                               </div>
                               <div class="form-group">
                                 <label for="articleCategory">Select Category*</label>
-                                  <h6>{{ article_create_form.category.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_create_form.category.errors }}</h6>
                                     {{ article_create_form.category }}
                               </div>
                               <div class="form-group">
                                 <label for="articleImage">Upload Article Image*</label>
-                                  <h6>{{ article_create_form.image.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_create_form.image.errors }}</h6>
                                     {{ article_create_form.image }}
                               </div>
                               <div class="form-group">
                                   <label for="article-content">Content*</label>
-                                  <h6>{{ article_create_form.body.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_create_form.body.errors }}</h6>
                                   {{ article_create_form.body }}
                               </div>
                               <div class="form-group">
                                 <label for="articleTags">Enter Tags*</label>
-                                  <h6>{{ article_create_form.tags.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_create_form.tags.errors }}</h6>
                                    {{ article_create_form.tags }}
 
                               <small id="hint_id_tags" class="form-text text-muted">
@@ -54,7 +54,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="articleImage">Status*</label>
-                                  <h6>{{ article_create_form.status.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_create_form.status.errors }}</h6>
                                    {{ article_create_form.status }}
                               </div>
                             <div class="form-group float-right">

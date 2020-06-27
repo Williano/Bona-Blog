@@ -30,36 +30,35 @@
 
                 <div class="form-group">
                            <label for="articleTitle">Article Title*</label>
-                                    <h6>{{ article_update_form.title.errors }}</h6>
+                                    <h6 class="text-danger">{{ article_update_form.title.errors }}</h6>
                                     {{ article_update_form.title }}
                               </div>
                               <div class="form-group">
                                 <label for="articleCategory">Select Category*</label>
-                                  <h6>{{ article_update_form.category.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_update_form.category.errors }}</h6>
                                     {{ article_update_form.category }}
                               </div>
                               <div class="form-group">
                                 <label for="articleImage">Upload Article Image*</label>
-                                  <h6>{{ article_update_form.image.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_update_form.image.errors }}</h6>
                                   Current image: <a class="text-danger" href="{{ article.image.url }}">{{ article.image }}</a>
                                     {{ article_update_form.image }}
                               </div>
                               <div class="form-group">
                                   <label for="article-content">Content*</label>
-                                  <h6>{{ article_update_form.body.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_update_form.body.errors }}</h6>
                                   {{ article_update_form.body }}
                               </div>
                               <div class="form-group">
                                 <label for="articleTags">Enter Tags*</label>
-                                  <h6>{{ article_update_form.tags.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_update_form.tags.errors }}</h6>
                                    {{ article_update_form.tags }}
-
                               <small id="hint_id_tags" class="form-text text-muted">
                                   A comma-separated list of tags.</small>
                               </div>
                               <div class="form-group">
                                 <label for="articleImage">Status*</label>
-                                  <h6>{{ article_update_form.status.errors }}</h6>
+                                  <h6 class="text-danger">{{ article_update_form.status.errors }}</h6>
                                    {{ article_update_form.status }}
                               </div>
 

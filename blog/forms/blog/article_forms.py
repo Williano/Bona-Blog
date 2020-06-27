@@ -61,10 +61,11 @@ class ArticleCreateForm(forms.ModelForm):
                        }),
 
             'tags': TextInput(attrs={
-                                     'name': "article-title",
+                                     'name': "tags",
                                      'class': "form-control",
                                      'placeholder': "Enter comma-separated list of tags.",
-                                     'id': "articleTags"
+                                     'id': "articleTags",
+                                     'data-role': "tagsinput"
                                      }),
 
             'status': Select(choices=STATUS_CHOICES,
@@ -137,15 +138,16 @@ class ArticleUpdateForm(forms.ModelForm):
                 "class": "form-control clearablefileinput",
                 "type": "file",
                 "id": "articleImage",
-                "name": "article-image"
+                "name": "article-image",
             }
 
             ),
 
             'tags': TextInput(attrs={
-                'name': "article-title",
+                'name': "tags",
                 'class': "form-control",
                 'placeholder': "Enter Tags",
-                'id': "articleTags"
+                'id': "articleTags",
+                'data-role': "tagsinput"
             }),
         }
