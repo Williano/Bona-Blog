@@ -109,44 +109,52 @@
                              {% endif %}
                                 </section>
 
-                                     {# Pagination for article post #}
-                                    {% if is_paginated %}
-
-                                        {# Displays previous pages #}
-                                        {% if page_obj.has_previous %}
-                                            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-                                            <a class="btn btn-outline-info mb-4"
-                                               href="?page={{ page_obj.previous_page_number }}">Previous
-                                            </a>
+                                         {# Pagination for article post #}
+                                        <nav aria-label="Page navigation example">
+                                        {% if written_articles_list.has_other_pages %}
+                                      <ul class="pagination justify-content-center">
+                                      {% if written_articles_list.has_previous %}
+                                        <li class="page-item">
+                                          <a class="page-link" href="?page={{ written_articles_list.previous_page_number }}"
+                                             tabindex="-1">Previous</a>
+                                        </li>
+                                      {% else %}
+                                        <li class="page-item disabled">
+                                         <span class="page-link">Previous</span>
+                                        </li>
+                                         {% endif %}
+                                        {% for i in written_articles_list.paginator.page_range %}
+                                        {% if written_articles_list.number == i %}
+                                            <li class="page-item active">
+                                          <span class="page-link">
+                                            {{ i }}
+                                            <span class="sr-only">(current)</span>
+                                          </span>
+                                        </li>
+                                    {% else %}
+                                       <li class="page-item">
+                                           <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                       </li>
                                         {% endif %}
 
-                                        {# Displays current page #}
-                                        {% for num in page_obj.paginator.page_range %}
-                                            {% if page_obj.number == num %}
-                                                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                                            {% endif %}
-                                         {% endfor %}
-
-                                        {# Displays next pages #}
-                                       {% if page_obj.has_next %}
-                                            <a class="btn btn-outline-info mb-4"
-                                               href="?page={{ page_obj.next_page_number }}">Next
-                                            </a>
-                                            <a class="btn btn-outline-info mb-4"
-                                               href="?page={{ page_obj.paginator.num_pages }}">Last
-                                            </a>
+                                        {% endfor %}
+                                        {% if written_articles_list.has_next %}
+                                            <li class="page-item">
+                                          <a class="page-link" href="?page={{ written_articles_list.next_page_number }}">Next</a>
+                                        </li>
+                                        {% else %}
+                                         <li class="page-item disabled">
+                                         <span class="page-link">Next</span>
+                                        </li>
+                                          {% endif %}
+                                      </ul>
                                         {% endif %}
-
-                                    {% endif %}
-
+                                    </nav>
                             </div>
                           </div>
                         </div>
                 </div>
             </div>
         </div>
-
 
 {% endblock content %}
