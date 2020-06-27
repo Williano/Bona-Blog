@@ -262,7 +262,7 @@ class ArticlePublishView(LoginRequiredMixin, View):
        View to publish a drafted article
     """
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         """
             Gets article slug from user and gets the article from the
             database.
@@ -277,7 +277,7 @@ class ArticlePublishView(LoginRequiredMixin, View):
         article.save()
 
         messages.success(request, f"Article Published successfully.")
-        return redirect('blog:published_articles')
+        return redirect('blog:dashboard_article_detail', slug=article.slug)
 
 
 class AuthorWrittenArticlesView(LoginRequiredMixin, View):
