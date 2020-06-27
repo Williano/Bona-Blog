@@ -50,9 +50,11 @@
                                   {{ article_update_form.body }}
                               </div>
                               <div class="form-group">
-                                <label for="articleTags">Enter Tags*</label>
+                                <label for="tags">Enter Tags*</label>
                                   <h6 class="text-danger">{{ article_update_form.tags.errors }}</h6>
-                                   {{ article_update_form.tags }}
+                                  <input type="text"  data-role="tagsinput"
+                                         class="form-control" id="tags" name="tags"
+                                         value="{% for tag in article.tags.all %}{{ tag }},{% endfor %}">
                               <small id="hint_id_tags" class="form-text text-muted">
                                   A comma-separated list of tags.</small>
                               </div>

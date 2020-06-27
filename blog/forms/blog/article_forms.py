@@ -143,11 +143,13 @@ class ArticleUpdateForm(forms.ModelForm):
 
             ),
 
-            'tags': TextInput(attrs={
-                'name': "tags",
-                'class': "form-control",
-                'placeholder': "Enter Tags",
-                'id': "articleTags",
-                'data-role': "tagsinput"
-            }),
+            # 'tags': TextInput(attrs={
+            #     'name': "tags",
+            #     'class': "form-control",
+            #     'placeholder': "Enter Tags",
+            #     'id': "tags",
+            #     'data-role': "tagsinput",
+            #     "class":"form-control",
+            #     "value": "{% for tag in article.tags.all %}{{ tag }},{% endfor %}"
+            # }),
         }
