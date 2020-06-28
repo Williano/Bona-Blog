@@ -87,8 +87,6 @@ class ArticleWriteView(LoginRequiredMixin, View):
                 new_article.save()
                 article_create_form.save_m2m()
 
-                print(new_article.tags.names)
-
                 messages.success(request, f"Article drafted successfully.")
                 return redirect("blog:drafted_articles")
 
