@@ -10,10 +10,10 @@
           'insertdatetime  nonbreaking save link image media preview ' +
           'codesample',
       toolbar1: 'checklist table fullscreen preview bold ' +
-                'italic underline fontselect fontsizeselect forecolor backcolor ' +
-                'alignleft alignright aligncenter alignjustify indent outdent ' +
-                'bullist numlist link image media codesample emoticons visualblocks ' +
-                'visualchars charmap hr pagebreak nonbreaking anchor code ',
+                'italic underline | fontselect fontsizeselect | forecolor backcolor |' +
+                'alignleft alignright | aligncenter alignjustify | indent outdent ' +
+                'bullist numlist | link image media | code | emoticons | visualblocks ' +
+                'visualchars | charmap hr pagebreak nonbreaking anchor | codesample',
       toolbar_mode: 'floating',
       custom_undo_redo_levels: 20,
        codesample_global_prismjs: true
