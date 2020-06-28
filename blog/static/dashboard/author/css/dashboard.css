@@ -172,12 +172,6 @@ img {
     padding: 15px 15px 10px 15px;
 }
 
-/* TinyMce */
-.mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset {
-    /*max-width: 1050px !important;*/
-    max-width: 73vw !important;
-}
-
 /* Select dropdown */
 .bootstrap-select>.dropdown-toggle {
   border: 1px solid #d1d3e2 !important;
