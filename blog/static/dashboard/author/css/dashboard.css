@@ -138,35 +138,6 @@
 }
 
 
-/* Article Preview */
-
-.meta span {
-    display: inline-block;
-}
-
-.meta {
-    color: #8f8f8f;
-    font-size: 0.8125rem;
-}
-
-.img-fluid {
-    width: 100%;
-    max-width: 100% !important;
-    height: auto !important;
-}
-
-img {
-    width: 100%;
-    vertical-align: middle !important;
-    border-style: none !important;
-}
-
-#company-log {
-    width: 35% !important;
-    vertical-align: middle !important;
-    border-style: none !important;
-}
-
 /* Update Profile*/
 .content {
     padding: 15px 15px 10px 15px;
