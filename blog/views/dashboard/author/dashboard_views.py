@@ -226,7 +226,7 @@ class ArticleDeleteView(LoginRequiredMixin, View):
         """
         article = get_object_or_404(Article, slug=self.kwargs.get("slug"))
 
-        if not self.request.user == article.author.username:
+        if not self.request.user.username == article.author.username:
             messages.error(request=self.request, message="You do not have permission to delete this article.")
             return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
 
@@ -358,7 +358,6 @@ class AuthorDraftedArticlesView(LoginRequiredMixin, View):
         drafted_articles = Article.objects.filter(author=request.user.id,
                                                   status=Article.DRAFTED, deleted=False).order_by('-date_created')
         total_articles_drafted = len(drafted_articles)
-        print(total_articles_drafted)
 
         page = request.GET.get('page', 1)
 
@@ -372,7 +371,7 @@ class AuthorDraftedArticlesView(LoginRequiredMixin, View):
 
         context_object['drafted_articles_list'] = drafted_articles_list
         context_object['total_articles_drafted'] = total_articles_drafted
-        print(drafted_articles)
+
         return render(request, template_name, context_object)
 
 
