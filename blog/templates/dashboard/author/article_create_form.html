@@ -7,12 +7,11 @@
 
 {% block stylesheets %}
      {{ block.super }}
-        <link href="{% static 'blog/css/tinymce/tomorrow-night-blue.css' %}" rel="stylesheet">
         <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
 {% endblock stylesheets %}
 
 {% block content %}
-{{ form.media }}
+
     <div class="container">
         <div class="content-section">
 
@@ -64,13 +63,6 @@
                               </div>
                             <div class="form-group float-right">
                                 <button type="reset" class="btn btn-danger">Reset Form</button>
-                                <button class="btn btn-info" name="action"
-                                        value="PREVIEW" id="preview-article"
-                                        type="submit" data-toggle="modal"
-                                        data-target="#formModalCenter"
-                                        data-url="{% url 'blog:article_write' %}">
-                                        PREVIEW</button>
-
                                 <button class="btn btn-dark" name="action"
                                         value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
 
@@ -80,52 +72,7 @@
                     </form>
             </div>
             </div>
-    </div>
-    </div>
-
-<!--  Form Modal -->
-    <div class="modal fade bd-example-modal-lg" id="formModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Article Preview</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-              <div class="modal-body">
-                 <div class="d-flex justify-content-center">
-                     <div class="spinner-border text-primary" id="modal-loader" role="status">
-                         <span class="sr-only">Loading...</span>
-                     </div>
-             </div>
-
-             <div id="dynamic-content"> <!-- mysql data will load in table -->
-
-                 <div class="row">
-                     <div class="col-md-12" id="article-content">
-
-                   </div>
-              </div>
-
-             </div>
-
-
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
         </div>
-      </div>
     </div>
 
 {% endblock content %}
-
-{% block script %}
-    {{ block.super }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="{%  static 'blog/js/blog/blog.js' %}"></script>
-    <script src="{% static 'blog/js/tinymce/highlight.pack.js' %}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-{% endblock script %}
