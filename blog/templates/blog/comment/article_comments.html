@@ -29,7 +29,9 @@
                                         <div class="post-info">
 
                                             <div class="middle-area">
-                                                <h3><a href="{% url 'blog:article_detail' article.slug %}">
+                                                <h3><a
+                                                        href="
+                                              {% url 'blog:article_detail' username=article.author.username|lower slug=article.slug %}">
                                                     <b>{{ article.title }}</b></a>
                                                 </h3>
                                             </div>
