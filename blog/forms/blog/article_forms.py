@@ -35,7 +35,7 @@ class ArticleCreateForm(forms.ModelForm):
         )
 
         model = Article
-        fields = ["title", "category", "image", "body", "tags", "status"]
+        fields = ["title", "category", "image", "image_credit", "body", "tags", "status"]
         widgets = {
             'title': TextInput(attrs={
                                      'name': "article-title",
@@ -52,6 +52,13 @@ class ArticleCreateForm(forms.ModelForm):
                                       }
 
                                ),
+
+            'image_credit': TextInput(attrs={
+                'name': "image_credit",
+                'class': "form-control",
+                'placeholder': "Example: made4dev.com (Premium Programming T-shirts)",
+                'id': "image_credit"
+            }),
 
             'body': TextInput(attrs={
                        "rows": 5, "cols": 20,
@@ -108,13 +115,20 @@ class ArticleUpdateForm(forms.ModelForm):
         )
 
         model = Article
-        fields = ["title", "category", "image", "body", "tags", "status"]
+        fields = ["title", "category", "image", "image_credit", "body", "tags", "status"]
         widgets = {
             'title': TextInput(attrs={
                 'name': "article-title",
                 'class': "form-control",
                 'placeholder': "Enter Article Title",
                 'id': "articleTitle"
+            }),
+
+            'image_credit': TextInput(attrs={
+                'name': "image_credit",
+                'class': "form-control",
+                'placeholder': "Example: made4dev.com (Premium Programming T-shirts)",
+                'id': "image_credit"
             }),
 
             'status': Select(choices=STATUS_CHOICES,

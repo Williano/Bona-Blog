@@ -86,8 +86,11 @@
 						</div><!-- post-top-area -->
 
 						<figure class="post-image"><img class="article-image" src="{{ article.image.url }}" alt="Blog Image">
-                          <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a>
-                          </figcaption>
+				       {% if article.image_credit %}
+                           <figcaption class="mt-2 text-center image-caption">
+                            Image Credit: {{ article.image_credit}})
+                        </figcaption>
+                       {% endif %}
                         </figure>
 
 						<div class="post-bottom-area">

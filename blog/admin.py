@@ -33,7 +33,7 @@ admin.site.register(Category, CategoryAdmin)
 
 class ArticleAdmin(admin.ModelAdmin):
 
-    list_display = ('category', 'title', 'slug', 'author', 'image',
+    list_display = ('category', 'title', 'slug', 'author', 'image', 'image_credit',
                     'body', 'date_published', 'status')
     list_filter = ('status', 'date_created', 'date_published', 'author',)
     search_fields = ('title', 'body',)
