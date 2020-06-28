@@ -55,6 +55,7 @@
 				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
                 <li><a href="#">About</a></li>
                 {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'blog:dashboard_home' %}">Dashboard</a></li>
                     <li><a href="{% url 'blog:logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'blog:login' %}">Login</a></li>
