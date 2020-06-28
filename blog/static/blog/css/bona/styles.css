@@ -369,7 +369,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 /* COMMENTS */
 
-.commnets-area{ padding: 30px 40px; margin: 30px 0; overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+.comments-area{ padding: 30px 40px; margin: 30px 0; overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,.1);
 	background: #fff; }
 
 .comment{ padding-bottom: 30px; margin-bottom: 30px; border-bottom: 1px solid #eee; }
