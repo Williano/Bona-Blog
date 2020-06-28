@@ -183,3 +183,8 @@ img {
   border: 1px solid #d1d3e2 !important;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #222f3e!important;
+    text-decoration: none!important;
+    background-color: white!important;
+}
