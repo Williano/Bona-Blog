@@ -46,7 +46,7 @@
                               <div class="form-group">
                                   <label for="article-content">Content*</label>
                                   <h6 class="text-danger">{{ article_create_form.body.errors }}</h6>
-                                  {{ article_create_form.body }}
+                                  {{ article_create_form.body|safe }}
                               </div>
                               <div class="form-group">
                                 <label for="articleTags">Enter Tags*</label>
