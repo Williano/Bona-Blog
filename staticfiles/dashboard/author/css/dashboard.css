@@ -138,44 +138,9 @@
 }
 
 
-/* Article Preview */
-
-.meta span {
-    display: inline-block;
-}
-
-.meta {
-    color: #8f8f8f;
-    font-size: 0.8125rem;
-}
-
-.img-fluid {
-    width: 100%;
-    max-width: 100% !important;
-    height: auto !important;
-}
-
-img {
-    width: 100%;
-    vertical-align: middle !important;
-    border-style: none !important;
-}
-
-#company-log {
-    width: 35% !important;
-    vertical-align: middle !important;
-    border-style: none !important;
-}
-
 /* Update Profile*/
 .content {
     padding: 15px 15px 10px 15px;
-}
-
-/* TinyMce */
-.mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset {
-    /*max-width: 1050px !important;*/
-    max-width: 73vw !important;
 }
 
 /* Select dropdown */
@@ -183,3 +148,8 @@ img {
   border: 1px solid #d1d3e2 !important;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #222f3e!important;
+    text-decoration: none!important;
+    background-color: white!important;
+}

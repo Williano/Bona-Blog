@@ -97,6 +97,7 @@
  .blog-post .blog-post-body h6 {
 	 font-size: 1.125rem;
 }
+
  .blog-post .image-caption {
 	 color: #8f8f8f;
 	 font-size: 0.875rem;
@@ -119,4 +120,19 @@
 
  hr.solid {
     border-top: 4px solid #999;
+}
+
+#article-detail-image {
+    max-width: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 500px !important;
+}
+
+.dash-article {
+    padding-right: 50px!important;
+	padding-left: 50px!important;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.1) !important;
+    border-bottom: 1px solid #eee !important;
+    background: #fff !important;
 }
