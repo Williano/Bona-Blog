@@ -6,8 +6,8 @@
       min_width: 400,
       plugins: 'autolink lists media table  ' +
           'emoticons anchor pagebreak visualchars code ' +
-          'fullscreen autolink lists  charmap print  hr searchreplace ' +
-          'wordcount visualblocks table lists fullscreen  ' +
+          'fullscreen autolink  charmap print  hr searchreplace ' +
+          'wordcount visualblocks table advlist fullscreen  ' +
           'insertdatetime  nonbreaking save link image media preview ' +
           'codesample',
       toolbar1: 'checklist table fullscreen preview bold ' +
