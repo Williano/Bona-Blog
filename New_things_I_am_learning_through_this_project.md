@@ -35,3 +35,10 @@ Error
    
        ```pip install -r requirements.txt   ```   
       
+      
+   - Running Specific test
+   
+   ``
+        python manage.py test blog.tests.models.test_comment_models.CommentTestCase
+
+    ``  
