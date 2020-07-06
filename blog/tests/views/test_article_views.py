@@ -180,7 +180,6 @@ class ArticleSearchListViewTestCase(TestCase):
 
     def test_article_search_list_view_returns_the_right_query_results(self):
         response = self.client.get(f"/article/search/?q={self.articles[0].title}")
-        print(response.context["search_results"])
         self.assertEqual(len(response.context['search_results']), 1)
         self.assertEqual(response.context['search_results'][0].slug,
                          self.articles[0].slug)
