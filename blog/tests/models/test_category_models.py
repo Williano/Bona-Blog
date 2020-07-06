@@ -12,7 +12,7 @@ from blog.models.category_models import Category
 
 class CategoryTestCase(TestCase):
     """
-      Class to test the Blog model.
+      Class to test the category model.
     """
 
     def setUp(self):

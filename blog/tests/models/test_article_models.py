@@ -11,9 +11,9 @@ from model_mommy import mommy
 from blog.models.article_models import Article
 
 
-class BlogTestCase(TestCase):
+class ArticleTestCase(TestCase):
     """
-      Class to test the Blog model.
+      Class to test the article model.
     """
 
     def setUp(self):
