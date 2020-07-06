@@ -20,7 +20,7 @@ class BlogTestCase(TestCase):
         """
           Set up all the tests using model_mommy.
         """
-        self.article = mommy.make(Article)
+        self.article = mommy.make(_model=Article, body="Test")
 
     def test_if_article_returns_the_right_human_readable_representation(self):
         self.assertEqual(self.article.__str__(), self.article.title)
@@ -30,5 +30,5 @@ class BlogTestCase(TestCase):
 
     def test_article_get_absolute_url(self):
         self.assertEquals(self.article.get_absolute_url(),
-                          reverse('blog:article_detail',
-                                  kwargs={'slug': self.article.slug}))
+                          reverse('blog:article_detail', kwargs={'username': self.article.author.username.lower(),
+                                                                 'slug': self.article.slug}))
