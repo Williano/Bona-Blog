@@ -13,7 +13,7 @@ from blog.models.article_models import Article
 from blog.models.category_models import Category
 
 
-class CategoriesListViewTests(TestCase):
+class CategoriesListViewTestCase(TestCase):
     """
     Class to test the list of all categories
     """
@@ -29,7 +29,7 @@ class CategoriesListViewTests(TestCase):
         self.categories = mommy.make(Category, _quantity=5)
 
     def test_categories_list_view_status_code(self):
-        response = self.client.get("/categories-list/")
+        response = self.client.get(reverse('blog:categories_list'))
         self.assertEqual(response.status_code, 200)
 
     def test_categories_list_view_url_by_name(self):
@@ -38,7 +38,7 @@ class CategoriesListViewTests(TestCase):
 
     def test_if_categories_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:categories_list'))
-        self.assertTemplateUsed(response, 'article/categories_list.html')
+        self.assertTemplateUsed(response, 'blog/category/categories_list.html')
 
     def test_if_categories_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
@@ -51,9 +51,9 @@ class CategoriesListViewTests(TestCase):
     def test_if_categories_list_view_returns_the_right_category_details(self):
         response = self.client.get(reverse('blog:categories_list'))
         self.assertEqual(response.context_data['categories'][0].name,
-                         self.categories[0].name)
+                         self.categories[4].name)
         self.assertEqual(response.context_data['categories'][0].slug,
-                         self.categories[0].slug)
+                         self.categories[4].slug)
 
 
 class CategoryArticlesListViewTest(TestCase):
