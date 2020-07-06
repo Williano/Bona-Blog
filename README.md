@@ -146,6 +146,9 @@ To run this app, you will need to follow these 3 steps:
   
   # Django Admin
   >>> http://127.0.0.1:XXXX/admin/
+  
+  # Run Tests
+  $ python manage.py test blog.tests
   ```
 
 
