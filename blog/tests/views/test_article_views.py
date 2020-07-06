@@ -108,7 +108,7 @@ class ArticleListViewTestCase(TestCase):
                          self.articles[3].status)
 
 
-class ArticleDetailViewTest(TestCase):
+class ArticleDetailViewTestCase(TestCase):
     """
     Test to check if the article detail view works as required.
     """
@@ -119,7 +119,7 @@ class ArticleDetailViewTest(TestCase):
         :return: an article
         """
         self.client = Client()
-        self.article = mommy.make(Article)
+        self.article = mommy.make(_model=Article, body="Test")
 
     def test_article_detail_view_absolute_url(self):
         response = self.client.get(self.article.get_absolute_url())
@@ -127,13 +127,16 @@ class ArticleDetailViewTest(TestCase):
 
     def test_article_detail_view_url_by_name(self):
         response = self.client.get(reverse('blog:article_detail',
-                                           kwargs={'slug': self.article.slug}))
+                                           kwargs={'slug': self.article.slug,
+                                                   'username': self.article.author.username.lower()
+                                                   }))
         self.assertEqual(response.status_code, 200)
 
     def test_if_categories_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:article_detail',
-                                           kwargs={'slug': self.article.slug}))
-        self.assertTemplateUsed(response, 'article/article_detail.html')
+                                           kwargs={'slug': self.article.slug,
+                                                   'username': self.article.author.username.lower()}))
+        self.assertTemplateUsed(response, 'blog/article/article_detail.html')
 
     def test_if_article_detail_view_returns_the_right_article_details(self):
         response = self.client.get(self.article.get_absolute_url())
