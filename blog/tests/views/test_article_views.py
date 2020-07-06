@@ -156,14 +156,14 @@ class ArticleDetailViewTestCase(TestCase):
                          self.article.status)
 
 
-class ArticleSearchListViewTest(TestCase):
+class ArticleSearchListViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.articles = mommy.make(Article, _quantity=5, status='PUBLISHED')
+        self.articles = mommy.make(Article, _quantity=5, body="Test", status='PUBLISHED')
 
     def test_article_search_list_view_status_code(self):
-        response = self.client.get("/search/")
+        response = self.client.get(reverse('blog:article_search_list_view'))
         self.assertEqual(response.status_code, 200)
 
     def test_article_search_list_view_url_by_name(self):
@@ -172,21 +172,22 @@ class ArticleSearchListViewTest(TestCase):
 
     def test_article_search_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
-        self.assertTemplateUsed(response, 'article/article_search_list.html')
+        self.assertTemplateUsed(response, 'blog/article/article_search_list.html')
 
     def test_article_search_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get(reverse('blog:article_search_list_view'))
-        self.assertNotContains(response, 'article/categories_list_view.html')
+        self.assertNotContains(response, 'blog/article/categories_list_view.html')
 
     def test_article_search_list_view_returns_the_right_query_results(self):
-        response = self.client.get(f"/search/?q={self.articles[0].title}")
-        self.assertEqual(len(response.context_data['articles']), 1)
-        self.assertEqual(response.context_data['articles'][0].slug,
+        response = self.client.get(f"/article/search/?q={self.articles[0].title}")
+        print(response.context["search_results"])
+        self.assertEqual(len(response.context['search_results']), 1)
+        self.assertEqual(response.context['search_results'][0].slug,
                          self.articles[0].slug)
 
     def test_article_search_list_view_returns_all_articles_if_nothing_is_typed_in_the_search_input(self):
-        response = self.client.get(f"/search/?q=")
-        self.assertEqual(len(response.context_data['articles']), 5)
+        response = self.client.get(f"/article/search/?q=")
+        self.assertEqual(len(response.context['search_results']), 0)
 
 
 class ArticleCreateViewTest(TestCase):
