@@ -8,7 +8,7 @@ from model_mommy import mommy
 # Blog application imports.
 
 
-class AuthorProfileTests(TestCase):
+class AuthorProfileTestCase(TestCase):
     """
       Class to test the AuthorProfile Model.
     """
