@@ -13,7 +13,7 @@ from blog.models.article_models import Article
 from blog.models.category_models import Category
 
 
-class ArticleListViewTests(TestCase):
+class ArticleListViewTestCase(TestCase):
     """
     Class to test the list of all articles.
     """
@@ -31,8 +31,11 @@ class ArticleListViewTests(TestCase):
         """
         self.client = Client()
         self.category = mommy.make(Category)
-        self.articles = mommy.make(Article, status='PUBLISHED',
-                                   category=self.category, _quantity=4)
+        self.articles = mommy.make(Article,
+                                   body="Test",
+                                   status='PUBLISHED',
+                                   category=self.category,
+                                   _quantity=4)
 
     def test_article_list_view_status_code(self):
         response = self.client.get('')
@@ -44,7 +47,7 @@ class ArticleListViewTests(TestCase):
 
     def test_if_article_list_view_uses_correct_template(self):
         response = self.client.get(reverse('blog:home'))
-        self.assertTemplateUsed(response, 'article/home.html')
+        self.assertTemplateUsed(response, 'blog/article/home.html')
 
     def test_if_article_list_view_does_not_contain_incorrect_html(self):
         response = self.client.get('')
