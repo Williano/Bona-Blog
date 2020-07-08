@@ -16,7 +16,7 @@ An Open-Source Web Blogging platform.
 
 
 ## General info
-An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has a number of [features](#features) needed for a standard blogging platform.
+An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has [features](#features) of a standard blogging platform.
 
 ## Screenshots
 
