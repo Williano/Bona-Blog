@@ -78,8 +78,7 @@ Article Detail Page
 ## Technologies
 * Python 3
 * Javascript
-* Jquery 
-* Ajax
+* Jquery
 * PrismJS
 * Django 3
 * HTML5
