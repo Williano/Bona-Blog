@@ -53,6 +53,7 @@ Article Detail Page
 * [Mobile App Version](https://github.com/Williano/Bona-Blog-Mobile)
 * Dashboard for Authors
 * WYSIWYG Editor
+* Account Verification
 * Author Login
 * Author Password Reset
 * API for Clients
