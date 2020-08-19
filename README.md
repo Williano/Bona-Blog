@@ -2,6 +2,12 @@
 An Open-Source Web Blogging platform.
 
 
+[![GitHub license](https://img.shields.io/github/license/Williano/Bona-Blog?style=for-the-badge)](https://img.shields.io/github/license/Williano/Bona-Blog?style=for-the-badge)
+[![GitHub stars](https://img.shields.io/github/stars/Williano/Bona-Blog?style=for-the-badge)](https://img.shields.io/github/stars/Williano/Bona-Blog?style=for-the-badge)
+[![GitHub forks](https://img.shields.io/github/forks/Williano/Bona-Blog?style=for-the-badge)](https://img.shields.io/github/forks/Williano/Bona-Blog?style=for-the-badge)
+[![GitHub issues](https://img.shields.io/github/issues/Williano/Bona-Blog?style=for-the-badge)](https://img.shields.io/github/issues/Williano/Bona-Blog?style=for-the-badge)
+
+
 ## Table of contents
 * [General info](#general-info)
 * [Django Package or App](#django-package)
