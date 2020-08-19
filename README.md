@@ -22,7 +22,6 @@ An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Py
 ## Django Package or App
 This project has been converted into a django package. You can install it from [PyPI](https://pypi.org/project/django-bona-blog/) or its [GitHub Repo](https://github.com/Williano/django-bona-blog).
 
-
 ## Screenshots
 
  Authors Dashboard Page
