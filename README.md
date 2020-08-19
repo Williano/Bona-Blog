@@ -154,7 +154,7 @@ To run this app, you will need to follow these 3 steps:
 Project is: _in progress_
 
 ## Inspiration
-This project is based on the goal of imporving my skills as a Software Engineer and the best way to improve is by building projects. I wanted to gain deeper understanding of Django and Object-oriented programming in Python whiles I also contribute to the open source community at the same time. I have learnt different technologies for the project and I keep on learning new skills as I add new features to the project.
+This project is based on the goal of improving my skills as a Software Engineer and the best way to improve is by building projects. I wanted to gain a deeper understanding of Django and Object-oriented programming in Python whiles I also contribute to the open-source community at the same time. I have learnt different technologies for the project and I keep on learning new skills as I add new features to the project.
 
 ## Contact
 Created by [Williano](https://williano.github.io/) - feel free to contact me!
