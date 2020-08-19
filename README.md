@@ -4,6 +4,7 @@ An Open-Source Web Blogging platform.
 
 ## Table of contents
 * [General info](#general-info)
+* [Django Package or App](#django-package)
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Technologies](#technologies)
@@ -17,6 +18,10 @@ An Open-Source Web Blogging platform.
 
 ## General info
 An Open-Source blogging platform like [Medium](https://medium.com/) and [Real Python](https://realpython.com/) built with Python and Django. It has [features](#features) of a standard blogging platform.
+
+## Django Package or App
+This project has been converted into a django package. You can install it from [PyPI](https://pypi.org/project/django-bona-blog/) or its [GitHub Repo](https://github.com/Williano/django-bona-blog).
+
 
 ## Screenshots
 
