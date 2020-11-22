@@ -2,9 +2,17 @@
 from django import forms
 from django.forms import TextInput, Select, FileInput
 
+# Third party apps import
+from tinymce import TinyMCE
+
 # Blog app imports
 from blog.models.article_models import Article
 from blog.models.category_models import Category
+
+
+class TinyMCEWidget(TinyMCE):
+    def use_required_attribute(self, *args):
+        return True
 
 
 class ArticleCreateForm(forms.ModelForm):
@@ -60,12 +68,14 @@ class ArticleCreateForm(forms.ModelForm):
                 'id': "image_credit"
             }),
 
-            'body': TextInput(attrs={
+            'body': forms.CharField(required=True, widget=TinyMCEWidget(
+                attrs={
                        "rows": 5, "cols": 20,
                        'id': 'content',
                        'name': "article_content",
                        'class': "form-control",
-                       }),
+                       }
+            )),
 
             'tags': TextInput(attrs={
                                      'name': "tags",
@@ -141,12 +151,15 @@ class ArticleUpdateForm(forms.ModelForm):
                                  "title": "Select Status"
                              }
                              ),
-            'body': TextInput(attrs={
-                'required': 'false',
-                'id': 'content',
-                'name': "body",
-                'class': "form-control",
-            }),
+
+            'body': forms.CharField(required=True, widget=TinyMCEWidget(
+                attrs={
+                       "rows": 5, "cols": 20,
+                       'id': 'content',
+                       'name': "article_content",
+                       'class': "form-control",
+                       }
+            )),
 
             'image': FileInput(attrs={
                 "class": "form-control clearablefileinput",
