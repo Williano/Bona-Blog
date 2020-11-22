@@ -14,10 +14,10 @@ django-taggit = "==1.3.0"
 djangorestframework = "==3.11.0"
 pytz = "==2020.1"
 six = "==1.15.0"
-django-tinymce4-lite = "==1.8.0"
 Pillow = "==7.1.2"
 django = "*"
 pyenchant = "*"
+django-ckeditor = "*"
 
 [requires]
 python_version = "3.8"
