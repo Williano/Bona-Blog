@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 
     # My apps.
     'blog.apps.BlogConfig',

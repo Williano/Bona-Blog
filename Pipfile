@@ -18,6 +18,7 @@ Pillow = "==7.1.2"
 django = "*"
 pyenchant = "*"
 django-ckeditor = "*"
+django-crispy-forms = "*"
 
 [requires]
 python_version = "3.8"
