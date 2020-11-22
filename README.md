@@ -97,7 +97,7 @@ Article Detail Page
 * Bootstrap 4
 * Ion Icons
 * Font awesome
-* TinyMCE 5
+* CKEditor
 * SQLite
 * PostgreSQL
 
