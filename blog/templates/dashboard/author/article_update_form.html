@@ -9,6 +9,9 @@
 {% block stylesheets %}
      {{ block.super }}
         <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% endblock stylesheets %}
 
 {% block content %}
