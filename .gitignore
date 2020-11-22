@@ -6,6 +6,7 @@ media/article_pics
 media/category_images
 media/profile_pics
 media/banner
+media/uploads/
 
 # Pycharm Files
 .idea
