@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'taggit',
-    'tinymce',
     'debug_toolbar',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # My apps.
     'blog.apps.BlogConfig',
@@ -167,3 +168,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default':
+        {'toolbar': 'full',
+         'width': 'auto',
+         'extraPlugins': ','.join([
+             'codesnippet',
+             'youtube'
+         ]),
+         },
+}
