@@ -10,7 +10,7 @@ An Open-Source Web Blogging platform.
 
 ## Table of contents
 * [General info](#general-info)
-* [Django Package or App](#django-package)
+* [Django Package or App](#django-package-or-app)
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Technologies](#technologies)
@@ -54,7 +54,7 @@ Category Articles List Page       |  Author Articles List Page
 
 Article Detail Page 
 :-------------------------:
-![Screenshot_2020-06-26 BONA Test Article](https://user-images.githubusercontent.com/19711677/85830620-854f7600-b752-11ea-8386-f618535cf97d.jpg)
+![Screenshot_2020-11-22 BONA Django CKEditor installation Testing](https://user-images.githubusercontent.com/19711677/99898873-a0bf9e00-2c6a-11eb-8e4a-8e24af9dce94.jpg)
  
 
 
