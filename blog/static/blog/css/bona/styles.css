@@ -277,15 +277,6 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .main-post ul.tags > li > a:hover{ background: none; }
 
-/*.post-bottom-area p { margin: 5px; padding: 5px; font-size: 1.125rem; font-family: Georgia, "Times New Roman", Times, serif;}*/
-/*.post-bottom-area h1 { font-size: 2.25rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area h2 { font-size: 2rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area h3 { font-size: 1.75rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area h4 { font-size: 1.5rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area h5 { font-size: 1.25rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area h6 { font-size: 1.125rem; font-family: Georgia, "Times New Roman", Times, serif; }*/
-/*.post-bottom-area p > img { object-fit: none; }*/
-/*.post-bottom-area ul > li { margin: 5px; padding: 5px; font-size: 1.125rem; font-family: Georgia, "Times New Roman", Times, serif;}*/
 .main-post ul.tags > li{ margin: 0; padding: 0; list-style: none; display: inline-block; }
 
 /* ICONS */
@@ -315,7 +306,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 
 /* ---------------------------------
-8. RECOMENEDED AREA
+8. RECOMMENDED AREA
 --------------------------------- */
 
 .recomended-area .row div[class^="col"] { margin-bottom: 30px; }
@@ -414,7 +405,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 10. FOOTER
 --------------------------------- */
 
-footer{ padding: 70px 0 30px; background: #fff; }
+footer{ padding: 70px 0 30px; background: #fff; max-width: 100%;}
 
 footer .footer-section{ margin-bottom: 40px; }
 
