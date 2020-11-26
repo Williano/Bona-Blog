@@ -4,6 +4,7 @@
 -------------------------------------------------------------------------- */
 @media only screen and (max-width: 1200px) {
 
+	footer{ padding: 40px 0 0px; margin-top: 0px; position:relative!important;}
 
 }
 
@@ -48,7 +49,7 @@
 	.info-area .sidebar-area,
 	.info-area .tag-area{ padding-left: 0px; }
 
-
+	footer{ padding: 40px 0 0px; margin-top: 0px; position:relative!important;}
 }
 
 
@@ -122,11 +123,7 @@
 	10. FOOTER
 	--------------------------------- */
 
-	footer{ padding: 40px 0 0px; margin-top: 0px; }
-
-
-
-
+	footer{ padding: 40px 0 0px; margin-top: 0px; position:relative!important;}
 
 }
 
