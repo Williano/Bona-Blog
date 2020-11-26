@@ -405,7 +405,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 10. FOOTER
 --------------------------------- */
 
-footer{ padding: 70px 0 30px; background: #fff; max-width: 100%;}
+footer{ padding: 70px 0 30px; background: #fff; max-width: 100%;   position: fixed; left: 0; bottom: 0; width: 100%;}
 
 footer .footer-section{ margin-bottom: 40px; }
 
