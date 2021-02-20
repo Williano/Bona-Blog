@@ -62,7 +62,8 @@ class ArticleWriteView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
 
-        article_create_form = ArticleCreateForm(request.POST)
+        article_create_form = ArticleCreateForm(request.POST, request.FILES)
+        print(request.FILES)
 
         action = request.POST.get("action")
         article_status = request.POST["status"]
