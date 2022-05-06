@@ -1,5 +1,5 @@
 # Bona Blog
-An Open-Source Web Blogging platform.
+An Open-Source Web Blogging platform built with Python and Django.
 
 
 
